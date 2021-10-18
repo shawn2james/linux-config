@@ -1,0 +1,23 @@
+#!/bin/bash
+
+BASEDIR="/home/shawn/linux-config"
+
+echo "Installing xmonad configs"
+ln -sf ${BASEDIR}/xmonad.hs ~/.xmonad/
+echo "Installing vim configs..."
+ln -sf ${BASEDIR}/.vimrc ~/
+
+echo "Installing dmenu configs..."
+ln -sf ${BASEDIR}/dmenu ~/.config/
+
+echo "Installing doom emacs configs..."
+ln -sf ${BASEDIR}/doom ~/
+mv ~/doom ~/.doom.d
+
+echo "Installing kitty configs..."
+cd ~/.config/; rm -rf ./kitty/
+ln -sf ${BASEDIR}/kitty ~/.config/
+
+echo "installing qutebrowser configs..."
+cd ~/.config/; rm -rf ./qutebrowser/
+ln -sf ${BASEDIR}/qutebrowser ~/.config/
