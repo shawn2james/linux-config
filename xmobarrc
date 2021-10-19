@@ -3,15 +3,15 @@ Config {
    -- appearance
      font = "xft:Ubuntu:pixelsize=15:antialias=true:hinting=true",
    , additionalFonts = ["xft:Mononoki Nerd Font:pixelsize=17:antialias=true:hinting=true"]
-   , bgColor = "#2d2d2d"
+   , bgColor = "#001a21"
    , fgColor = "#EEEEEE"
-   , position = Static { xpos=20, ypos=0, width=1880, height=40 }
+   , position = Static { xpos=0, ypos=0, width=1920, height=40 }
 
 
      -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "&&"  -- separator between left-right alignment
-   , template = "%battery%   |   %multicpu%   &&   %date%   |   %default:Master%   ||   %kbd% "
+   , template = "      %battery%   |   %multicpu%   &&   %date%   |   %default:Master%   ||   %kbd%      "
 
 
      -- general behavior

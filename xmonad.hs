@@ -216,7 +216,7 @@ myLogHook = return ()
 
 -- STARTUP -------------------------------------------------------------------------
 myStartupHook = do 
-				spawn "feh --bg-scale /home/shawn/Downloads/wallpaper.jpg"
+				spawn "feh --bg-scale /home/shawn/Downloads/wallpaper.png"
 
 -- RUNNING XMONAD WITH THE ABOVE CONFIGURATIONS ------------------------------------
 main = do
