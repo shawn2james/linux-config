@@ -37,7 +37,7 @@ myWorkspaces = ["1", "2", "3", "4", "5"]
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- terminal
-    [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
+    [ ((modm, xK_Return), spawn $ XMonad.terminal conf)
 
     -- dmenu
     , ((modm, xK_p     ), spawn "dmenu_run -l 15")
@@ -67,7 +67,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- , ((modm, xK_m), windows W.focusMaster  )
 
     -- Swap the focused window and the master window
-    , ((modm, xK_Return), windows W.swapMaster)
+    , ((modm .|. shiftMask, xK_Return), windows W.swapMaster)
 
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_j), windows W.swapDown  )
@@ -137,6 +137,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	  ((modm .|. shiftMask, xK_f), spawn "firefox"),
 	  -- Open File Explorer
 	  ((modm, xK_e), spawn "kitty sh -c vifm"),
+	  -- Open Doom eMacs
+	  ((modm .|. shiftMask, xK_e), spawn "emacs"),
 	  -- Take screenshot
 	  ((modm, xK_Print), spawn "flameshot gui")
 	]

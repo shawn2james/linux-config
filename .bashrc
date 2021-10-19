@@ -21,7 +21,7 @@ export -f chtheme
 
 shopt -s autocd
 
-export PATH="$PATH:/home/shawn/linux-config/scripts/:/home/shawn/.emacs.d/bin/"
+export PATH="$PATH:/home/shawn/scripts/:/home/shawn/.emacs.d/bin/"
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 

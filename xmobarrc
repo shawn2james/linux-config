@@ -3,6 +3,9 @@ Config {
    -- appearance
      font = "xft:Ubuntu:pixelsize=15:antialias=true:hinting=true",
    , additionalFonts = ["xft:Mononoki Nerd Font:pixelsize=17:antialias=true:hinting=true"]
+   , borderColor="grey"
+   , border=BottomB
+   , borderWidth=1
    , bgColor = "#001a21"
    , fgColor = "#EEEEEE"
    , position = Static { xpos=0, ypos=0, width=1920, height=40 }
