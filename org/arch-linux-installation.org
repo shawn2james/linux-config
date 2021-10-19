@@ -80,7 +80,7 @@
 ** grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 ** grub-mkconfig -o /boot/grub/grub.cfg
 * Final commands
-** pacman -S networkmanager xmonad xmonad-contrib git
+** pacman -S networkmanager git
 ** systemctl enable NetworkManager
 ** exit
 ** umount -l /mnt
@@ -92,9 +92,24 @@
 ** makepkg -si
 ** yay -S nerd-fonts-mononoki
 ** Install appropriate driver for your system(AMD, Nvidia...) in place of xf86-video-fbdev below
-** sudo pacman -S xf86-video-fbdev xorg xorg-xinit feh picom kitty firefox base-devel xmonad xmonad-contrib xterm
+** sudo pacman -S xf86-video-fbdev xorg xorg-xinit feh picom kitty firefox base-devel xmonad xmonad-contrib xterm qutebrowser emacs blueman nm-connection-editor modemmanager usb_modeswitch openssh
 ** cp /etc/X11/xinit/xinitrc /home/shawn/.xinitrc
 ** vim ~/.xinitrc
 ** add the following to the end in place of the lines already there
 picom &
 exec xmonad
+
+* Other useful commands
+** pulseaudio --check
+** pulseaudio -D
+
+** sudo systemctl enable bluetooth
+** sudo systemctl start bluetooth
+
+** sudo systemctl enable NetworkManager
+** sudo systemctl start NetworkManager
+** sudo systemctl enable ModemManager
+** sudo systemctl start ModemManager
+** sudo systemctl restart NetworkManager
+** nmcli device wifi list
+** nmcli dev wifi con "[SSID_NAME]" password "[password]"
