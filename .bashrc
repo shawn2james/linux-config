@@ -23,6 +23,7 @@ shopt -s autocd
 
 export PATH="$PATH:/home/shawn/scripts/:/home/shawn/.emacs.d/bin/"
 
+
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -176,3 +177,14 @@ fi
 if [ -f /home/shawn/.config/synth-shell/better-history.sh ] && [ -n "$( echo $- | grep i )" ]; then
 	source /home/shawn/.config/synth-shell/better-history.sh
 fi
+
+neofetch
+
+function _update_ps1() {
+    PS1=$(powerline-shell $?)
+}
+
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
+

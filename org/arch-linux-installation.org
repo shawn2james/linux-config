@@ -90,9 +90,9 @@
 ** git clone https://aur.archlinux.org/yay-git.git
 ** cd yay-git
 ** makepkg -si
-** yay -S nerd-fonts-mononoki
+** yay -S nerd-fonts-mononoki lux
 ** Install appropriate driver for your system(AMD, Nvidia...) in place of xf86-video-fbdev below
-** sudo pacman -S xf86-video-fbdev xorg xorg-xinit feh picom kitty firefox base-devel xmonad xmonad-contrib xterm qutebrowser emacs blueman nm-connection-editor modemmanager usb_modeswitch openssh flameshot vifm wget
+** sudo pacman -S xf86-video-fbdev xorg xorg-xinit feh picom kitty firefox base-devel xmonad xmonad-contrib xterm qutebrowser emacs blueman nm-connection-editor modemmanager usb_modeswitch openssh flameshot vifm wget lightdm lightdm-webkit2-greeter imagemagick xmobar accountsservice python-pip
 ** wget -P ~/.vifm/colors https://raw.githubusercontent.com/vifm/vifm-colors/master/palenight.vifm
 ** cp /etc/X11/xinit/xinitrc /home/shawn/.xinitrc
 ** vim ~/.xinitrc
@@ -114,3 +114,6 @@ exec xmonad
 ** sudo systemctl restart NetworkManager
 ** nmcli device wifi list
 ** nmcli dev wifi con "[SSID_NAME]" password "[password]"
+** sudo systemctl enable lightdm
+** sudo pacman -S lightdm-webkit2-greeter
+** yay -S lightdm-webkit-theme-aether
