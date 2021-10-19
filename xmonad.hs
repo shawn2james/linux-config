@@ -130,7 +130,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	++
 
 	[ -- Open XMonad Config file in VIM
-	  ((controlMask .|. mod1Mask, xK_semicolon), spawn "kitty vim /home/shawn/.config/xmonad/xmonad.hs"),
+	  ((controlMask .|. mod1Mask, xK_semicolon), spawn "kitty vim ~/.xmonad/xmonad.hs"),
 	  -- Open qutebrowser
 	  ((modm, xK_f), spawn "qutebrowser"),
 	  -- Open Firefox
@@ -216,7 +216,7 @@ myLogHook = return ()
 
 -- STARTUP -------------------------------------------------------------------------
 myStartupHook = do 
-				spawn "feh --bg-scale /home/shawn/Downloads/wallpaper.webp"
+				spawn "feh --bg-scale /home/shawn/Downloads/wallpaper.jpg"
 
 -- RUNNING XMONAD WITH THE ABOVE CONFIGURATIONS ------------------------------------
 main = do
