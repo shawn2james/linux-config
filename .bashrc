@@ -6,6 +6,7 @@
 
 # ALIASES
 alias la="ls -A"
+alias rm="rm -i"
 alias gits="git status"
 alias linux-pdf="zathura /home/shawn/Documents/the-linux-command-line.pdf"
 alias icat="kitty +kitten icat --align=center"
@@ -188,3 +189,6 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
+if [ -f /etc/bash_completion ]; then
+    /etc/bash_completion
+fi
