@@ -1,0 +1,4 @@
+#+TITLE: Notifications
+#+AUTHOR: Shawn James
+
+* sudo pacman -S dunst libnotify

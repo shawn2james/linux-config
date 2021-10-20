@@ -218,7 +218,9 @@ myLogHook = return ()
 
 -- STARTUP -------------------------------------------------------------------------
 myStartupHook = do 
-				spawn "feh --bg-scale /home/shawn/Pictures/wallpaper.png"
+	spawn "feh --bg-scale /home/shawn/Pictures/wallpaper.png"
+	spawn "xsetroot -cursor_name Left_ptr"
+	spawn "blueman-applet"
 
 -- RUNNING XMONAD WITH THE ABOVE CONFIGURATIONS ------------------------------------
 main = do

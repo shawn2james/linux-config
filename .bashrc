@@ -4,6 +4,7 @@
 
 [[ $- != *i* ]] && return
 
+
 # ALIASES
 alias la="ls -A"
 alias rm="rm -i"
