@@ -7,7 +7,7 @@
 shopt -s autocd
 
 # ALIASES
-alias la="ls -A"
+alias la="ls -la"
 alias rm="rm -i"
 alias gits="git status"
 alias linux-pdf="zathura /home/shawn/Documents/the-linux-command-line.pdf"

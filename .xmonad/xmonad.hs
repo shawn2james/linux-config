@@ -39,7 +39,7 @@ myNormalBorderColor  = "#7893ad"
 myFocusedBorderColor :: String
 myFocusedBorderColor = "lightgrey"
 
-myModMask :: KeyMask
+-- myModMask :: KeyMask
 myModMask = mod4Mask
 
 myWorkspaces = ["1", "2", "3", "4", "5"]
@@ -47,9 +47,8 @@ myWorkspaces = ["1", "2", "3", "4", "5"]
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- DEFAULT KEYBINDINGS
 
-    `additionalKeysP`
     [ -- terminal
-      ("M-Return", spawn $ XMonad.terminal conf)
+      ((modm, xK_Return), spawn $ XMonad.terminal conf)
 
     -- dmenu
     , ((modm, xK_p     ), spawn "dmenu_run -l 15")
@@ -109,7 +108,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
-    , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
+    -- , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
     ]
 
     ++
@@ -127,74 +126,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
-        ++
+      --   ++
 
-    -- MY CUSTOM KEYBINDINGS
-    `additionalKeysP`
-    [ -- control volume with volume keys
-      ("0x1008FF11", spawn "amixer -q sset Master 2%-")
-    , ("0x1008FF13", spawn "amixer -q sset Master 2%+")
-
-      -- control volume with fn keys
-    , ("M-F5", spawn "amixer -q sset Master 2%-")
-    , ("M-F6", spawn "amixer -q sset Master 2%+")
-
-      -- control brightness with brightness keys
-    , ("xF86XK_MonBrightnessUp", spawn "lux -a 10%"),
-    , ("xF86XK_MonBrightnessDown", spawn "lux -s 10%")
-
-      -- control brightness with fn keys
-    , ("M-F8", spawn "lux -a 10%")
-    , ("M-F7", spawn "lux -s 10%")
-
-    -- Open XMonad Config file in VIM
-    , ("C-M1-semicolon", spawn "kitty vim ~/.xmonad/xmonad.hs")
-
-    -- Open qutebrowser
-    , ("M-f", spawn "qutebrowser")
-
-    -- Open Firefox
-    , ("M-S-f", spawn "firefox")
-
-    -- Open File Explorer
-    , ("M-e", spawn "kitty sh -c vifm")
-
-    -- Open Doom eMacs
-    , ("M-S-e", spawn "emacs")
-
-    -- Open pcmanfm
-    , ("M-S-semicolon", spawn "pcmanfm")
-
-    -- Take screenshot
-    , ("M-Print", spawn "flameshot gui")
-
-    -- Toggle border of currently focused window
-    , ("M-g", withFocused toggleBorder)
-
-    -- Increase spacing around windows
-    , ("M-S-equal", incSpacing 2)
-
-    -- Toggle border of currently focused window
-    , ("M-minus", setSpacing 5)
-
-    -- Minimize window
-    , ("M-m", withFocused minimizeWindow)
-
-    -- Maximize the last minimized window
-    , ("M-S-m", withLastMinimized maximizeWindowAndFocus)
-
-    -- Shut down
-    , ("M-F1", spawn "shutdown now")
-
-    -- Reboot
-    , ("M-F2", spawn "reboot")
-
-    -- Suspend
-    , ("M-F3", spawn "systemctl suspend")
-
-    -- Turn display off
-    , ("M-M1-Home", spawn "sleep 0.8; xset dpms force off")
-    ]
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
@@ -243,10 +176,6 @@ myStartupHook = do
 	spawn "xsetroot -cursor_name Left_ptr"
 	spawn "blueman-applet"
 
-main = do
-		xmproc <- spawnPipe "xmobar /home/shawn/.config/xmobar/xmobarrc; xmonad --restart"
-		xmproc <- spawnPipe "picom"
-		xmonad $ docks $ fullscreenSupport defaults
 defaults = def {
 	  -- general
         terminal           = myTerminal,
@@ -269,3 +198,76 @@ defaults = def {
         logHook            = myLogHook,
         startupHook        = myStartupHook
     }
+
+
+main = do
+		xmproc <- spawnPipe "xmobar /home/shawn/.config/xmobar/xmobarrc; xmonad --restart"
+		xmproc <- spawnPipe "picom"
+		xmonad $ docks $ fullscreenSupport defaults
+				-- MY CUSTOM KEYBINDINGS
+				 `additionalKeysP`
+				 [ -- control volume with volume keys
+				 ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 2%-")
+				, ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+")
+
+				 -- control volume with fn keys
+				, ("M-<F5>", spawn "amixer -q sset Master 2%-")
+				, ("M-<F6>", spawn "amixer -q sset Master 2%+")
+
+				 --- control brightness with brightness keys
+				, ("XF86MonBrightnessUp", spawn "lux -a 10%")
+				, ("XF86MonBrightnessDown", spawn "lux -s 10%")
+
+				-- control brightness with fn keys
+				, ("M-<F8>", spawn "lux -a 10%")
+				, ("M-<F7>", spawn "lux -s 10%")
+
+				-- Open XMonad Config file in VIM
+				, ("C-M1-<Insert>", spawn "kitty vim ~/.xmonad/xmonad.hs")
+
+				-- Open qutebrowser
+				, ("M-f", spawn "qutebrowser")
+
+				-- Open Firefox
+				, ("M-S-f", spawn "firefox")
+
+				-- Open File Explorer
+				, ("M-e", spawn "kitty sh -c vifm")
+
+				 -- Open Doom eMacs
+				, ("M-S-e", spawn "emacs")
+
+				 -- Open pcmanfm
+				, ("M-S-<Space>", spawn "pcmanfm")
+
+				-- Take screenshot
+				, ("M-<Print>", spawn "flameshot gui")
+
+				-- Toggle border of currently focused window
+				, ("M-g", withFocused toggleBorder)
+
+				-- Increase spacing around windows
+				, ("M-S-<Up>", incSpacing 2)
+
+				-- Toggle border of currently focused window
+				, ("M-S-<Down>", setSpacing 5)
+
+				-- Minimize window
+				, ("M-m", withFocused minimizeWindow)
+
+				-- Maximize the last minimized window
+				, ("M-S-m", withLastMinimized maximizeWindowAndFocus)
+
+				-- Shut down
+				, ("M-F1", spawn "shutdown now")
+
+				-- Reboot
+				, ("M-F2", spawn "reboot")
+
+				-- Suspend
+				, ("M-F3", spawn "systemctl suspend")
+
+				-- Turn display off
+				, ("M-M1-<Home>", spawn "sleep 0.8; xset dpms force off")
+				]
+
