@@ -4,6 +4,7 @@
 
 [[ $- != *i* ]] && return
 
+shopt -s autocd
 
 # ALIASES
 alias la="ls -A"
@@ -15,16 +16,11 @@ alias blued="bluetoothctl devices; bluetoothctl disconnect"
 alias pacsave="pacman -Q > /home/shawn/packages.txt"
 
 # FUNCTIONS
-function chtheme() {
+chtheme() {
     ln -sf /home/shawn/.config/kitty/kitty-themes/themes/$1.conf /home/shawn/.config/kitty/theme.conf;
 }
 
-export -f chtheme
-
-shopt -s autocd
-
-export PATH="$PATH:/home/shawn/scripts/:/home/shawn/.emacs.d/bin/"
-
+export PATH="$PATH:/home/shawn/.local/bin/:/home/shawn/scripts/:/home/shawn/.emacs.d/bin/"
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 

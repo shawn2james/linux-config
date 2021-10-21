@@ -1,4 +1,3 @@
--- IMPORTS ------------------------------------------------------------------------
 -- default
 import XMonad
 import qualified XMonad.StackSet as W
@@ -6,7 +5,7 @@ import Data.Monoid
 import System.Exit
 import qualified Data.Map as M
 
--- custom imports
+-- my imports from xmonad-contrib
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Fullscreen
 import XMonad.Util.Run
@@ -18,7 +17,6 @@ import XMonad.Layout.BoringWindows
 import XMonad.Actions.Minimize
 import XMonad.Layout.Spacing
 
--- GENERAL ------------------------------------------------------------------------
 myTerminal      = "kitty"
 
 myFocusFollowsMouse :: Bool
@@ -34,8 +32,8 @@ myFocusedBorderColor = "lightgrey"
 myModMask       = mod4Mask
 myWorkspaces = ["1", "2", "3", "4", "5"]
 
--- KEYBINDINGS --------------------------------------------------------------------
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
+    -- DEFAULT KEYBINDINGS
 
     -- terminal
     [ ((modm, xK_Return), spawn $ XMonad.terminal conf)
@@ -116,66 +114,74 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
-	++
+        ++
 
-	[ ((0, 0x1008FF11), spawn "amixer -q sset Master 2%-"),
-      ((0, 0x1008FF13), spawn "amixer -q sset Master 2%+"),
-	  ((modm, xK_F5), spawn "amixer -q sset Master 2%-"),
-      ((modm, xK_F6), spawn "amixer -q sset Master 2%+"),
-	  ((0, xF86XK_MonBrightnessUp), spawn "lux -a 10%"),
-	  ((0, xF86XK_MonBrightnessDown), spawn "lux -s 10%"),
-	  ((modm, xK_F8), spawn "lux -a 10%"),
-	  ((modm, xK_F7), spawn "lux -s 10%")
-	]
-	
-	++
+    -- MY CUSTOM KEYBINDINGS
+    [ -- control volume with volume keys
+      ((0, 0x1008FF11), spawn "amixer -q sset Master 2%-")
+    , ((0, 0x1008FF13), spawn "amixer -q sset Master 2%+")
 
-	[ -- Open XMonad Config file in VIM
-	  ((controlMask .|. mod1Mask, xK_semicolon), spawn "kitty vim ~/.xmonad/xmonad.hs"),
-	  -- Open qutebrowser
-	  ((modm, xK_f), spawn "qutebrowser"),
-	  -- Open Firefox
-	  ((modm .|. shiftMask, xK_f), spawn "firefox"),
-	  -- Open File Explorer
-	  ((modm, xK_e), spawn "kitty sh -c vifm"),
-	  -- Open Doom eMacs
-	  ((modm .|. shiftMask, xK_e), spawn "emacs"),
-	  -- Open pcmanfm
-	  ((modm .|. shiftMask, xK_semicolon), spawn "pcmanfm"),
-	  -- Take screenshot
-	  ((modm, xK_Print), spawn "flameshot gui")
-	]
+      -- control volume with fn keys
+    , ((modm, xK_F5), spawn "amixer -q sset Master 2%-")
+    , ((modm, xK_F6), spawn "amixer -q sset Master 2%+")
 
-	++
+      -- control brightness with brightness keys
+    , ((0, xF86XK_MonBrightnessUp), spawn "lux -a 10%"),
+    , ((0, xF86XK_MonBrightnessDown), spawn "lux -s 10%")
 
-	[ -- Toggle border of currently focused window 
-	  ((modm, xK_g), withFocused toggleBorder),
-      -- Increase spacing around windows
-	  ((modm .|. shiftMask, xK_equal), incSpacing 2),
-      -- Toggle border of currently focused window 
-	  ((modm, xK_minus), setSpacing 5),
-	  -- Minimize window
-	  ((modm, xK_m), withFocused minimizeWindow),
-	  -- Maximize the last minimized window
-      ((modm .|. shiftMask, xK_m), withLastMinimized maximizeWindowAndFocus)
-	]
-	
+      -- control brightness with fn keys
+    , ((modm, xK_F8), spawn "lux -a 10%")
+    , ((modm, xK_F7), spawn "lux -s 10%")
 
-	++
+    -- Open XMonad Config file in VIM
+    , ((controlMask .|. mod1Mask, xK_semicolon), spawn "kitty vim ~/.xmonad/xmonad.hs")
 
-	[ -- Shut down
-	  ((modm, xK_F1), spawn "shutdown now"),
-	  -- Reboot
-	  ((modm, xK_F2), spawn "reboot"),
-	  -- Suspend
-	  ((modm, xK_F3), spawn "systemctl suspend"),
-	  -- Turn display off
-	  ((modm .|.  mod1Mask, xK_Home), spawn "sleep 0.8; xset dpms force off")
-	]
+    -- Open qutebrowser
+    , ((modm, xK_f), spawn "qutebrowser")
 
+    -- Open Firefox
+    , ((modm .|. shiftMask, xK_f), spawn "firefox")
 
+    -- Open File Explorer
+    , ((modm, xK_e), spawn "kitty sh -c vifm")
 
--- MOUSE BINDINGS ------------------------------------------------------------------
+    -- Open Doom eMacs
+    , ((modm .|. shiftMask, xK_e), spawn "emacs")
+
+    -- Open pcmanfm
+    , ((modm .|. shiftMask, xK_semicolon), spawn "pcmanfm")
+
+    -- Take screenshot
+    , ((modm, xK_Print), spawn "flameshot gui")
+
+    -- Toggle border of currently focused window
+    , ((modm, xK_g), withFocused toggleBorder)
+
+    -- Increase spacing around windows
+    , ((modm .|. shiftMask, xK_equal), incSpacing 2)
+
+    -- Toggle border of currently focused window
+    , ((modm, xK_minus), setSpacing 5)
+
+    -- Minimize window
+    , ((modm, xK_m), withFocused minimizeWindow)
+
+    -- Maximize the last minimized window
+    , ((modm .|. shiftMask, xK_m), withLastMinimized maximizeWindowAndFocus)
+
+    -- Shut down
+    , ((modm, xK_F1), spawn "shutdown now")
+
+    -- Reboot
+    , ((modm, xK_F2), spawn "reboot")
+
+    -- Suspend
+    , ((modm, xK_F3), spawn "systemctl suspend")
+
+    -- Turn display off
+    , ((modm .|.  mod1Mask, xK_Home), spawn "sleep 0.8; xset dpms force off")
+    ]
+
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Set the window to floating mode and move by dragging
@@ -190,8 +196,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
--- LAYOUTS -------------------------------------------------------------------------
-myLayout = smartSpacingWithEdge 5 $ avoidStruts(smartBorders(boringWindows(minimize(tiled)||| Mirror tiled ||| Full)))
+myLayout = avoidStruts(smartBorders(boringWindows(minimize(smartSpacingWithEdge 5 $ tiled)||| Mirror tiled ||| Full)))
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -204,32 +209,26 @@ myLayout = smartSpacingWithEdge 5 $ avoidStruts(smartBorders(boringWindows(minim
      -- Percent of screen to increment by when resizing panes
      delta   = 3/100
 
-
--- WINDOW RULES --------------------------------------------------------------------
 myManageHook = composeAll
     [ className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore 
+    , resource  =? "kdesktop"       --> doIgnore
 	, manageDocks
 	, fullscreenManageHook
 	]
 
--- EVENT HANDLING ------------------------------------------------------------------
 myEventHook = composeAll
 	[ fullscreenEventHook,
-	  docksEventHook 
+	  docksEventHook
 	]
 
--- STATUS BARS AND LOGGING ---------------------------------------------------------
 myLogHook = return ()
 
--- STARTUP -------------------------------------------------------------------------
-myStartupHook = do 
+myStartupHook = do
 	spawn "feh --bg-scale /home/shawn/Pictures/wallpaper.png"
 	spawn "xsetroot -cursor_name Left_ptr"
 	spawn "blueman-applet"
 
--- RUNNING XMONAD WITH THE ABOVE CONFIGURATIONS ------------------------------------
 main = do
 		xmproc <- spawnPipe "xmobar /home/shawn/.config/xmobar/xmobarrc; xmonad --restart"
 		xmproc <- spawnPipe "picom"
@@ -256,59 +255,3 @@ defaults = def {
         logHook            = myLogHook,
         startupHook        = myStartupHook
     }
-
-
-
------------------------------------------------------------------------------
-
-
--- a copy of the default bindings in simple textual tabular format.
-help :: String
-help = unlines ["The default modifier key is 'alt'. Default keybindings:",
-    "",
-    "-- launching and killing programs",
-    "mod-Shift-Enter  Launch xterminal",
-    "mod-p            Launch dmenu",
-    "mod-Shift-p      Launch gmrun",
-    "mod-Shift-c      Close/kill the focused window",
-    "mod-Space        Rotate through the available layout algorithms",
-    "mod-Shift-Space  Reset the layouts on the current workSpace to default",
-    "mod-n            Resize/refresh viewed windows to the correct size",
-    "",
-    "-- move focus up or down the window stack",
-    "mod-Tab        Move focus to the next window",
-    "mod-Shift-Tab  Move focus to the previous window",
-    "mod-j          Move focus to the next window",
-    "mod-k          Move focus to the previous window",
-    "mod-m          Move focus to the master window",
-    "",
-    "-- modifying the window order",
-    "mod-Return   Swap the focused window and the master window",
-    "mod-Shift-j  Swap the focused window with the next window",
-    "mod-Shift-k  Swap the focused window with the previous window",
-    "",
-    "-- resizing the master/slave ratio",
-    "mod-h  Shrink the master area",
-    "mod-l  Expand the master area",
-    "",
-    "-- floating layer support",
-    "mod-t  Push window back into tiling; unfloat and re-tile it",
-    "",
-    "-- increase or decrease number of windows in the master area",
-    "mod-comma  (mod-,)   Increment the number of windows in the master area",
-    "mod-period (mod-.)   Deincrement the number of windows in the master area",
-    "",
-    "-- quit, or restart",
-    "mod-Shift-q  Quit xmonad",
-    "mod-q        Restart xmonad",
-    "mod-[1..9]   Switch to workSpace N",
-    "",
-    "-- Workspaces & screens",
-    "mod-Shift-[1..9]   Move client to workspace N",
-    "mod-{w,e,r}        Switch to physical/Xinerama screens 1, 2, or 3",
-    "mod-Shift-{w,e,r}  Move client to screen 1, 2, or 3",
-    "",
-    "-- Mouse bindings: default actions bound to mouse events",
-    "mod-button1  Set the window to floating mode and move by dragging",
-    "mod-button2  Raise the window to the top of the stack",
-    "mod-button3  Set the window to floating mode and resize by dragging"]

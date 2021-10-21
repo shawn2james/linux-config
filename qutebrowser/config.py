@@ -302,7 +302,7 @@ c.colors.completion.scrollbar.fg = 'white'
 
 
 # Dark mode
-config.set("colors.webpage.darkmode.enabled", True)
+# config.set("colors.webpage.darkmode.enabled", True)
 
 # Keybindings
 config.bind("M", "hint links spawn mpv {hint-url}")
