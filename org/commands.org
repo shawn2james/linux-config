@@ -1,0 +1,11 @@
+#+TITLE: Commands
+#+DESCRIPTION: A place to keep the useful commands that i discover
+#+AUTHOR: Shawn James
+
+* Table of contents :toc:
+- [[#get-linux-kernel-version][Get linux kernel version]]
+
+* Get linux kernel version
+#+begin_src bash
+uname -r
+#+end_src

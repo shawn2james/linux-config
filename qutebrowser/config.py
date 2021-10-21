@@ -253,6 +253,9 @@ c.fonts.tabs.selected = "12pt default_family"
 c.fonts.tabs.unselected = "12pt default_family"
 c.statusbar.padding = {"top": 5, "bottom": 5, "left": 5, "right": 5}
 c.tabs.padding = {"top": 5, "bottom": 5, "left": 5, "right": 5}
+c.colors.tabs.bar.bg = "#001a21"
+c.colors.tabs.even.bg = "lightgrey"
+c.colors.tabs.odd.bg = "lightgrey"
 
 c.auto_save.session = True
 
