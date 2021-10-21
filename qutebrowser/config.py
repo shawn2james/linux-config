@@ -11,12 +11,12 @@
 #   qute://help/settings.html
 
 # Change the argument to True to still load settings configured via autoconfig.yml
-config.load_autoconfig(False)
+config.load_autoconfig(True)
 
 # Aliases for commands. The keys of the given dictionary are the
 # aliases, while the values are the commands they map to.
 # Type: Dict
-c.aliases = {'q': 'close', 'qa': 'quit', 'w': 'session-save', 'wq': 'quit --save', 'wqa': 'quit --save'}
+c.aliases = {'q': 'quit', 'qa': 'quit', 'w': 'session-save', 'wq': 'quit --save', 'wqa': 'quit --save'}
 
 # Backend to use to display websites. qutebrowser supports two different
 # web rendering engines / backends, QtWebEngine and QtWebKit (not
@@ -220,7 +220,7 @@ c.downloads.open_dispatcher = None
 # Valid values:
 #   - top
 #   - bottom
-c.downloads.position = 'top'
+c.downloads.position = 'bottom'
 
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -243,67 +243,25 @@ c.downloads.position = 'top'
 # Type: Dict
 c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}', 'rd': 'https://duckduckgo.com/?q={} reddit', 'aw': 'https://wiki.archlinux.org/?search={}', 'yt': 'https://www.youtube.com/results?search_query={}'}
 
-# Background color for the download bar.
-# Type: QssColor
-c.colors.downloads.bar.bg = 'black'
+# Set tab position
+c.tabs.position = "bottom"
 
-# Background color for downloads with errors.
-# Type: QtColor
-c.colors.downloads.error.bg = 'red'
+c.fonts.default_size = "17px"
+c.fonts.default_family = "Ubuntu"
+c.fonts.statusbar = "12pt default_family"
+c.fonts.tabs.selected = "12pt default_family"
+c.fonts.tabs.unselected = "12pt default_family"
+c.statusbar.padding = {"top": 5, "bottom": 5, "left": 5, "right": 5}
+c.tabs.padding = {"top": 5, "bottom": 5, "left": 5, "right": 5}
 
-# Text color of the completion widget. May be a single color to use for
-# all columns or a list of three colors, one for each column.
-# Type: List of QtColor, or QtColor
-c.colors.completion.fg = ['#9cc4ff', 'white', 'white']
-
-# Background color of the completion widget for odd rows.
-# Type: QssColor
-c.colors.completion.odd.bg = '#1c1f24'
-
-# Background color of the completion widget for even rows.
-# Type: QssColor
-c.colors.completion.even.bg = '#232429'
-
-# Foreground color of completion widget category headers.
-# Type: QtColor
-c.colors.completion.category.fg = '#e1acff'
-
-# Background color of the completion widget category headers.
-# Type: QssColor
-c.colors.completion.category.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #000000, stop:1 #232429)'
-
-# Top border color of the completion widget category headers.
-# Type: QssColor
-c.colors.completion.category.border.top = '#3f4147'
-
-# Bottom border color of the completion widget category headers.
-# Type: QssColor
-c.colors.completion.category.border.bottom = '#3f4147'
-
-# Foreground color of the selected completion item.
-# Type: QtColor
-c.colors.completion.item.selected.fg = '#282c34'
-
-# Background color of the selected completion item.
-# Type: QssColor
-c.colors.completion.item.selected.bg = '#ecbe7b'
-
-# Foreground color of the matched text in the selected completion item.
-# Type: QtColor
-c.colors.completion.item.selected.match.fg = '#c678dd'
-
-# Foreground color of the matched text in the completion.
-# Type: QtColor
-c.colors.completion.match.fg = '#c678dd'
-
-# Color of the scrollbar handle in the completion view.
-# Type: QssColor
-c.colors.completion.scrollbar.fg = 'white'
-
+c.auto_save.session = True
 
 # Dark mode
-# config.set("colors.webpage.darkmode.enabled", True)
+# colors.webpage.darkmode.enabled = True
 
 # Keybindings
+config.bind("Super-Shift-c", "quit --save")
 config.bind("M", "hint links spawn mpv {hint-url}")
 config.bind('xx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
+
+config.source("onedark.py")
