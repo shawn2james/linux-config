@@ -31,7 +31,7 @@ myClickJustFocuses :: Bool
 myClickJustFocuses = False
 
 myBorderWidth :: Dimension
-myBorderWidth   = 2
+myBorderWidth   = 4
 
 myNormalBorderColor :: String
 myNormalBorderColor  = "#7893ad"
@@ -39,14 +39,12 @@ myNormalBorderColor  = "#7893ad"
 myFocusedBorderColor :: String
 myFocusedBorderColor = "lightgrey"
 
--- myModMask :: KeyMask
+myModMask :: KeyMask
 myModMask = mod4Mask
 
 myWorkspaces = ["1", "2", "3", "4", "5"]
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-    -- DEFAULT KEYBINDINGS
-
     [ -- terminal
       ((modm, xK_Return), spawn $ XMonad.terminal conf)
 
@@ -106,9 +104,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Restart xmonad
     , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
-
-    -- Run xmessage with a summary of the default keybindings (useful for beginners)
-    -- , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
     ]
 
     ++
@@ -125,9 +120,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
-
-      --   ++
-
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
@@ -199,13 +191,12 @@ defaults = def {
         startupHook        = myStartupHook
     }
 
-
 main = do
 		xmproc <- spawnPipe "xmobar /home/shawn/.config/xmobar/xmobarrc; xmonad --restart"
 		xmproc <- spawnPipe "picom"
 		xmonad $ docks $ fullscreenSupport defaults
 				-- MY CUSTOM KEYBINDINGS
-				 `additionalKeysP`
+				`additionalKeysP`
 				 [ -- control volume with volume keys
 				 ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 2%-")
 				, ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+")
@@ -259,15 +250,14 @@ main = do
 				, ("M-S-m", withLastMinimized maximizeWindowAndFocus)
 
 				-- Shut down
-				, ("M-F1", spawn "shutdown now")
+				, ("M-<F1>", spawn "shutdown now")
 
 				-- Reboot
-				, ("M-F2", spawn "reboot")
+				, ("M-<F2>", spawn "reboot")
 
 				-- Suspend
-				, ("M-F3", spawn "systemctl suspend")
+				, ("M-<F3>", spawn "systemctl suspend")
 
 				-- Turn display off
 				, ("M-M1-<Home>", spawn "sleep 0.8; xset dpms force off")
 				]
-
