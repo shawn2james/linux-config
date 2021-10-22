@@ -241,7 +241,6 @@ myEventHook = composeAll
 	]
 #+end_src
 
-
 * Log Hook
 
 #+begin_src haskell
