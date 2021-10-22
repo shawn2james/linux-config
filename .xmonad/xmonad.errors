@@ -1,12 +1,7 @@
 
-xmonad.hs:56:38: error:
-    • Couldn't match expected type: M.Map [Char] a
-                  with actual type: [a1]
-    • In the second argument of ‘M.lookup’, namely ‘myWorkspaceIndices’
-      In the second argument of ‘($)’, namely
-        ‘M.lookup ws myWorkspaceIndices’
-      In the expression: fromJust $ M.lookup ws myWorkspaceIndices
-    • Relevant bindings include i :: a (bound at xmonad.hs:56:11)
-   |
-56 |     where i = fromJust $ M.lookup ws myWorkspaceIndices
-   |                                      ^^^^^^^^^^^^^^^^^^
+xmonad.hs:177:1: warning: [-Wtabs]
+    Tab character found here, and in 12 further locations.
+    Please use spaces instead.
+    |
+177 |         [ fullscreenEventHook,
+    | ^^^^^^^^

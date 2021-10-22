@@ -14,7 +14,7 @@ Config {
      -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "&&"  -- separator between left-right alignment
-   , template = "   %battery% | %multicpu%               %UnsafeStdinReader% && %date% | %default:Master% || %kbd%   "
+   , template = "   %battery% | %multicpu%      %UnsafeStdinReader% && %date% | %default:Master% || %kbd%   "
 
 
      -- general behavior
