@@ -1,29 +1,29 @@
-#+TITLE: My Xmonad Config
+#+TITLE: MY XMONAD CONFIG
 #+PROPERTY: header-args :tangle xmonad.hs
 #+STARTUP: showeverything
 #+AUTHOR: Shawn James
 
-* TABLE OF CONTENTS :toc:
-- [[#xmonad][XMONAD]]
-- [[#imports][IMPORTS]]
-- [[#variables][VARIABLES]]
-- [[#workspaces][WORKSPACES]]
-- [[#default-keybindings][DEFAULT KEYBINDINGS]]
-- [[#mouse-bindings][MOUSE BINDINGS]]
-- [[#layouts][LAYOUTS]]
-- [[#manage-hook][MANAGE HOOK]]
-- [[#event-hook][EVENT HOOK]]
-- [[#log-hook][LOG HOOK]]
-- [[#startup-hook][STARTUP HOOK]]
-- [[#default-variables][DEFAULT VARIABLES]]
-- [[#main--my-custom-keybindings][MAIN & MY CUSTOM KEYBINDINGS]]
+* Table Of Contents :toc:
+- [[#xmonad][Xmonad]]
+- [[#imports][Imports]]
+- [[#variables][Variables]]
+- [[#workspaces][Workspaces]]
+- [[#default-keybindings][Default Keybindings]]
+- [[#mouse-bindings][Mouse Bindings]]
+- [[#layouts][Layouts]]
+- [[#manage-hook][Manage Hook]]
+- [[#event-hook][Event Hook]]
+- [[#log-hook][Log Hook]]
+- [[#startup-hook][Startup Hook]]
+- [[#setting-configuration][Setting Configuration]]
+- [[#main--my-custom-keybindings][Main & My Custom Keybindings]]
 
-* XMONAD
+* Xmonad
 XMonad is a dynamically tiling X11 window manager that is written and configured in Haskell.
 - XMonad Official Website: https://xmonad.org
 - Haskell Official Website: https://haskell.org
 
-* IMPORTS
+* Imports
 These are Haskell modules that we must import so that we can use their functions later in the config
 
 #+begin_src haskell
@@ -58,7 +58,7 @@ import XMonad.Util.NamedScratchpad
 
 #+end_src
 
-* VARIABLES
+* Variables
 Setting values for things like font, terminal and editor means you only have to change the value here to make changes globally.
 
 #+begin_src haskell
@@ -84,7 +84,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 #+end_src
 
-* WORKSPACES
+* Workspaces
 
 #+begin_src haskell
 myWorkspaces = ["1", "2", "3", "4", "5"]
@@ -96,7 +96,7 @@ clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
     where i = fromJust $ M.lookup ws myWorkspaceIndices
 #+end_src
 
-* DEFAULT KEYBINDINGS
+* Default Keybindings
 These are the keybindings that came by default in the XMonad config
 
 #+begin_src haskell
@@ -178,7 +178,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 #+end_src
 
-* MOUSE BINDINGS
+* Mouse Bindings
 These are the various functions to different mouse buttons
 
 #+begin_src haskell
@@ -196,7 +196,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 #+end_src
-* LAYOUTS
+* Layouts
 These are the different layouts that I can switch to when needed.
 
 #+begin_src haskell
@@ -214,7 +214,7 @@ myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,18), (R,18),
      delta   = 3/100
 #+end_src
 
-* MANAGE HOOK
+* Manage Hook
 
 #+begin_src haskell
 myManageHook = composeAll
@@ -232,7 +232,7 @@ myManageHook = composeAll
         ]
 #+end_src
 
-* EVENT HOOK
+* Event Hook
 
 #+begin_src haskell
 myEventHook = composeAll
@@ -242,8 +242,7 @@ myEventHook = composeAll
 #+end_src
 
 
-
-* LOG HOOK
+* Log Hook
 
 #+begin_src haskell
 myLogHook xmproc = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
@@ -261,7 +260,7 @@ myLogHook xmproc = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmob
               }
 #+end_src
 
-* STARTUP HOOK
+* Startup Hook
 
 #+begin_src haskell
 myStartupHook = do
@@ -270,7 +269,7 @@ myStartupHook = do
 	spawn "blueman-applet"
 #+end_src
 
-* DEFAULT VARIABLES
+* Setting Configuration
 
 #+begin_src haskell
 defaults xmproc = def {
@@ -297,7 +296,7 @@ defaults xmproc = def {
         }
 #+end_src
 
-* MAIN & MY CUSTOM KEYBINDINGS
+* Main & My Custom Keybindings
 
 #+begin_src haskell
 main = do
