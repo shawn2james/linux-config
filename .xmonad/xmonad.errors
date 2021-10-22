@@ -1,29 +1,7 @@
 
-xmonad.hs:138:60: warning: [-Wdeprecations]
-    In the use of ‘smartSpacingWithEdge’
-    (imported from XMonad.Layout.Spacing):
-    Deprecated: "Use spacingRaw instead."
-    |
-138 | myLayout = avoidStruts(smartBorders(boringWindows(minimize(smartSpacingWithEdge 5 $ tiled)||| Mirror tiled ||| Full)))
-    |                                                            ^^^^^^^^^^^^^^^^^^^^
-
 xmonad.hs:155:1: warning: [-Wtabs]
-    Tab character found here, and in 203 further locations.
+    Tab character found here, and in 15 further locations.
     Please use spaces instead.
     |
 155 |         , manageDocks
     | ^^^^^^^^
-
-xmonad.hs:241:48: warning: [-Wdeprecations]
-    In the use of ‘incSpacing’ (imported from XMonad.Layout.Spacing):
-    Deprecated: "Use incScreenWindowSpacing instead."
-    |
-241 |                                 , ("M-S-<Up>", incSpacing 2)
-    |                                                ^^^^^^^^^^
-
-xmonad.hs:244:50: warning: [-Wdeprecations]
-    In the use of ‘setSpacing’ (imported from XMonad.Layout.Spacing):
-    Deprecated: "Use setScreenWindowSpacing instead."
-    |
-244 |                                 , ("M-S-<Down>", setSpacing 5)
-    |                                                  ^^^^^^^^^^

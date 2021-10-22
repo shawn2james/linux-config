@@ -1,9 +1,0 @@
-#!/bin/bash
-
-bluetoothctl power on
-devices=$(bluetoothctl devices)
-echo "$devices"
-read -p "Which Bluetooth device do you want to connect[1, 2, 3...]: " num
-device=$(bluetoothctl devices | sed -n "$num p" | awk '{print $2}')
-bluetoothctl connect "$device"
-exit 1

@@ -3,9 +3,24 @@
 #+AUTHOR: Shawn James
 
 * Table of contents :toc:
-  -  [[#get-linux-kernel-version][Get linux kernel version]]
+  - [[#get-linux-kernel-version][Get linux kernel version]]
+  - [[#turn-off-monitor][Turn off monitor]]
+  - [[#set-cursor-to-left-pointer][Set cursor to left pointer]]
+  - [[#get-no-of-packages-installed-official-repos-and-aur][Get no. of packages installed (official repos and AUR)]]
 
-**  Get linux kernel version
+** Get linux kernel version
 #+begin_src bash
 uname -r
+#+end_src
+** Turn off monitor
+#+begin_src bash
+xset dpms force off
+#+end_src
+** Set cursor to left pointer
+#+begin_src bash
+xsetroot -cursor_name Left_ptr
+#+end_src
+** Get no. of packages installed (official repos and AUR)
+#+begin_src bash
+pacman -Qeq | wc -l
 #+end_src

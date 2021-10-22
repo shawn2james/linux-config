@@ -10,7 +10,7 @@ shopt -s autocd
 alias la="ls -la"
 alias rm="rm -i"
 alias gits="git status"
-alias linux-pdf="zathura /home/shawn/Documents/the-linux-command-line.pdf"
+alias linux-pdf="zathura /home/shawn/Documents/the-linux-commnd-line.pdf"
 alias icat="kitty +kitten icat --align=center"
 alias blued="bluetoothctl devices; bluetoothctl disconnect"
 alias pacsave="pacman -Q > /home/shawn/packages.txt"
@@ -20,7 +20,7 @@ chtheme() {
     ln -sf /home/shawn/.config/kitty/kitty-themes/themes/$1.conf /home/shawn/.config/kitty/theme.conf;
 }
 
-export PATH="$PATH:/home/shawn/.local/bin/:/home/shawn/scripts/:/home/shawn/.emacs.d/bin/"
+# export PATH="$PATH:/usr/local/bin"
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 

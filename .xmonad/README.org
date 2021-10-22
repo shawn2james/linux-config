@@ -32,7 +32,6 @@ import qualified XMonad.StackSet as W
 import Data.Monoid
 import System.Exit
 import qualified Data.Map as M
-
 -- Hooks
 import XMonad.Hooks.ManageDocks
 -- Actions
@@ -44,6 +43,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Minimize
 import XMonad.Layout.BoringWindows
 import XMonad.Layout.Spacing
+import XMonad.Layout.Gaps
 -- Utilities
 import XMonad.Util.Run
 import Graphics.X11.ExtraTypes.XF86
@@ -182,7 +182,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 These are the different layouts that I can switch to when needed.
 
 #+begin_src haskell
-myLayout = avoidStruts(smartBorders(boringWindows(minimize(smartSpacingWithEdge 5 $ tiled)||| Mirror tiled ||| Full)))
+myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,18), (R,18), (D,18), (L,18)] $ tiled||| Mirror tiled ||| Full))))
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -229,7 +229,7 @@ myLogHook = return ()
 
 #+begin_src haskell
 myStartupHook = do
-	spawn "feh --bg-scale /home/shawn/Pictures/wallpaper.png"
+	spawn "nitrogen --restore"
 	spawn "xsetroot -cursor_name Left_ptr"
 	spawn "blueman-applet"
 #+end_src
@@ -268,70 +268,64 @@ main = do
 		xmproc <- spawnPipe "xmobar /home/shawn/.config/xmobar/xmobarrc; xmonad --restart"
 		xmproc <- spawnPipe "picom"
 		xmonad $ docks $ fullscreenSupport defaults
-				-- MY CUSTOM KEYBINDINGS
-				`additionalKeysP`
-				 [ -- control volume with volume keys
-				 ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 2%-")
-				, ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+")
+                               -- MY CUSTOM KEYBINDINGS
+                               `additionalKeysP`
+                                [ -- control volume with volume keys
+                                ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 2%-")
+                               , ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+")
 
-				 -- control volume with fn keys
-				, ("M-<F5>", spawn "amixer -q sset Master 2%-")
-				, ("M-<F6>", spawn "amixer -q sset Master 2%+")
+                                -- control volume with fn keys
+                               , ("M-<F5>", spawn "amixer -q sset Master 2%-")
+                               , ("M-<F6>", spawn "amixer -q sset Master 2%+")
 
-				 --- control brightness with brightness keys
-				, ("XF86MonBrightnessUp", spawn "lux -a 10%")
-				, ("XF86MonBrightnessDown", spawn "lux -s 10%")
+                                --- control brightness with brightness keys
+                               , ("XF86MonBrightnessUp", spawn "lux -a 10%")
+                               , ("XF86MonBrightnessDown", spawn "lux -s 10%")
 
-				-- control brightness with fn keys
-				, ("M-<F8>", spawn "lux -a 10%")
-				, ("M-<F7>", spawn "lux -s 10%")
+                               -- control brightness with fn keys
+                               , ("M-<F8>", spawn "lux -a 10%")
+                               , ("M-<F7>", spawn "lux -s 10%")
 
-				-- Open XMonad Config file in VIM
-				, ("C-M1-<Insert>", spawn "kitty vim ~/.xmonad/xmonad.hs")
+                               -- Open XMonad Config file in VIM
+                               , ("C-M1-<Insert>", spawn "emacs ~/.xmonad/README.org")
 
-				-- Open qutebrowser
-				, ("M-f", spawn "qutebrowser")
+                               -- Open qutebrowser
+                               , ("M-f", spawn "qutebrowser")
 
-				-- Open Firefox
-				, ("M-S-f", spawn "firefox")
+                               -- Open Firefox
+                               , ("M-S-f", spawn "firefox")
 
-				-- Open File Explorer
-				, ("M-e", spawn "kitty sh -c vifm")
+                               -- Open File Explorer
+                               , ("M-e", spawn "kitty sh -c vifm")
 
-				 -- Open Doom eMacs
-				, ("M-S-e", spawn "emacs")
+                                -- Open Doom eMacs
+                               , ("M-S-e", spawn "emacs")
 
-				 -- Open pcmanfm
-				, ("M-S-<Space>", spawn "pcmanfm")
+                                -- Open pcmanfm
+                               , ("M-S-<Space>", spawn "pcmanfm")
 
-				-- Take screenshot
-				, ("M-<Print>", spawn "flameshot gui")
+                               -- Take screenshot
+                               , ("M-<Print>", spawn "flameshot gui")
 
-				-- Toggle border of currently focused window
-				, ("M-g", withFocused toggleBorder)
+                               -- Toggle border of currently focused window
+                               , ("M-g", withFocused toggleBorder)
 
-				-- Increase spacing around windows
-				, ("M-S-<Up>", incSpacing 2)
+                               -- Increase spacing around windows
+                               -- , ("M-S-<Up>", incSpacing 2)
 
-				-- Toggle border of currently focused window
-				, ("M-S-<Down>", setSpacing 5)
+                               -- Toggle border of currently focused window
+                               -- , ("M-S-<Down>", setSpacing 5)
 
-				-- Minimize window
-				, ("M-m", withFocused minimizeWindow)
+                               -- Minimize window
+                               , ("M-m", withFocused minimizeWindow)
 
-				-- Maximize the last minimized window
-				, ("M-S-m", withLastMinimized maximizeWindowAndFocus)
+                               -- Maximize the last minimized window
+                               , ("M-S-m", withLastMinimized maximizeWindowAndFocus)
 
-				-- Shut down
-				, ("M-<F1>", spawn "shutdown now")
+                               -- Shut down
+                               , ("M-<F1>", spawn "sysexit")
 
-				-- Reboot
-				, ("M-<F2>", spawn "reboot")
-
-				-- Suspend
-				, ("M-<F3>", spawn "systemctl suspend")
-
-				-- Turn display off
-				, ("M-M1-<Home>", spawn "sleep 0.8; xset dpms force off")
-				]
-    #+end_src
+                               -- Run 'connect' script
+                               , ("M-b", spawn "connect")
+                             ]
+       #+end_src

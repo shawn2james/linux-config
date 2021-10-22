@@ -258,6 +258,7 @@ c.colors.tabs.even.bg = "lightgrey"
 c.colors.tabs.odd.bg = "lightgrey"
 
 c.auto_save.session = True
+c.zoom.default = "125%"
 
 # Dark mode
 # colors.webpage.darkmode.enabled = True
