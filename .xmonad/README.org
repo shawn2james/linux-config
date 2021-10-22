@@ -7,6 +7,7 @@
 - [[#xmonad][XMONAD]]
 - [[#imports][IMPORTS]]
 - [[#variables][VARIABLES]]
+- [[#workspaces][WORKSPACES]]
 - [[#default-keybindings][DEFAULT KEYBINDINGS]]
 - [[#mouse-bindings][MOUSE BINDINGS]]
 - [[#layouts][LAYOUTS]]
@@ -81,7 +82,11 @@ myFocusedBorderColor = "lightgrey"
 
 myModMask :: KeyMask
 myModMask = mod4Mask
+#+end_src
 
+* WORKSPACES
+
+#+begin_src haskell
 myWorkspaces = ["1", "2", "3", "4", "5"]
 
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
