@@ -1,0 +1,5 @@
+#!/bin/bash
+
+bluetoothctl power on
+devices=$(bluetoothctl devices)
+python ~/linux-config/scripts/connect.py "$devices"
