@@ -14,7 +14,7 @@ Config {
      -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "&&"  -- separator between left-right alignment
-   , template = "   %battery% | %multicpu% && %date% | %default:Master% || %kbd%   "
+   , template = "   %battery% | %multicpu%                                              %UnsafeStdinReader% && %date% | %default:Master% || %kbd%   "
 
 
      -- general behavior
@@ -29,7 +29,7 @@ Config {
 		  Run Volume "default" "Master" ["--template","<volume>", "-L", "0", "-l", "red"] 10,
 
         -- cpu activity monitor
-          Run MultiCpu       [ "--template" , "<fn=1>\xf85a </fn>Cpu: <total0>%  |  <total1>%"
+          Run MultiCpu       [ "--template" , "<fn=1>\xf85a </fn>Cpu: <total0>% | <total1>%"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "85"         -- units: %
                              , "--low"      , "lightgreen"
@@ -66,6 +66,7 @@ Config {
         , Run Kbd            [ ("us(dvorak)" , "<fc=orange>DV</fc>")
                              , ("us"         , "<fc=orange>US</fc>")
                              ]
+        -- Prints out the left side items such as workspaces, layout, etc.
+        , Run UnsafeStdinReader
         ]
 }
-
