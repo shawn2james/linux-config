@@ -1,4 +1,4 @@
-#+TITLE: XMonad Config
+#+TITLE: My Xmonad Config
 #+PROPERTY: header-args :tangle xmonad.hs
 #+STARTUP: showeverything
 #+AUTHOR: Shawn James
