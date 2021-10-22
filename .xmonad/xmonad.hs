@@ -47,7 +47,7 @@ myFocusedBorderColor = "lightgrey"
 myModMask :: KeyMask
 myModMask = mod4Mask
 
-myWorkspaces = ["1", "2", "3", "4", "5"]
+myWorkspaces = ["α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ"]
 
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
