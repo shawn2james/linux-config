@@ -26,7 +26,7 @@ Config {
 
    , commands = [
 
-		  Run Volume "default" "Master" ["--template","<volume>", "-L", "0", "-l", "red"] 10,
+		  Run Volume "default" "Master" ["--template","<volume>", "-L", "0", "-l", "red"] 1,
 
         -- cpu activity monitor
           Run MultiCpu       [ "--template" , "<fn=1>\xf85a </fn>Cpu: <total0>% | <total1>%"

@@ -1,6 +1,6 @@
 
 xmonad.hs:166:1: warning: [-Wtabs]
-    Tab character found here, and in 14 further locations.
+    Tab character found here, and in 15 further locations.
     Please use spaces instead.
     |
 166 |         , manageDocks
