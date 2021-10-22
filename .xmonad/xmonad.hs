@@ -160,12 +160,18 @@ myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,18), (R,18),
      delta   = 3/100
 
 myManageHook = composeAll
-    [ className =? "Gimp"           --> doFloat
-    , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore
-	, manageDocks
-	, fullscreenManageHook
-	]
+        [ className =? "Gimp" --> doFloat
+        , className =? "confirm" --> doFloat
+        , className =? "file_progress" --> doFloat
+        , className =? "dialog" --> doFloat
+        , className =? "download" --> doFloat
+        , className =? "notification" --> doFloat
+        , className =? "toolbar" --> doFloat
+        , className =? "splash" --> doFloat
+        , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
+        , manageDocks
+        , fullscreenManageHook
+        ]
 
 myEventHook = composeAll
 	[ fullscreenEventHook,
