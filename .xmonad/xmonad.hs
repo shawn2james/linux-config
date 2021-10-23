@@ -25,6 +25,7 @@ import XMonad.Util.Run
 import Graphics.X11.ExtraTypes.XF86
 import XMonad.Util.EZConfig
 import XMonad.Util.NamedScratchpad
+import XMonad.Util.SpawnOnce
 
 myTerminal :: String
 myTerminal = "kitty"
@@ -193,9 +194,8 @@ myLogHook xmproc = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmob
               }
 
 myStartupHook = do
-	spawn "nitrogen --restore"
-	spawn "xsetroot -cursor_name Left_ptr"
-	spawn "blueman-applet"
+            spawnOnce "nitrogen --restore &"
+            spawnOnce "blueman-applet"
 
 defaults xmproc = def {
 	  -- general

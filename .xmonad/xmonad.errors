@@ -1,7 +1,7 @@
 
-xmonad.hs:177:1: warning: [-Wtabs]
-    Tab character found here, and in 12 further locations.
+xmonad.hs:178:1: warning: [-Wtabs]
+    Tab character found here, and in 9 further locations.
     Please use spaces instead.
     |
-177 |         [ fullscreenEventHook,
+178 |         [ fullscreenEventHook,
     | ^^^^^^^^
