@@ -181,10 +181,10 @@ myEventHook = composeAll
 myLogHook xmproc = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
               -- the following variables beginning with 'pp' are settings for xmobar.
               { ppOutput = hPutStrLn xmproc                          -- xmobar on monitor 1
-              , ppCurrent = xmobarColor "#c792ea" "" . wrap  "<box type=Top width=2 mt=2><fc=black,lightblue>" "</fc></box>"         -- Current workspace
+              , ppCurrent = xmobarColor "black" "" . wrap  "<box type=Top width=2 mt=2><fc=black,lightblue>" "</fc></box>"         -- Current workspace
               , ppVisible = xmobarColor "#c792ea" "" . clickable              -- Visible but not current workspace
-              , ppHidden = xmobarColor "#c792ea" "" . wrap "<box type=Bottom width=2 mb=2><fc=black,orange>" "</fc></box>" . clickable -- Hidden workspaces
-                              , ppHiddenNoWindows = xmobarColor "#82AAFF" ""  . clickable     -- Hidden workspaces (no windows)
+              , ppHidden = xmobarColor "black" "" . wrap "<box type=Bottom width=2 mb=2><fc=black,#eab57c>" "</fc></box>" . clickable -- Hidden workspaces
+              , ppHiddenNoWindows = xmobarColor "#82AAFF" ""  . clickable     -- Hidden workspaces (no windows)
               , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
               , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
               , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"            -- Urgent workspace
