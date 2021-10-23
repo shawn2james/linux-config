@@ -4,6 +4,7 @@
 
 [[ $- != *i* ]] && return
 
+source /usr/share/doc/pkgfile/command-not-found.bash
 shopt -s autocd
 
 # ALIASES
@@ -20,13 +21,13 @@ chtheme() {
     ln -sf /home/shawn/.config/kitty/kitty-themes/themes/$1.conf /home/shawn/.config/kitty/theme.conf;
 }
 
-# export PATH="$PATH:/usr/local/bin"
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 colors() {
 	local fgc bgc vals seq0
+    local fg bg
 
 	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
 	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
@@ -157,24 +158,6 @@ ex ()
   fi
 }
 
-
-##-----------------------------------------------------
-## synth-shell-prompt.sh
-if [ -f /home/shawn/.config/synth-shell/synth-shell-prompt.sh ] && [ -n "$( echo $- | grep i )" ]; then
-	source /home/shawn/.config/synth-shell/synth-shell-prompt.sh
-fi
-
-##-----------------------------------------------------
-## better-ls
-if [ -f /home/shawn/.config/synth-shell/better-ls.sh ] && [ -n "$( echo $- | grep i )" ]; then
-	source /home/shawn/.config/synth-shell/better-ls.sh
-fi
-
-##-----------------------------------------------------
-## better-history
-if [ -f /home/shawn/.config/synth-shell/better-history.sh ] && [ -n "$( echo $- | grep i )" ]; then
-	source /home/shawn/.config/synth-shell/better-history.sh
-fi
 
 neofetch
 
