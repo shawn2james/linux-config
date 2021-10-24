@@ -7,3 +7,4 @@ set page-padding 1
 map K zoom in 
 map J zoom out
 set selection-clipboard clipboard
+set sandbox normal

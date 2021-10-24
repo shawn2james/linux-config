@@ -23,7 +23,7 @@ Config {
 
         -- PACMAN UPDATES --------------------------
         Run Com "echo" ["<fn=2>\xf0f3</fn>"] "bell" 3600,
-        Run Com "pacupdate" [] "pacupdate" 36000,
+        Run Com "pacupdate" [] "pacupdate" 3600,
 
         -- BATTERY ----------------------------------
         Run Com "echo" ["<fn=2>\xf242</fn>"] "baticon" 3600,

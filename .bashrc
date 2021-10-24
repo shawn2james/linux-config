@@ -8,7 +8,7 @@ source /usr/share/doc/pkgfile/command-not-found.bash
 shopt -s autocd
 
 # ALIASES
-alias la="ls -la"
+alias la="ls -lha"
 alias rm="rm -i"
 alias gits="git status"
 alias linux-pdf="zathura /home/shawn/Documents/the-linux-commnd-line.pdf"
@@ -18,7 +18,7 @@ alias pacsave="pacman -Q > /home/shawn/packages.txt"
 
 # FUNCTIONS
 chtheme() {
-    ln -sf /home/shawn/.config/kitty/kitty-themes/themes/$1.conf /home/shawn/.config/kitty/theme.conf;
+    ln -sf /home/shawn/.config/kitty/kitty-themes/themes/$1.conf /home/shawn/.config/kitty/theme.conf; killall kitty; kitty
 }
 
 
