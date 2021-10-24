@@ -6,12 +6,12 @@ static int fuzzy = 1;
 
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
-	"Mononoki Nerd Font Mono:size=14"
+	"Ubuntu:size=13"
 };
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
-	[SchemeNorm] = { "#839496", "#002b36" },
+	[SchemeNorm] = { "#839496", "#001a21" },
 	[SchemeSel] = { "#839496", "#073642" },
 	[SchemeNormHighlight] = {"#a1bfc7", "#001a21"},
 	[SchemeSelHighlight] = {"#a1bfc7", "#b73611"},

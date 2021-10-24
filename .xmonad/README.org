@@ -86,7 +86,7 @@ myModMask = mod4Mask
 * Workspaces
 
 #+begin_src haskell
-myWorkspaces = [" α ", " β ", " γ ", " δ ", " ε ", " ζ ", " η ", " θ ", " ι ", " κ "]
+myWorkspaces = [" α ", " β ", " γ ", " δ ", " ε ", " ζ ", " η "]
 
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
@@ -248,7 +248,7 @@ myLogHook xmproc = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmob
               { ppOutput = hPutStrLn xmproc                          -- xmobar on monitor 1
               , ppCurrent = xmobarColor "black" "" . wrap  "<box type=Top width=2 mt=2><fc=black,lightblue>" "</fc></box>"         -- Current workspace
               , ppVisible = xmobarColor "#c792ea" "" . clickable              -- Visible but not current workspace
-              , ppHidden = xmobarColor "black" "" . wrap "<box type=Bottom width=2 mb=2><fc=black,#eab57c>" "</fc></box>" . clickable -- Hidden workspaces
+              , ppHidden = xmobarColor "black" "" . wrap "<box type=Bottom width=2 mb=2><fc=black,#daa520>" "</fc></box>" . clickable -- Hidden workspaces
               , ppHiddenNoWindows = xmobarColor "#82AAFF" ""  . clickable     -- Hidden workspaces (no windows)
               , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
               , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
@@ -264,6 +264,7 @@ myLogHook xmproc = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmob
 myStartupHook = do
             spawnOnce "nitrogen --restore &"
             spawnOnce "blueman-applet"
+
 #+end_src
 
 * Setting Configuration

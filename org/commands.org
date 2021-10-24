@@ -7,6 +7,14 @@
   - [[#turn-off-monitor][Turn off monitor]]
   - [[#set-cursor-to-left-pointer][Set cursor to left pointer]]
   - [[#get-no-of-packages-installed-official-repos-and-aur][Get no. of packages installed (official repos and AUR)]]
+  - [[#search-official-arch-repositories-for-a-package][Search official Arch repositories for a package]]
+  - [[#remove-package-along-with-unnecessary-dependencies][Remove package along with unnecessary dependencies]]
+  - [[#remove-package-along-with-unnecessary-dependencies-and-system-config-files-not-dotfiles-in-home-dir][Remove package along with unnecessary dependencies and system config files (not dotfiles in home dir)]]
+  - [[#list-packages-that-you-explicitly-installed][List packages that you explicitly installed]]
+  - [[#list-packages-that-you-installed-from-official-repositories][List packages that you installed from official repositories]]
+  - [[#list-packages-that-you-installed-from-the-aur][List packages that you installed from the AUR]]
+  - [[#list-orphan-programs-dependencies-that-are-not-required-by-any-other-package][List orphan programs (dependencies that are not required by any other package)]]
+  - [[#remove-old-packages-from-cache-directory][Remove old packages from cache directory]]
 
 ** Get linux kernel version
 #+begin_src bash
@@ -23,4 +31,37 @@ xsetroot -cursor_name Left_ptr
 ** Get no. of packages installed (official repos and AUR)
 #+begin_src bash
 pacman -Qeq | wc -l
+#+end_src
+** Search official Arch repositories for a package
+#+begin_src bash
+pacman -Ss emacs
+pacman -Ss *browser*
+#+end_src
+** Remove package along with unnecessary dependencies
+#+begin_src bash
+pacman -Rs emacs
+#+end_src
+** Remove package along with unnecessary dependencies and system config files (not dotfiles in home dir)
+#+begin_src bash
+pacman -Rns emacs
+#+end_src
+** List packages that you explicitly installed
+#+begin_src bash
+pacman -Qe
+#+end_src
+** List packages that you installed from official repositories
+#+begin_src bash
+pacman -Qn
+#+end_src
+** List packages that you installed from the AUR
+#+begin_src bash
+pacman -Qm
+#+end_src
+** List orphan programs (dependencies that are not required by any other package)
+#+begin_src bash
+pacman -Qdt
+#+end_src
+** Remove old packages from cache directory
+#+begin_src bash
+pacman -Sc
 #+end_src
