@@ -147,7 +147,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,18), (R,18), (D,18), (L,18)] $ tiled||| Mirror tiled ||| Full))))
+myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,8), (R,8), (D,8), (L,8)] $ tiled||| Mirror tiled ||| Full))))
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
