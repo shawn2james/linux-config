@@ -1,8 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/python
 
-import dmenu
-from os import system
 import argparse
+from os import system
+import dmenu
 
 parser = argparse.ArgumentParser()
 parser.add_argument("devices", help="provide available devices")
