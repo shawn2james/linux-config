@@ -61,7 +61,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
       ((modm, xK_Return), spawn $ XMonad.terminal conf)
 
     -- dmenu
-    , ((modm, xK_p     ), spawn "dmenu_run -l 15")
+    , ((modm, xK_p     ), spawn "dmenu_run -h 49")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c), kill)
@@ -169,6 +169,7 @@ myManageHook = composeAll
         , className =? "notification" --> doFloat
         , className =? "toolbar" --> doFloat
         , className =? "splash" --> doFloat
+        , className =? "mpv" --> doFloat
         , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
         , manageDocks
         , fullscreenManageHook
@@ -281,4 +282,7 @@ main = do
 
                                -- Open htop
                                , ("C-M1-<Delete>", spawn "kitty htop")
+
+                               -- Open vs-code
+                               , ("M-S-v", spawn "code")
                              ]

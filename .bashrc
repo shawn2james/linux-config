@@ -10,11 +10,17 @@ shopt -s autocd
 # ALIASES
 alias la="ls -lha"
 alias rm="rm -i"
+alias cp="rm -i"
 alias gits="git status"
 alias linux-pdf="zathura /home/shawn/Documents/the-linux-commnd-line.pdf"
 alias icat="kitty +kitten icat --align=center"
 alias blued="bluetoothctl devices; bluetoothctl disconnect"
 alias pacsave="pacman -Q > /home/shawn/packages.txt"
+alias mpv="devour mpv"
+alias qview="devour qview"
+alias timeshift="devour timeshift"
+alias zathura="devour zathura"
+alias gparted="devour gparted"
 
 # FUNCTIONS
 chtheme() {
