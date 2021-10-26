@@ -61,7 +61,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
       ((modm, xK_Return), spawn $ XMonad.terminal conf)
 
     -- dmenu
-    , ((modm, xK_p     ), spawn "dmenu_run -h 49")
+    , ((modm, xK_p     ), spawn "dmenu_run -h 40 -b -y 20")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c), kill)
