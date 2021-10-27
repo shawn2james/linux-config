@@ -9,8 +9,9 @@ shopt -s autocd
 
 # ALIASES
 alias la="ls -lha"
-alias rm="rm -i"
-alias cp="rm -i"
+alias rm="rm -iv"
+alias cp="rm -iv"
+alias mv="mv -v"
 alias gits="git status"
 alias linux-pdf="zathura /home/shawn/Documents/the-linux-commnd-line.pdf"
 alias icat="kitty +kitten icat --align=center"
