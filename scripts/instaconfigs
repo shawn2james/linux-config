@@ -2,22 +2,60 @@
 
 BASEDIR="/home/shawn/linux-config"
 
-echo "Installing xmonad configs"
-ln -sf ${BASEDIR}/xmonad.hs ~/.xmonad/
-echo "Installing vim configs..."
-ln -sf ${BASEDIR}/.vimrc ~/
+read -n1 -p "Install xmonad and xmobar along with config files [Y/n] : " install
+if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ] 
+then
+	sudo pacman -S xmonad xmonad-contrib xmobar
+	echo "setting up xmonad configs..."
+	rm -rf ${HOME}/.xmonad
+	ln -s ${BASEDIR}/.xmonad ${HOME}/
+else
+	echo "\nSkipping xmonad & xmobar...\n"
+fi
 
-echo "Installing dmenu configs..."
-ln -sf ${BASEDIR}/dmenu ~/.config/
 
-echo "Installing doom emacs configs..."
-ln -sf ${BASEDIR}/doom ~/
-mv ~/doom ~/.doom.d
+read -n1 -p "Install dmenu along with config files [Y/n] : " install
+if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ] 
+then
+	sudo pacman -S dmenu
+	echo "setting up dmenu configs..."
+	cd ${BASEDIR}/dmenu-5.0
+	sudo make install
+else
+	echo "\nSkipping dmenu...\n"
+fi
 
-echo "Installing kitty configs..."
-cd ~/.config/; rm -rf ./kitty/
-ln -sf ${BASEDIR}/kitty ~/.config/
+read -n1 -p "Install kitty along with config files [Y/n] : " install
+if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ] 
+then
+	sudo pacman -S kitty
+	echo "setting up kitty configs..."
+	rm -rf ${HOME}/.config/kitty
+	ln -s ${BASEDIR}/kitty ~/.config/
+else
+	echo "\nSkipping dmenu...\n"
+fi
+# echo "Installing vim configs..."
+# rm ${HOME}/.vimrc
+# ln -s ${BASEDIR}/.vimrc ~/.vimrc
 
-echo "installing qutebrowser configs..."
-cd ~/.config/; rm -rf ./qutebrowser/
-ln -sf ${BASEDIR}/qutebrowser ~/.config/
+# echo "Installing dmenu..."
+# cd ${BASEDIR}/dmenu-5.0
+# sudo make install
+
+# echo "Installing doom emacs configs..."
+# ln -s ${BASEDIR}/doom ~/
+# mv ~/doom ~/.doom.d
+
+# echo "Installing kitty configs..."
+# rm -rf ${HOME}/.config/kitty
+# ln -s ${BASEDIR}/kitty ~/.config/
+
+# echo "installing qutebrowser configs..."
+#  rm -rf ${HOME}/.config/qutebrowser
+# ln -s ${BASEDIR}/qutebrowser ~/.config/
+
+# echo "installing bash settings..."
+# sudo pacman -S neofetch
+# rm ${HOME}/.bashrc
+# ln -s ${BASEDIR}/.bashrc ~/.bashrc

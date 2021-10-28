@@ -8,7 +8,7 @@ source /usr/share/doc/pkgfile/command-not-found.bash
 shopt -s autocd
 
 # ALIASES
-alias la="ls -lha"
+alias la="exa -lha"
 alias rm="rm -iv"
 alias cp="rm -iv"
 alias mv="mv -v"

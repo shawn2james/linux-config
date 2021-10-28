@@ -20,11 +20,12 @@ import XMonad.Layout.Minimize
 import XMonad.Layout.BoringWindows
 import XMonad.Layout.Spacing
 import XMonad.Layout.Gaps
+import XMonad.Layout.Tabbed
 -- Utilities
 import XMonad.Util.Run
 import Graphics.X11.ExtraTypes.XF86
-import XMonad.Util.EZConfig
 import XMonad.Util.NamedScratchpad
+import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
 
 myTerminal :: String
@@ -37,7 +38,7 @@ myClickJustFocuses :: Bool
 myClickJustFocuses = False
 
 myBorderWidth :: Dimension
-myBorderWidth   = 4
+myBorderWidth   = 1
 
 myNormalBorderColor :: String
 myNormalBorderColor  = "#7893ad"
@@ -48,7 +49,8 @@ myFocusedBorderColor = "lightgrey"
 myModMask :: KeyMask
 myModMask = mod4Mask
 
-myWorkspaces = [" α ", " β ", " γ ", " δ ", " ε ", " ζ ", " η "]
+-- myWorkspaces = [" α ", " β ", " γ ", " δ ", " ε ", " ζ ", " η "]
+myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 "]
 
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
@@ -61,7 +63,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
       ((modm, xK_Return), spawn $ XMonad.terminal conf)
 
     -- dmenu
-    , ((modm, xK_p     ), spawn "dmenu_run -i -h 40 -b -y 20")
+    , ((modm, xK_p     ), spawn "dmenu_run -i -h 30 -b -y 20 -p 'Run: '")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c), kill)
@@ -147,7 +149,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,8), (R,8), (D,8), (L,8)] $ tiled||| Mirror tiled ||| Full))))
+myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,8), (R,8), (D,8), (L,8)] $ (tiled||| Mirror tiled ||| Full)))))
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -170,7 +172,8 @@ myManageHook = composeAll
         , className =? "toolbar" --> doFloat
         , className =? "splash" --> doFloat
         , className =? "mpv" --> doFloat
-        , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
+        , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  
+        , className =? "VirtualBox Machine" --> doShift ( myWorkspaces !! 3)
         , manageDocks
         , fullscreenManageHook
         ]
@@ -183,9 +186,9 @@ myEventHook = composeAll
 myLogHook xmproc = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
               -- the following variables beginning with 'pp' are settings for xmobar.
               { ppOutput = hPutStrLn xmproc                          -- xmobar on monitor 1
-              , ppCurrent = xmobarColor "black" "" . wrap  "<box type=Top width=2 mt=2><fc=black,lightblue>" "</fc></box>"         -- Current workspace
+              , ppCurrent = xmobarColor "black" "" . wrap  "<fc=black,lightblue>" "</fc>"         -- Current workspace
               , ppVisible = xmobarColor "#c792ea" "" . clickable              -- Visible but not current workspace
-              , ppHidden = xmobarColor "black" "" . wrap "<box type=Bottom width=2 mb=2><fc=black,#daa520>" "</fc></box>" . clickable -- Hidden workspaces
+              , ppHidden = xmobarColor "black" "" . wrap "<fc=black,#daa520>" "</fc>" . clickable -- Hidden workspaces
               , ppHiddenNoWindows = xmobarColor "#82AAFF" ""  . clickable     -- Hidden workspaces (no windows)
               , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
               , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
@@ -244,8 +247,8 @@ main = do
                                , ("M-<F8>", spawn "lux -a 10%")
                                , ("M-<F7>", spawn "lux -s 10%")
 
-                               -- Open XMonad Config file in VIM
-                               , ("C-M1-<Insert>", spawn "emacs ~/.xmonad/README.org")
+                               -- Open XMonad Config file in VS Code
+                               , ("C-M1-<Insert>", spawn "kitty code ~/.xmonad/xmonad.hs")
 
                                -- Open qutebrowser
                                , ("M-f", spawn "qutebrowser")
@@ -256,11 +259,8 @@ main = do
                                -- Open File Explorer
                                , ("M-e", spawn "kitty sh -c vifm")
 
-                                -- Open Doom eMacs
-                               , ("M-S-e", spawn "emacs")
-
-                                -- Open pcmanfm
-                               , ("M-S-<Space>", spawn "pcmanfm")
+                               -- Open pcmanfm
+                               , ("M-S-e", spawn "pcmanfm")
 
                                -- Take screenshot
                                , ("M-<Print>", spawn "flameshot gui")

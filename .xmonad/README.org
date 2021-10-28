@@ -359,9 +359,6 @@ main = do
 
                                -- Open htop
                                , ("C-M1-<Delete>", spawn "kitty htop")
-
-                               -- Open vs-code
-                               , ("M-S-v", spawn "code")
                              ]
        #+end_src
 

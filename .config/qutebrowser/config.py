@@ -190,7 +190,7 @@ config.set('content.notifications.enabled', False, 'https://www.reddit.com')
 # Directory to save downloads to. If unset, a sensible OS-specific
 # default is used.
 # Type: Directory
-c.downloads.location.directory = '/home/shawn/Downloads'
+c.downloads.location.directory = '/home/shawn/personal/downloads'
 
 # Prompt the user for the download location. If set to false,
 # `downloads.location.directory` will be used.

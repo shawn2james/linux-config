@@ -1,0 +1,15 @@
+#!/bin/bash
+
+read -n1 -p "Install dmenu along with config files [Y/n] : " installDmenu
+
+if [ "${installDmenu^^}" = "Y" ] || [ "${installDmenu^^}" = "" ] 
+then
+  printf "\nYES!\n"
+else
+  printf "\nNO!\n"
+fi
+# case $installDmenu in  
+#   y|Y) echo "\nyes" ;; 
+#   n|N) echo "no" ;; 
+#   *) echo "dont know" ;; 
+# esac

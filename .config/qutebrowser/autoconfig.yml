@@ -6,6 +6,9 @@
 
 config_version: 2
 settings:
+  content.notifications.enabled:
+    https://web.whatsapp.com: true
+    https://www.youtube.com: false
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: true
   statusbar.show:

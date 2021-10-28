@@ -1,19 +1,17 @@
-
 Config {
     font = "xft:Mononoki Nerd Font Mono:pixelsize=15:antialias=true:hinting=true",
-    additionalFonts = [ "xft:Mononoki:pixelsize=19:antialias=true:hinting=true",
-                        "xft:Font Awesome 5 Free Solid:pixelsize=19",
-                        "xft:Font Awesome 5 Brands:pixelsize=22"
+    additionalFonts = [ "xft:Mononoki:pixelsize=17:antialias=true:hinting=true",
+                        "xft:Font Awesome 5 Free Solid:pixelsize=17",
+                        "xft:Font Awesome 5 Brands:pixelsize=20"
                       ],
      bgColor = "#001a21",
      fgColor = "#EEEEEE",
-     position = TopSize L 100 49,
+     position = TopSize L 100 40,
      sepChar =  "%",
      alignSep = "&&",
-     template = " <box type=Bottom width=2 mb=2 color=#a9a1e1><fc=#a9a1e1><action=`kitty htop`>%disku%</action></fc></box> <box type=Bottom width=2 mb=2 color=#c678dd><fc=#c678dd>%bell% <action=`kitty sudo pacman -Syu; killall xmobar; xmobar`>%pacupdate%</action></fc></box> <box type=Bottom width=2 mb=2 color=#da8548><fc=#da8548>%baticon%</fc> %battery%</box> <box type=Bottom width=2 mb=2 color=white> %uparrow% %uptime%</box>   |   %UnsafeStdinReader% &&   | %date% | %volicon% %default:Master% || <fc=#51afef><action=`sysexit`>%penguin%</action></fc> ",
+     template = " <box type=Bottom width=2 mb=2 color=#a9a1e1><fc=#a9a1e1><action=`kitty htop`>%disku%</action></fc></box>   <box type=Bottom width=2 mb=2 color=#c678dd><fc=#c678dd>%bell% <action=`kitty sudo pacman -Syu; killall xmobar; xmobar`>%pacupdate%</action></fc></box>   <box type=Bottom width=2 mb=2 color=#da8548><fc=#da8548>%baticon%</fc> %battery%</box>   <box type=Bottom width=2 mb=2 color=white>%uparrow% %uptime%</box>   |   <box type=Bottom width=2 mb=2 color=lightblue>%UnsafeStdinReader%</box> &&     <box type=Bottom width=2 mb=2 color=#18ba54><fc=#19b352>%calendar% %date%</fc></box>   <box type=Bottom width=2 mb=2 color=#0699c9><fc=#0699c9>%clock% %time%</fc></box>   <box type=Bottom width=2 mb=2 color=white>%volicon% %default:Master%</box>   <fc=#51afef><action=`sysexit`>%penguin%</action></fc> ",
      lowerOnStart = False,
      allDesktops = True,
-     persistent = True,
      overrideRedirect = False,
      hideOnStart = False,
 
@@ -42,7 +40,7 @@ Config {
                       "-O", "<fc=#dAA520>Charging</fc> <left>%",
 
                       -- charged status
-                      "-i", "<fc=#006000>Charged</fc>"
+                      "-i", "<fc=#19b352>Charged</fc>"
                     ] 50,
 
         -- UPTIME ------------------------------------
@@ -54,7 +52,10 @@ Config {
 
         -- DATE & TIME --------------------------------
         --   (%a = day of week)
-        Run Date "<fc=#ABABAB>%b %d %Y (%a) %H:%M</fc>" "date" 10,
+		Run Com "echo" ["<fn=2>\xf073</fn>"] "calendar" 3600,
+		Run Com "echo" ["<fn=2>\xf017</fn>"] "clock" 3600,
+        Run Date "%b %d %Y (%a)" "date" 10,
+		Run Date "%H:%M" "time" 10,
 
         -- VOLUME -------------------------------------
         Run Com "echo" ["<fn=2>\xf028</fn>"] "volicon" 3600,
