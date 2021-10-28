@@ -56,30 +56,43 @@ if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ]
 then
 	echo "installing bash settings..."
 	sudo pacman -S neofetch bash-completion python-pip exa 
-	yay -S command-not-found devour
+	yay -S devour
 	pip install powerline-shell
 	rm ${HOME}/.bashrc
 	ln -s ${BASEDIR}/.bashrc ~/.bashrc
 else
-	echo "\nSkipping dmenu...\n"
+	echo "\nSkipping bash configuration...\n"
 fi
 
-# echo "Installing vim configs..."
-# rm ${HOME}/.vimrc
-# ln -s ${BASEDIR}/.vimrc ~/.vimrc
+read -n1 -p "Install vifm along with config files & dependencies [Y/n] : " install
+if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ] 
+then
+	echo "installing vifm..."
+	sudo pacman -S vifm
+	rm -rf ${HOME}/.config/vifm
+	ln -s ${BASEDIR}/.config/vifm ~/.config/
+else
+	echo "\nSkipping vifm...\n"
+fi
 
-# echo "Installing dmenu..."
-# cd ${BASEDIR}/dmenu-5.0
-# sudo make install
+read -n1 -p "Install vim along with config files & dependencies [Y/n] : " install
+if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ] 
+then
+	echo "installing vim..."
+	sudo pacman -S vim
+	rm ${HOME}/.vimrc
+	ln -s ${BASEDIR}/.vimrc ~/.vimrc
+else
+	echo "\nSkipping vim...\n"
+fi
 
-# echo "Installing doom emacs configs..."
-# ln -s ${BASEDIR}/doom ~/
-# mv ~/doom ~/.doom.d
-
-# echo "Installing kitty configs..."
-# rm -rf ${HOME}/.config/kitty
-# ln -s ${BASEDIR}/kitty ~/.config/
-
-# echo "installing qutebrowser configs..."
-#  rm -rf ${HOME}/.config/qutebrowser
-# ln -s ${BASEDIR}/qutebrowser ~/.config/
+read -n1 -p "Install qutebrowser along with config files & dependencies [Y/n] : " install
+if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ] 
+then
+	echo "installing qutebrowser..."
+	sudo pacman -S qutebrowser
+	rm -rf ${HOME}/.config/qutebrowser
+	ln -s ${BASEDIR}/.config/qutebrowser ~/.config/
+else
+	echo "\nSkipping qutebrowser...\n"
+fi
