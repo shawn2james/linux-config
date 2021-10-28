@@ -5,7 +5,7 @@ BASEDIR="/home/shawn/linux-config"
 read -n1 -p "Install yay [Y/n] : " install
 if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ] 
 then
-	git clone https://aur.archlinux.org/yay-git.git
+	git clone https://aur.archlinux.org/yay-git.git ${HOME}/yay-git
 	cd yay-git
 	makepkg -si
 else
