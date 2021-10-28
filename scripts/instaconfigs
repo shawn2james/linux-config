@@ -2,6 +2,15 @@
 
 BASEDIR="/home/shawn/linux-config"
 
+read -n1 -p "Map escape key to Caps Lock [Y/n] : " install
+if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ] 
+then
+	sudo rm /etc/X11/xorg.conf.d/00-keyboard.conf
+	sudo ln -s ${HOME}/linux-config/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+else
+	echo " "
+fi
+
 read -n1 -p "Install yay [Y/n] : " install
 if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ] 
 then
