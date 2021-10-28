@@ -2,7 +2,7 @@
 
 BASEDIR="/home/shawn/linux-config"
 
-read -n1 -p "Install xmonad and xmobar along with config files [Y/n] : " install
+read -n1 -p "Install xmonad, xterm & xmobar along with config files [Y/n] : " install
 if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ] 
 then
 	sudo pacman -S xmonad xmonad-contrib xmobar
@@ -33,7 +33,7 @@ then
 	sudo pacman -S kitty
 	echo "setting up kitty configs..."
 	rm -rf ${HOME}/.config/kitty
-	ln -s ${BASEDIR}/kitty ~/.config/
+	ln -s ${BASEDIR}/.config/kitty ~/.config/
 else
 	echo "\nSkipping dmenu...\n"
 fi
