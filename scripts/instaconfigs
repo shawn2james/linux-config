@@ -9,6 +9,8 @@ then
 	echo "setting up xmonad configs..."
 	rm -rf ${HOME}/.xmonad
 	ln -s ${BASEDIR}/.xmonad ${HOME}/
+	rm -rf ${HOME}/.config/xmobar
+	ln -s ${BASEDIR}/.config/xmobar ${HOME}/.config/
 else
 	echo "\nSkipping xmonad & xmobar...\n"
 fi
