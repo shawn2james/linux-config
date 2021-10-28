@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASEDIR="/home/shawn/linux-config"
+BASEDIR="${HOME}/linux-config"
 
 read -n1 -p "Map escape key to Caps Lock [Y/n] : " install
 if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ] 
@@ -26,13 +26,19 @@ if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ]
 then
 
 	sudo pacman -S xmonad xmonad-contrib xmobar base-devel xdotool
-	yay -S ttf-font-awesome nerd-fonts-mononoki lux 
+	yay -S ttf-font-awesome nerd-fonts-mononoki lux checkupdates
 
 	echo "setting up xmonad configs..."
 	rm -rf ${HOME}/.xmonad
 	ln -s ${BASEDIR}/.xmonad ${HOME}/
 	rm -rf ${HOME}/.config/xmobar
 	ln -s ${BASEDIR}/.config/xmobar ${HOME}/.config/
+	chmod a+x ${BASEDIR}/scripts/connect
+	chmod a+x ${BASEDIR}/scripts/pacupdate
+	chmod a+x ${BASEDIR}/scripts/sysexit
+	sudo ln -s ${BASEDIR}/scripts/connect /usr/local/bin/connect
+	sudo ln -s ${BASEDIR}/scripts/pacupdate /usr/local/bin/pacupdate
+	sudo ln -s ${BASEDIR}/scripts/sysexit /usr/local/bin/sysexit
 else
 	echo "\nSkipping xmonad & xmobar...\n"
 fi
