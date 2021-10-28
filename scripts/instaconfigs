@@ -105,3 +105,25 @@ then
 else
 	echo "\nSkipping qutebrowser...\n"
 fi
+
+read -n1 -p "Install picom along with config files & dependencies [Y/n] : " install
+if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ] 
+then
+	echo "installing qutebrowser..."
+	sudo pacman -S picom
+	rm -rf ${HOME}/.config/picom
+	ln -s ${BASEDIR}/.config/picom ~/.config/
+else
+	echo "\nSkipping picom...\n"
+fi
+
+read -n1 -p "Install dunst along with config files & dependencies [Y/n] : " install
+if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ] 
+then
+	echo "installing dunst..."
+	sudo pacman -S dunst
+	rm -rf ${HOME}/.config/dunst
+	ln -s ${BASEDIR}/.config/dunst ~/.config/
+else
+	echo "\nSkipping dunst...\n"
+fi
