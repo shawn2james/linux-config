@@ -15,7 +15,7 @@ read -n1 -p "Install yay [Y/n] : " install
 if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ] 
 then
 	git clone https://aur.archlinux.org/yay-git.git ${HOME}/yay-git
-	cd yay-git
+	cd ${HOME}/yay-git
 	makepkg -si
 else
 	echo "\nSkipping xmonad & xmobar...\n"
@@ -25,7 +25,7 @@ read -n1 -p "Install xmonad & xmobar along with config files & its dependencies 
 if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ] 
 then
 
-	sudo pacman -S xmonad xmonad-contrib xmobar base-devel xdotool
+	sudo pacman -S xmonad xmonad-contrib xmobar base-devel xdotool bluez bluez-libs bluez-utils
 	yay -S ttf-font-awesome nerd-fonts-mononoki lux checkupdates
 
 	echo "setting up xmonad configs..."
@@ -33,11 +33,15 @@ then
 	ln -s ${BASEDIR}/.xmonad ${HOME}/
 	rm -rf ${HOME}/.config/xmobar
 	ln -s ${BASEDIR}/.config/xmobar ${HOME}/.config/
+
+	echo "adding connect script to PATH..."
 	chmod a+x ${BASEDIR}/scripts/connect
-	chmod a+x ${BASEDIR}/scripts/pacupdate
-	chmod a+x ${BASEDIR}/scripts/sysexit
 	sudo ln -s ${BASEDIR}/scripts/connect /usr/local/bin/connect
+	echo "adding pacupdate script to PATH..."
+	chmod a+x ${BASEDIR}/scripts/pacupdate
 	sudo ln -s ${BASEDIR}/scripts/pacupdate /usr/local/bin/pacupdate
+	echo "adding sysexit script to PATH..."
+	chmod a+x ${BASEDIR}/scripts/sysexit
 	sudo ln -s ${BASEDIR}/scripts/sysexit /usr/local/bin/sysexit
 else
 	echo "\nSkipping xmonad & xmobar...\n"
