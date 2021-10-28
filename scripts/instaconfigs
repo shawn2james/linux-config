@@ -26,7 +26,7 @@ if [ "${install^^}" = "Y" ] || [ "${install^^}" = "" ]
 then
 
 	sudo pacman -S xmonad xmonad-contrib xmobar base-devel xdotool bluez bluez-libs bluez-utils
-	yay -S ttf-font-awesome nerd-fonts-mononoki lux checkupdates
+	yay -S ttf-font-awesome nerd-fonts-mononoki lux checkupdates+aur
 
 	echo "setting up xmonad configs..."
 	rm -rf ${HOME}/.xmonad
