@@ -4,7 +4,7 @@ import qualified XMonad.StackSet as W
 import Data.Monoid
 import System.Exit
 import qualified Data.Map as M
-
+import XMonad.Hooks.ManageHelpers(doRectFloat, Side (C))
 --DATA
 import Data.Maybe (fromJust)
 -- Hooks
@@ -172,6 +172,7 @@ myManageHook = composeAll
         , className =? "toolbar" --> doFloat
         , className =? "splash" --> doFloat
         , className =? "mpv" --> doFloat
+        , appName =? "Picture-in-Picture" --> doRectFloat (W.RationalRect 0.05 0.05 0.2 0.2)
         , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  
         , className =? "VirtualBox Machine" --> doShift ( myWorkspaces !! 3)
         , manageDocks
@@ -199,7 +200,8 @@ myLogHook xmproc = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmob
 
 myStartupHook = do
             spawnOnce "nitrogen --restore &"
-            spawnOnce "blueman-applet"
+            spawnOnce "conky &"
+            spawnOnce "blueman-applet &"
 
 defaults xmproc = def {
 	  -- general
@@ -285,4 +287,7 @@ main = do
 
                                -- Open vs-code
                                , ("M-S-v", spawn "code")
+
+                               -- Toggle pause in dead beef
+                               , ("M-S-<Space>", spawn "deadbeef --toggle-pause")
                              ]
