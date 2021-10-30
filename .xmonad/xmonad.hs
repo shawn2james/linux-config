@@ -250,7 +250,7 @@ main = do
                                , ("M-<F7>", spawn "lux -s 10%")
 
                                -- Open XMonad Config file in VS Code
-                               , ("C-M1-<Insert>", spawn "kitty code ~/.xmonad/xmonad.hs")
+                               , ("C-M1-<Insert>", spawn "code ~/.xmonad/xmonad.hs")
 
                                -- Open qutebrowser
                                , ("M-f", spawn "qutebrowser")

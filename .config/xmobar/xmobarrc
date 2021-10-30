@@ -2,14 +2,14 @@ Config {
     font = "xft:Mononoki Nerd Font Mono:pixelsize=15:antialias=true:hinting=true",
     additionalFonts = [ "xft:Mononoki:pixelsize=17:antialias=true:hinting=true",
                         "xft:Font Awesome 5 Free Solid:pixelsize=17",
-                        "xft:Font Awesome 5 Brands:pixelsize=20"
+                        "xft:Font Awesome 5 Brands:pixelsize=22"
                       ],
      bgColor = "#001a21",
      fgColor = "#EEEEEE",
      position = TopSize L 100 40,
      sepChar =  "%",
      alignSep = "&&",
-     template = " <box type=Bottom width=2 mb=2 color=#a9a1e1><fc=#a9a1e1><action=`kitty htop`>%disku%</action></fc></box>   <box type=Bottom width=2 mb=2 color=#c678dd><fc=#c678dd>%bell% <action=`kitty sudo pacman -Syu; killall xmobar; xmobar`>%pacupdate%</action></fc></box>   <box type=Bottom width=2 mb=2 color=#da8548><fc=#da8548>%baticon%</fc> %battery%</box>   <box type=Bottom width=2 mb=2 color=white>%uparrow% %uptime%</box>   |   <box type=Bottom width=2 mb=2 color=lightblue>%UnsafeStdinReader%</box> &&     <box type=Bottom width=2 mb=2 color=#18ba54><fc=#19b352>%calendar% %date%</fc></box>   <box type=Bottom width=2 mb=2 color=#0699c9><fc=#0699c9>%clock% %time%</fc></box>   <box type=Bottom width=2 mb=2 color=white>%volicon% %default:Master%</box>   <fc=#51afef><action=`sysexit`>%penguin%</action></fc> ",
+     template = " <box type=Bottom width=2 mb=2 color=#a9a1e1><fc=#a9a1e1><action=`kitty htop`>%disku%</action></fc></box>   <box type=Bottom width=2 mb=2 color=#c678dd><fc=#c678dd>%bell% <action=`kitty sudo pacman -Syu; killall xmobar; xmobar`>%pacupdate%</action></fc></box>   <box type=Bottom width=2 mb=2 color=#da8548><fc=#da8548>%baticon%</fc> %battery%</box>   <box type=Bottom width=2 mb=2 color=white>%uparrow% %uptime%</box>   |   <box type=Bottom width=2 mb=2 color=lightblue>%UnsafeStdinReader%</box> &&     <box type=Bottom width=2 mb=2 color=#18ba54><fc=#19b352>%calendar% %date%</fc></box>   <box type=Bottom width=2 mb=2 color=#0699c9><fc=#0699c9>%clock% %time%</fc></box>   <box type=Bottom width=2 mb=2 color=white>%volicon% %default:Master%</box>  <fc=#51afef><action=`connect`>%bluetooth%</action></fc>  <fc=#51afef><action=`sysexit`>%penguin%</action></fc> ",
      lowerOnStart = False,
      allDesktops = True,
      overrideRedirect = False,
@@ -60,6 +60,9 @@ Config {
         -- VOLUME -------------------------------------
         Run Com "echo" ["<fn=2>\xf028</fn>"] "volicon" 3600,
   	  	Run Volume "default" "Master" ["--template","<volume>", "-L", "0", "-l", "red"] 1,
+
+        -- BLUETOOTH ICON ----------------------
+        Run Com "echo" ["<fn=3>\xf293</fn>"] "bluetooth" 3600,
 
         -- SHUTDOWN PENGUIN ICON ----------------------
         Run Com "echo" ["<fn=3>\xf17c</fn>"] "penguin" 3600
