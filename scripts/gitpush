@@ -4,10 +4,19 @@
 echo "============= STATUS ============"
 git status 
 echo "============ ADDING FILES ======="
-git add .
+read -e -n1 -p "Add all files [Y/n]: " addAllFiles
+case "$addAllFiles" in 
+	"Y") git add . ;;
+	"\n") git add . ;;
+	"n") 
+		read -e -p "Enter files to add: " filestoAdd
+		git add $filestoAdd
+		;;
+esac
 echo "============ COMMITTING FILES ==="
-read -p "Enter commit message: " msg
+read -e -p "Enter commit message: " msg
 git commit -m "$msg"
 echo "============ PUSHING TO GITHUB =="
-git push origin master
+read -e -p "Enter branch: " branch
+git push origin $branch
 
