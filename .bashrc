@@ -7,7 +7,7 @@
 shopt -s autocd
 
 # ALIASES
-alias la="exa -lha"
+alias la="exa -lha --group-directories-first --icons"
 alias rm="rm -iv"
 alias cp="rm -iv"
 alias mv="mv -v"
@@ -116,6 +116,7 @@ unset use_color safe_term match_lhs sh
 
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
+alias du='du -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less

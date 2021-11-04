@@ -235,8 +235,8 @@ main = do
                                -- MY CUSTOM KEYBINDINGS
                                `additionalKeysP`
                                 [ -- control volume with volume keys
-                                ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 2%-")
-                               , ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+")
+                                ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 5%-")
+                               , ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 5%+")
 
                                 -- control volume with fn keys
                                , ("M-<F5>", spawn "amixer -q sset Master 2%-")
@@ -283,8 +283,8 @@ main = do
                                -- Run 'connect' script
                                , ("M-b", spawn "connect")
 
-                               -- Open htop
-                               , ("C-M1-<Delete>", spawn "kitty htop")
+                               -- Open gotop
+                               , ("C-M1-<Delete>", spawn "kitty gotop")
 
                                -- Open vs-code
                                , ("M-S-v", spawn "code")
