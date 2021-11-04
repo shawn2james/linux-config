@@ -1,3 +1,15 @@
 #!/usr/bin/env bash
 
-python ~/linux-config/scripts/sysexit.py
+function doAction () {
+	case "$1" in 
+		shutdown) systemctl poweroff ;;
+		reboot) systemctl reboot ;;
+		suspend) systemctl suspend ;;
+		logout) pkill xmonad ;;
+		display) xset dpms force off ;;
+	esac
+}
+
+export -f doAction
+
+echo -e "1. shutdown\n2. reboot\n3. logout\n4. suspend\n5. turn off display" | dmenu -l 5 | xargs -d' ' -I {} bash -c "doAction {}"

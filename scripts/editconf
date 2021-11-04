@@ -1,0 +1,16 @@
+#!/bin/bash
+
+function openConfig () {
+	case "$1" in 
+		xmonad) kitty vim $HOME/.xmonad/xmonad.hs ;;
+		xmobar) kitty vim $HOME/.config/xmobar/xmobarrc ;;
+		picom) kitty vim $HOME/.config/picom/picom.conf ;;
+		mpv) kitty vim $HOME/.config/mpv/ ;;
+		dunst) kitty vim $HOME/.config/dunst/dunstrc ;;
+		conky) kitty vim $HOME/.config/conky/conky.conf ;;
+	esac
+}
+
+export -f openConfig
+
+echo -e "xmonad\nxmobar\npicom\nmpv\ndunst\nconky" | dmenu -l 10 -p "Select config file: " | xargs -I {} bash -c "openConfig {}"

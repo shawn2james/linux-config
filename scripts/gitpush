@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+echo "============= STATUS ============"
+git status 
+echo "============ ADDING FILES ======="
+git add .
+echo "============ COMMITTING FILES ==="
+read -p "Enter commit message: " msg
+git commit -m "$msg"
+echo "============ PUSHING TO GITHUB =="
+git push origin master
+

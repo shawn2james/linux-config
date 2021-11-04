@@ -1,0 +1,10 @@
+#!/bin/bash
+
+function setTheme () {
+	echo $1
+	ln -sf $HOME/.config/kitty/kitty-themes/themes/$1 $HOME/.config/kitty/theme.conf; 
+}
+
+export -f setTheme
+
+ls $HOME/.config/kitty/kitty-themes/themes/ | dmenu -l 30 -p "Choose theme: " | xargs -I {} bash -c "setTheme {}"

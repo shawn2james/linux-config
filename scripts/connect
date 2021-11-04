@@ -1,5 +1,5 @@
 #!/bin/bash
 
 bluetoothctl power on
-devices=$(bluetoothctl devices)
-python ~/linux-config/scripts/connect.py "$devices"
+bluetoothctl devices | dmenu -l 5 -p "Select device: " | awk -F " " '{print $2}' | xargs bluetoothctl connect
+
