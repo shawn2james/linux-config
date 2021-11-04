@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# MOVE PACKAGE INSTALLATION TO ANOTHER FILE
+
 BASEDIR="${HOME}/linux-config"
 
 read -n1 -p "Map escape key to Caps Lock [Y/n] : " install

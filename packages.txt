@@ -163,3 +163,4 @@ timeshift 21.09.1-3
 ttf-mononoki 1.3-1
 visual-studio-code-bin 1.61.2-1
 yay 11.0.2-1
+

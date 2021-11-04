@@ -20,7 +20,6 @@ import XMonad.Layout.Minimize
 import XMonad.Layout.BoringWindows
 import XMonad.Layout.Spacing
 import XMonad.Layout.Gaps
-import XMonad.Layout.Tabbed
 -- Utilities
 import XMonad.Util.Run
 import Graphics.X11.ExtraTypes.XF86
@@ -149,7 +148,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,8), (R,8), (D,8), (L,8)] $ (tiled||| Mirror tiled ||| Full)))))
+myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,8), (R,8), (D,8), (L,8)] $ (tiled ||| Full)))))
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -174,6 +173,7 @@ myManageHook = composeAll
         , className =? "mpv" --> doFloat
         , appName =? "Picture-in-Picture" --> doRectFloat (W.RationalRect 0.05 0.05 0.2 0.2)
         , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  
+        , (className =? "vivaldi-stable" <&&> resource =? "Dialog") --> doFloat  
         , className =? "VirtualBox Machine" --> doShift ( myWorkspaces !! 3)
         , manageDocks
         , fullscreenManageHook
@@ -190,7 +190,7 @@ myLogHook xmproc = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmob
               , ppCurrent = xmobarColor "black" "" . wrap  "<fc=black,lightblue>" "</fc>"         -- Current workspace
               , ppVisible = xmobarColor "#c792ea" "" . clickable              -- Visible but not current workspace
               , ppHidden = xmobarColor "black" "" . wrap "<fc=black,#daa520>" "</fc>" . clickable -- Hidden workspaces
-              , ppHiddenNoWindows = xmobarColor "#82AAFF" ""  . clickable     -- Hidden workspaces (no windows)
+              -- , ppHiddenNoWindows = xmobarColor "#82AAFF" ""  . clickable     -- Hidden workspaces (no windows)
               , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
               , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
               , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"            -- Urgent workspace
@@ -202,6 +202,7 @@ myStartupHook = do
             spawnOnce "nitrogen --restore &"
             spawnOnce "conky &"
             spawnOnce "blueman-applet &"
+            spawnOnce "xsetroot -cursor_name Left_ptr &"
 
 defaults xmproc = def {
 	  -- general
@@ -256,7 +257,7 @@ main = do
                                , ("M-f", spawn "qutebrowser")
 
                                -- Open Firefox
-                               , ("M-S-f", spawn "firefox")
+                               , ("M-S-f", spawn "vivaldi-stable")
 
                                -- Open File Explorer
                                , ("M-e", spawn "kitty sh -c vifm")
@@ -290,4 +291,10 @@ main = do
 
                                -- Toggle pause in dead beef
                                , ("M-S-<Space>", spawn "deadbeef --toggle-pause")
+
+                               -- Toggle pause in dead beef
+                               , ("M-S-<Space>", spawn "deadbeef --toggle-pause")
+
+                               -- Run dm-websearch
+                               , ("M-S-s", spawn "dm-websearch")
                              ]

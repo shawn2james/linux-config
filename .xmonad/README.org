@@ -33,7 +33,7 @@ import qualified XMonad.StackSet as W
 import Data.Monoid
 import System.Exit
 import qualified Data.Map as M
-
+import XMonad.Hooks.ManageHelpers(doRectFloat, Side (C))
 --DATA
 import Data.Maybe (fromJust)
 -- Hooks
@@ -52,8 +52,8 @@ import XMonad.Layout.Gaps
 -- Utilities
 import XMonad.Util.Run
 import Graphics.X11.ExtraTypes.XF86
-import XMonad.Util.EZConfig
 import XMonad.Util.NamedScratchpad
+import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
 #+end_src
 
@@ -71,7 +71,7 @@ myClickJustFocuses :: Bool
 myClickJustFocuses = False
 
 myBorderWidth :: Dimension
-myBorderWidth   = 4
+myBorderWidth   = 1
 
 myNormalBorderColor :: String
 myNormalBorderColor  = "#7893ad"
@@ -86,7 +86,7 @@ myModMask = mod4Mask
 * Workspaces
 
 #+begin_src haskell
-myWorkspaces = [" α ", " β ", " γ ", " δ ", " ε ", " ζ ", " η "]
+myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 "]
 
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
@@ -99,66 +99,124 @@ clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
 These are the keybindings that came by default in the XMonad config
 
 #+begin_src haskell
-myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
+myKeys  =
     [ -- terminal
-      ((modm, xK_Return), spawn $ XMonad.terminal conf)
+      ("M-<Return>", spawn $ XMonad.terminal conf)
 
     -- dmenu
-    , ((modm, xK_p     ), spawn "dmenu_run -i -h 40 -b -y 20")
+    , ("M-p", spawn "dmenu_run -i -h 30 -b -y 20 -p 'Run: '")
 
     -- close focused window
-    , ((modm .|. shiftMask, xK_c), kill)
+    , ("M-S-c", kill)
 
      -- Rotate through the available layout algorithms
-    , ((modm, xK_space ), sendMessage NextLayout)
+    , ("M-<Space>", sendMessage NextLayout)
 
     --  Reset the layouts on the current workspace to default
-    , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
+    , ("M-S-<Space>", setLayout $ XMonad.layoutHook conf)
 
     -- Resize viewed windows to the correct size
-    , ((modm, xK_n), refresh)
+    , ("M-n", refresh)
 
     -- Move focus to the next window
-    , ((modm, xK_Tab), windows W.focusDown)
+    , ("M-<Tab>", windows W.focusDown)
 
     -- Move focus to the next window
-    , ((modm, xK_j), windows W.focusDown)
+    , ("M-j", windows W.focusDown)
 
     -- Move focus to the previous window
-    , ((modm, xK_k), windows W.focusUp  )
+    , ("M-k", windows W.focusUp  )
 
     -- Move focus to the master window
     -- , ((modm, xK_m), windows W.focusMaster  )
 
     -- Swap the focused window and the master window
-    , ((modm .|. shiftMask, xK_Return), windows W.swapMaster)
+    , ("M-S-<Return>", windows W.swapMaster)
 
     -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_j), windows W.swapDown  )
+    , ("M-S-j", windows W.swapDown  )
 
     -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_k), windows W.swapUp    )
+    , ("M-S-k", windows W.swapUp    )
 
     -- Shrink the master area
-    , ((modm, xK_h), sendMessage Shrink)
+    , ("M-h", sendMessage Shrink)
 
     -- Expand the master area
-    , ((modm, xK_l), sendMessage Expand)
+    , ("M-l", sendMessage Expand)
 
     -- Push window back into tiling
-    , ((modm, xK_t), withFocused $ windows . W.sink)
+    , ("M-t", withFocused $ windows . W.sink)
 
     -- Increment the number of windows in the master area
-    , ((modm, xK_comma), sendMessage (IncMasterN 1))
+    , ("M-<Comma>", sendMessage (IncMasterN 1))
 
     -- Deincrement the number of windows in the master area
-    , ((modm, xK_period), sendMessage (IncMasterN (-1)))
+    , ("M-<Period>", sendMessage (IncMasterN (-1)))
 
     -- Quit xmonad
-    , ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess))
+    , ("M-S-q", io (exitWith ExitSuccess))
 
     -- Restart xmonad
-    , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
+    , ("M-q", spawn "xmonad --recompile; xmonad --restart")
+
+    -- control volume with volume keys
+    ,("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 2%-")
+    , ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+")
+
+    -- control volume with fn keys
+    , ("M-<F5>", spawn "amixer -q sset Master 2%-")
+    , ("M-<F6>", spawn "amixer -q sset Master 2%+")
+
+    --- control brightness with brightness keys
+    , ("XF86MonBrightnessUp", spawn "lux -a 10%")
+    , ("XF86MonBrightnessDown", spawn "lux -s 10%")
+
+    -- control brightness with fn keys
+    , ("M-<F8>", spawn "lux -a 10%")
+    , ("M-<F7>", spawn "lux -s 10%")
+
+    -- Open XMonad Config file in VS Code
+    , ("C-M1-<Insert>", spawn "code ~/.xmonad/xmonad.hs")
+
+    -- Open qutebrowser
+    , ("M-f", spawn "qutebrowser")
+
+    -- Open Firefox
+    , ("M-S-f", spawn "vivaldi-stable")
+
+    -- Open File Explorer
+    , ("M-e", spawn "kitty sh -c vifm")
+
+    -- Open pcmanfm
+    , ("M-S-e", spawn "pcmanfm")
+
+    -- Take screenshot
+    , ("M-<Print>", spawn "flameshot gui")
+
+    -- Toggle border of currently focused window
+    , ("M-g", withFocused toggleBorder)
+
+    -- Minimize window
+    , ("M-m", withFocused minimizeWindow)
+
+    -- Maximize the last minimized window
+    , ("M-S-m", withLastMinimized maximizeWindowAndFocus)
+
+    -- Shut down
+    , ("M-<F1>", spawn "sysexit")
+
+    -- Run 'connect' script
+    , ("M-b", spawn "connect")
+
+    -- Open htop
+    , ("C-M1-<Delete>", spawn "kitty htop")
+
+    -- Open vs-code
+    , ("M-S-v", spawn "code")
+
+    -- Toggle pause in dead beef
+    , ("M-S-<Space>", spawn "deadbeef --toggle-pause")
     ]
 
     ++
@@ -199,7 +257,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 These are the different layouts that I can switch to when needed.
 
 #+begin_src haskell
-myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,8), (R,8), (D,8), (L,8)] $ tiled||| Mirror tiled ||| Full))))
+myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,8), (R,8), (D,8), (L,8)] $ (tiled||| Mirror tiled ||| Full)))))
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -226,7 +284,10 @@ myManageHook = composeAll
         , className =? "toolbar" --> doFloat
         , className =? "splash" --> doFloat
         , className =? "mpv" --> doFloat
-        , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
+        , appName =? "Picture-in-Picture" --> doRectFloat (W.RationalRect 0.05 0.05 0.2 0.2)
+        , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  
+        , (className =? "vivaldi-stable" <&&> resource =? "Dialog") --> doFloat  
+        , className =? "VirtualBox Machine" --> doShift ( myWorkspaces !! 3)
         , manageDocks
         , fullscreenManageHook
         ]
@@ -247,9 +308,9 @@ myEventHook = composeAll
 myLogHook xmproc = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
               -- the following variables beginning with 'pp' are settings for xmobar.
               { ppOutput = hPutStrLn xmproc                          -- xmobar on monitor 1
-              , ppCurrent = xmobarColor "black" "" . wrap  "<box type=Top width=2 mt=2><fc=black,lightblue>" "</fc></box>"         -- Current workspace
+              , ppCurrent = xmobarColor "black" "" . wrap  "<fc=black,lightblue>" "</fc>"         -- Current workspace
               , ppVisible = xmobarColor "#c792ea" "" . clickable              -- Visible but not current workspace
-              , ppHidden = xmobarColor "black" "" . wrap "<box type=Bottom width=2 mb=2><fc=black,#daa520>" "</fc></box>" . clickable -- Hidden workspaces
+              , ppHidden = xmobarColor "black" "" . wrap "<fc=black,#daa520>" "</fc>" . clickable -- Hidden workspaces
               , ppHiddenNoWindows = xmobarColor "#82AAFF" ""  . clickable     -- Hidden workspaces (no windows)
               , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
               , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
@@ -283,7 +344,6 @@ defaults xmproc = def {
         focusedBorderColor = myFocusedBorderColor,
 
       -- key bindings
-        keys               = myKeys,
         mouseBindings      = myMouseBindings,
 
       -- hooks, layouts
@@ -292,7 +352,7 @@ defaults xmproc = def {
         handleEventHook    = myEventHook,
         startupHook        = myStartupHook,
         logHook            = myLogHook xmproc
-        }
+        } `additionalKeysP` myKeys
 #+end_src
 
 * Main & My Custom Keybindings
@@ -303,62 +363,5 @@ main = do
 		picomproc<- spawnPipe "picom"
 		xmonad $ docks $ fullscreenSupport (defaults xmproc)
 
-                               -- MY CUSTOM KEYBINDINGS
-                               `additionalKeysP`
-                                [ -- control volume with volume keys
-                                ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 2%-")
-                               , ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+")
-
-                                -- control volume with fn keys
-                               , ("M-<F5>", spawn "amixer -q sset Master 2%-")
-                               , ("M-<F6>", spawn "amixer -q sset Master 2%+")
-
-                                --- control brightness with brightness keys
-                               , ("XF86MonBrightnessUp", spawn "lux -a 10%")
-                               , ("XF86MonBrightnessDown", spawn "lux -s 10%")
-
-                               -- control brightness with fn keys
-                               , ("M-<F8>", spawn "lux -a 10%")
-                               , ("M-<F7>", spawn "lux -s 10%")
-
-                               -- Open XMonad Config file in VIM
-                               , ("C-M1-<Insert>", spawn "emacs ~/.xmonad/README.org")
-
-                               -- Open qutebrowser
-                               , ("M-f", spawn "qutebrowser")
-
-                               -- Open Firefox
-                               , ("M-S-f", spawn "firefox")
-
-                               -- Open File Explorer
-                               , ("M-e", spawn "kitty sh -c vifm")
-
-                                -- Open Doom eMacs
-                               , ("M-S-e", spawn "emacs")
-
-                                -- Open pcmanfm
-                               , ("M-S-<Space>", spawn "pcmanfm")
-
-                               -- Take screenshot
-                               , ("M-<Print>", spawn "flameshot gui")
-
-                               -- Toggle border of currently focused window
-                               , ("M-g", withFocused toggleBorder)
-
-                               -- Minimize window
-                               , ("M-m", withFocused minimizeWindow)
-
-                               -- Maximize the last minimized window
-                               , ("M-S-m", withLastMinimized maximizeWindowAndFocus)
-
-                               -- Shut down
-                               , ("M-<F1>", spawn "sysexit")
-
-                               -- Run 'connect' script
-                               , ("M-b", spawn "connect")
-
-                               -- Open htop
-                               , ("C-M1-<Delete>", spawn "kitty htop")
-                             ]
-       #+end_src
+#+end_src
 

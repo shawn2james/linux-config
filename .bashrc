@@ -27,7 +27,7 @@ chtheme() {
     ln -sf /home/shawn/.config/kitty/kitty-themes/themes/$1.conf /home/shawn/.config/kitty/theme.conf; killall kitty; kitty
 }
 
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.emacs.d/bin"
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
