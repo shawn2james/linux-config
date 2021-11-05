@@ -297,4 +297,7 @@ main = do
 
                                -- Run dm-websearch
                                , ("M-S-s", spawn "dm-websearch")
+
+                               -- connect to bluetooth device
+                               , ("M-S-b", spawn "connect")
                              ]

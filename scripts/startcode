@@ -1,0 +1,8 @@
+#!/bin/bash
+
+PROJECT_DIR=$HOME/personal/projects
+TUTORIAL_DIR=$HOME/personal/tutorials
+
+choice=$(echo -e "projects\ntutorials" | dmenu -l 2) &&
+[ $choice = "projects" ] && ls $PROJECT_DIR | dmenu -l 5 | xargs -I {} code $PROJECT_DIR/{}
+[ $choice = "tutorials" ] && ls $TUTORIAL_DIR | dmenu -l 5 | xargs -I {} code $TUTORIAL_DIR/{}
