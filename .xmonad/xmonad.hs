@@ -62,7 +62,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
       ((modm, xK_Return), spawn $ XMonad.terminal conf)
 
     -- dmenu
-    , ((modm, xK_p     ), spawn "dmenu_run -i -h 30 -b -y 20 -p 'Run: '")
+    , ((modm, xK_p     ), spawn "dmenu_run -i -h 28 -y 0 -p 'Run: '")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c), kill)
@@ -251,7 +251,7 @@ main = do
                                , ("M-<F7>", spawn "lux -s 10%")
 
                                -- Open XMonad Config file in VS Code
-                               , ("C-M1-<Insert>", spawn "code ~/.xmonad/xmonad.hs")
+                               , ("C-M1-<Insert>", spawn "confedit")
 
                                -- Open qutebrowser
                                , ("M-f", spawn "qutebrowser")

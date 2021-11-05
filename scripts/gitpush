@@ -2,7 +2,7 @@
 
 
 echo "============= STATUS ============"
-git status 
+git status &&
 echo "============ ADDING FILES ======="
 read -e -n 1 -p "Add all files [Y/n]: " addAllFiles
 case "$addAllFiles" in 
@@ -15,12 +15,11 @@ case "$addAllFiles" in
 esac
 echo "============ COMMITTING FILES ==="
 read -e -p "Enter commit message: " msg
-git commit -m "$msg"
+git commit -m "$msg" &&
 echo "============ PUSHING TO GITHUB =="
 read -e -p "Enter branch: " branch
 if [ "$branch" = "" ];
 then
-	echo "lasdkjf;asldfkj;asdlf";
 	git push origin master;
    	exit 1;
 else
