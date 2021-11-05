@@ -17,11 +17,9 @@ esac
 
 echo "============ COMMITTING FILES ==="
 read -e -p "Enter commit message [default='Updating files']: " msg
-[ "$msg" = "" ] && git commit -m "Updating files"
-[ "$msg" = "" ] || git commit -m "$msg" 
+[ "$msg" = "" ] && git commit -m "Updating files" || git commit -m "$msg" 
 
 echo "============ PUSHING TO GITHUB =="
 read -e -p "Enter branch [default=master]: " branch
-[ "$branch" = "" ] && git push origin master
-[ "$branch" = "" ] || git push origin $branch
+[ "$branch" = "" ] && git push origin master || git push origin $branch
 exit 1;
