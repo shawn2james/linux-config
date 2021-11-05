@@ -23,5 +23,5 @@ read -e -p "Enter commit message [default='Updating files']: " msg
 echo "============ PUSHING TO GITHUB =="
 read -e -p "Enter branch [default=master]: " branch
 [ "$branch" = "" ] && git push origin master
-[ "$branch' = "" ] || git push origin $branch
+[ "$branch" = "" ] || git push origin $branch
 exit 1;
