@@ -170,7 +170,6 @@ myManageHook = composeAll
         , className =? "notification" --> doFloat
         , className =? "toolbar" --> doFloat
         , className =? "splash" --> doFloat
-        , className =? "mpv" --> doFloat
         , appName =? "Picture-in-Picture" --> doRectFloat (W.RationalRect 0.05 0.05 0.2 0.2)
         , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  
         , (className =? "vivaldi-stable" <&&> resource =? "Dialog") --> doFloat  
@@ -300,4 +299,10 @@ main = do
 
                                -- connect to bluetooth device
                                , ("M-S-b", spawn "connect")
+
+							   -- download youtube playlist
+							   , ("M-y", spawn "ytsave")
+							   
+							   -- show youtube video list
+							   , ("M-S-y", spawn "ytwatch")
                              ]

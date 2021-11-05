@@ -1,0 +1,4 @@
+#!/bin/bash
+
+`ls $HOME/yt | awk -F ".web" '{print $1}' | dmenu -i -l 20 | xargs -d "\n" -I {} mpv $HOME/yt/{}.webm`
+
