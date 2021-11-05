@@ -14,10 +14,15 @@ case "$addAllFiles" in
 		;;
 esac
 echo "============ COMMITTING FILES ==="
-read -e -p "Enter commit message: " msg
-git commit -m "$msg" &&
+read -e -p "Enter commit message [default='Updating files']: " msg
+if [ "$msg" = "" ];
+then
+	git commit -m "Updating files"
+else
+	git commit -m "$msg" 
+fi
 echo "============ PUSHING TO GITHUB =="
-read -e -p "Enter branch: " branch
+read -e -p "Enter branch [default=master]: " branch
 if [ "$branch" = "" ];
 then
 	git push origin master;
