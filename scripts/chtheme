@@ -7,4 +7,4 @@ function setTheme () {
 
 export -f setTheme
 
-ls $HOME/.config/kitty/kitty-themes/themes/ | dmenu -l 30 -p "Choose theme: " | xargs -I {} bash -c "setTheme {}"
+ls $HOME/.config/kitty/kitty-themes/themes/ | dmenu -l 30 -p "Choose theme: " | xargs -I {} bash -c "setTheme {}"; exit 1

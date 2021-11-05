@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Turn on bluetooth service
 bluetoothctl power on
-bluetoothctl devices | dmenu -l 5 -p "Select device: " | awk -F " " '{print $2}' | xargs bluetoothctl connect
+
+# Get device info
+devices=`bluetoothctl devices | dmenu -l 5 -p "Select device: "`
+deviceName=`echo $devices | awk -F " " '{$1=$2="";print $0}'`
+deviceNumber=`echo $devices| awk -F " " '{print $2}'`
+
+# send notification and connect to selected device
+notify-send "Connecting to$deviceName..." && bluetoothctl connect $deviceNumber && exit 1
 

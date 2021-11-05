@@ -4,10 +4,10 @@
 echo "============= STATUS ============"
 git status 
 echo "============ ADDING FILES ======="
-read -e -n1 -p "Add all files [Y/n]: " addAllFiles
+read -e -s -n 1 -p "Add all files [Y/n]: " addAllFiles
 case "$addAllFiles" in 
 	"y") git add .  ;;
-	"\n") git add . ;;
+	"") git add . ;;
 	"n") 
 		read -e -p "Enter files to add: " filestoAdd
 		git add $filestoAdd
