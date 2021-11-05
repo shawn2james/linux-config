@@ -7,6 +7,7 @@
 shopt -s autocd
 
 # ALIASES
+alias gp="gitpush"
 alias la="exa -lha --group-directories-first --icons"
 alias rm="rm -iv"
 alias cp="rm -iv"
