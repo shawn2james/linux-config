@@ -172,7 +172,6 @@ myManageHook = composeAll
         , className =? "splash" --> doFloat
         , appName =? "Picture-in-Picture" --> doRectFloat (W.RationalRect 0.05 0.05 0.2 0.2)
         , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  
-        , (className =? "vivaldi-stable" <&&> resource =? "Dialog") --> doFloat  
         , className =? "VirtualBox Machine" --> doShift ( myWorkspaces !! 3)
         , manageDocks
         , fullscreenManageHook
@@ -256,7 +255,7 @@ main = do
                                , ("M-f", spawn "qutebrowser")
 
                                -- Open Firefox
-                               , ("M-S-f", spawn "vivaldi-stable")
+                               , ("M-S-f", spawn "firefox")
 
                                -- Open File Explorer
                                , ("M-e", spawn "kitty sh -c vifm")
@@ -301,8 +300,8 @@ main = do
                                , ("M-S-b", spawn "connect")
 
 							   -- download youtube playlist
-							   , ("M-y", spawn "ytsave")
+							   , ("M-y", spawn "ytwatch")
 							   
 							   -- show youtube video list
-							   , ("M-S-y", spawn "ytwatch")
+							   , ("M-S-o", spawn "ytsave")
                              ]

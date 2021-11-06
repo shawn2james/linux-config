@@ -6,7 +6,7 @@ cd $HOME/yt
 filesBefore=$(ls -Al | wc -l)
 
 notify-send "Downloading playlist..." &&
-yt-dlp -o '%(title)s.%(ext)s' https://youtube.com/playlist?list=PLcXOGPIImO70Uy0MZ8pz0yuzqGccttClJ &&
+kitty yt-dlp --rm-cache-dir --write-subs --write-auto-subs --sub-langs "en.*" -o '%(title)s.%(ext)s' https://youtube.com/playlist?list=PLcXOGPIImO70Uy0MZ8pz0yuzqGccttClJ &&
 
 filesAfter=$(ls -Al | wc -l)
 newFiles=$(( $filesAfter-$filesBefore ))

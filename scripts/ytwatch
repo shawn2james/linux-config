@@ -1,4 +1,8 @@
 #!/bin/bash
 
-`ls $HOME/yt | awk -F ".web" '{print $1}' | dmenu -i -l 20 | xargs -d "\n" -I {} mpv $HOME/yt/{}.webm`
+cd $HOME/yt
+video=`ls *.webm | awk -F ".web" '{print $1}' | dmenu -i -l 20` 
+subtitleFile=`ls *.vtt | grep -e "$video"`
+
+[ $subtitleFile="" ] || mpv "$video.webm" --sub-file="$subtitleFile" || mpv "$video.webm"
 
