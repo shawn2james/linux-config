@@ -9,13 +9,17 @@ Config {
      position = TopSize L 100 40,
      sepChar =  "%",
      alignSep = "&&",
-     template = " <box type=Bottom width=2 mb=2 color=#a9a1e1><fc=#a9a1e1><action=`kitty gotop`>%disku%</action></fc></box>   <box type=Bottom width=2 mb=2 color=#c678dd><fc=#c678dd>%bell% <action=`kitty sudo pacman -Syu; killall xmobar; xmobar`>%pacupdate%</action></fc></box>   <box type=Bottom width=2 mb=2 color=#da8548><fc=#da8548>%baticon%</fc> %battery%</box>   <box type=Bottom width=2 mb=2 color=white>%uparrow% %uptime%</box>   |   <box type=Bottom width=2 mb=2 color=lightblue>%UnsafeStdinReader%</box> &&     <box type=Bottom width=2 mb=2 color=#18ba54><fc=#19b352><action=`kitty calcurse`>%calendar% %date%</action></fc></box>   <box type=Bottom width=2 mb=2 color=#0699c9><fc=#0699c9>%clock% %time%</fc></box>   <box type=Bottom width=2 mb=2 color=white><action=`amixer -q sset Master toggle`>%volicon%</action> <action=`pavucontrol`>%default:Master%</action></box>  <fc=#51afef><action=`blueman-manager`>%bluetooth%</action></fc>  <fc=#51afef><action=`sysexit`>%penguin%</action></fc> ",
+     template = " <box type=Bottom width=2 mb=2 color=#0699c9> <fc=#0699c9><action=`kitty gotop`>%memicon% %memory%</action></fc> </box>  <box type=Bottom width=2 mb=2 color=#a9a1e1><fc=#a9a1e1><action=`kitty htop`>%disku%</action></fc></box>   <box type=Bottom width=2 mb=2 color=#c678dd><fc=#c678dd>%bell% <action=`kitty sudo pacman -Syu; killall xmobar; xmobar`>%pacupdate%</action></fc></box>   <box type=Bottom width=2 mb=2 color=#da8548><fc=#da8548>%baticon%</fc> %battery%</box>   <box type=Bottom width=2 mb=2 color=white>%uparrow% %uptime%</box>   |   <box type=Bottom width=2 mb=2 color=lightblue>%UnsafeStdinReader%</box> &&     <box type=Bottom width=2 mb=2 color=#18ba54><fc=#19b352><action=`kitty calcurse`>%calendar% %date%</action></fc></box>   <box type=Bottom width=2 mb=2 color=#0699c9><fc=#0699c9>%clock% %time%</fc></box>   <box type=Bottom width=2 mb=2 color=white><action=`amixer -q sset Master toggle`>%volicon%</action> <action=`pavucontrol`>%default:Master%</action></box>  <fc=#51afef><action=`blueman-manager`>%bluetooth%</action></fc>  <fc=#51afef><action=`sysexit`>%penguin%</action></fc> ",
      lowerOnStart = False,
      allDesktops = True,
      overrideRedirect = False,
      hideOnStart = False,
 
      commands = [
+        -- MEMORY USAGE ----------------------------
+        Run Com "echo" ["<fn=2>\xf538</fn>"] "memicon" 3600,
+        Run Memory ["-t", "<usedratio>%"] 60,
+
         -- FREE DISK SPACE -------------------------
         Run DiskU [("/", "<fn=2>\xf0c7</fn> <free> free")] [] 60,
 
@@ -52,12 +56,12 @@ Config {
 
         -- DATE & TIME --------------------------------
         --   (%a = day of week)
-		Run Com "echo" ["<fn=2>\xf073</fn>"] "calendar" 3600,
-		Run Com "echo" ["<fn=2>\xf017</fn>"] "clock" 3600,
-        -- Run Date "%b %d %Y (%a)" "date" 10,
-		-- Run Date "%H:%M" "time" 10,
-		Run Com "date" ["+%Y %b %d (%a)"] "date" 3600,
-		Run Com "date" ["+%I:%M %p"] "time" 10, 			
+        Run Com "echo" ["<fn=2>\xf073</fn>"] "calendar" 3600,
+        Run Com "echo" ["<fn=2>\xf017</fn>"] "clock" 3600,
+            -- Run Date "%b %d %Y (%a)" "date" 10,
+        -- Run Date "%H:%M" "time" 10,
+        Run Com "date" ["+%Y %b %d (%a)"] "date" 3600,
+        Run Com "date" ["+%I:%M %p"] "time" 10,
 
         -- VOLUME -------------------------------------
         Run Com "echo" ["<fn=2>\xf028</fn>"] "volicon" 3600,

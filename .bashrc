@@ -162,7 +162,6 @@ ex ()
   fi
 }
 
-
 neofetch
 
 function _update_ps1() {

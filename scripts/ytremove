@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd $HOME/yt
+video=`ls *.webm | awk -F ".web" '{print $1}' | dmenu -i -l 20 -p "Select video: "` 
+ls | grep "$video" | xargs -I {} rm -v "{}" &&
+exit 1

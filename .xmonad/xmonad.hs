@@ -172,7 +172,6 @@ myManageHook = composeAll
         , className =? "splash" --> doFloat
         , appName =? "Picture-in-Picture" --> doRectFloat (W.RationalRect 0.05 0.05 0.2 0.2)
         , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  
-        , className =? "VirtualBox Machine" --> doShift ( myWorkspaces !! 3)
         , manageDocks
         , fullscreenManageHook
         ]
@@ -284,8 +283,8 @@ main = do
                                -- Open gotop
                                , ("C-M1-<Delete>", spawn "kitty gotop")
 
-                               -- Open vs-code
-                               , ("M-S-v", spawn "code")
+                               -- Open emacs
+                               , ("M-S-v", spawn "emacsclient -c -a 'emacs'")
 
                                -- Toggle pause in dead beef
                                , ("M-S-<Space>", spawn "deadbeef --toggle-pause")
@@ -299,9 +298,12 @@ main = do
                                -- connect to bluetooth device
                                , ("M-S-b", spawn "connect")
 
-							   -- download youtube playlist
-							   , ("M-y", spawn "ytwatch")
-							   
-							   -- show youtube video list
-							   , ("M-S-o", spawn "ytsave")
+                               -- download youtube playlist
+                               , ("M-y", spawn "ytwatch")
+
+                               -- show youtube video list
+                               , ("M-S-o", spawn "ytsave")
+
+                               -- open neomutt
+                               , ("M-S-u", spawn "kitty mbsync -a && kitty neomutt")
                              ]

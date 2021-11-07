@@ -6,10 +6,16 @@ cd $HOME/yt
 filesBefore=$(ls -Al | wc -l)
 
 notify-send "Downloading playlist..." &&
-kitty yt-dlp --rm-cache-dir --write-subs --write-auto-subs --sub-langs "en.*" -o '%(title)s.%(ext)s' https://youtube.com/playlist?list=PLcXOGPIImO70Uy0MZ8pz0yuzqGccttClJ &&
+kitty yt-dlp --rm-cache-dir &&
+kitty yt-dlp --write-subs --write-auto-subs --sub-langs "en.*" -o '%(title)s (%(channel)s).%(ext)s' https://youtube.com/playlist?list=PLcXOGPIImO70Uy0MZ8pz0yuzqGccttClJ &&
 
 filesAfter=$(ls -Al | wc -l)
 newFiles=$(( $filesAfter-$filesBefore ))
-
 notify-send "Downloaded $newFiles videos"
+
+echo "\n=============================== REMOVING OLD FILES =====================================\n"
+
+notify-send "Removing old videos..."
+python ytremove.py
+notify-send "Old videos removed"
 exit 0

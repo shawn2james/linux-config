@@ -1,8 +1,7 @@
 #!/bin/bash
 
 cd $HOME/yt
-video=`ls *.webm | awk -F ".web" '{print $1}' | dmenu -i -l 20` 
+video=`ls *.webm | awk -F ".web" '{print $1}' | dmenu -i -l 20 -p "Select video: "` 
 subtitleFile=`ls *.vtt | grep -e "$video"`
 
-[ $subtitleFile="" ] || mpv "$video.webm" --sub-file="$subtitleFile" || mpv "$video.webm"
-
+[ $subtitleFile = "" ] || mpv "$video.webm" --volume=50 --sub-auto="fuzzy"

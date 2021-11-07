@@ -2,15 +2,17 @@
 
 function openConfig () {
 	case "$1" in 
-		xmonad) kitty vim $HOME/.xmonad/xmonad.hs ;;
-		xmobar) kitty vim $HOME/.config/xmobar/xmobarrc ;;
-		picom) kitty vim $HOME/.config/picom/picom.conf ;;
-		mpv) kitty vim $HOME/.config/mpv/ ;;
-		dunst) kitty vim $HOME/.config/dunst/dunstrc ;;
-		conky) kitty vim $HOME/.config/conky/conky.conf ;;
+		Xmonad) emacsclient -c -a "emacs" $HOME/.xmonad/xmonad.hs ;;
+		Xmobar) emacsclient -c -a "emacs" $HOME/.config/xmobar/xmobarrc ;;
+		Picom) emacsclient -c -a "emacs" $HOME/.config/picom/picom.conf ;;
+		MPV) emacsclient -c -a "emacs" $HOME/.config/mpv/ ;;
+		Dunst) emacsclient -c -a "emacs" $HOME/.config/dunst/dunstrc ;;
+		Conky) emacsclient -c -a "emacs" $HOME/.config/conky/conky.conf ;;
+		Neomutt) emacsclient -c -a "emacs" $HOME/.config/mutt/muttrc ;;
+		Doom) emacsclient -c $HOME/.doom.d ;;
 	esac
 }
 
 export -f openConfig
 
-echo -e "xmonad\nxmobar\npicom\nmpv\ndunst\nconky" | dmenu -l 10 -p "Select config file: " | xargs -I {} bash -c "openConfig {}"
+echo -e "Xmonad\nXmobar\nPicom\nMPV\nDunst\nConky\nNeomutt\nDoom Emacs" | dmenu -i -l 10 -p "Select config file: " | xargs -I {} bash -c "openConfig {}"
