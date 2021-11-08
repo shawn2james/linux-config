@@ -1,0 +1,7 @@
+#!/bin/bash
+
+inotifywait -m $HOME/linux-config/wallpapers/ -e create -e moved_to |
+    while read dir action file; do
+        pidof nitrogen | xargs kill &&
+        nitrogen
+    done

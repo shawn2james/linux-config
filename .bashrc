@@ -7,6 +7,7 @@
 shopt -s autocd
 
 # ALIASES
+alias emacs="emacsclient -c"
 alias gp="gitpush"
 alias la="exa -lha --group-directories-first --icons"
 alias rm="rm -iv"
@@ -24,6 +25,7 @@ alias zathura="devour zathura"
 alias gparted="devour gparted"
 
 export PATH="$PATH:$HOME/.local/bin:$HOME/.emacs.d/bin:$HOME/linux-config/scripts"
+export EDITOR="emacsclient -c -a 'emacs'"
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -162,7 +164,7 @@ ex ()
   fi
 }
 
-neofetch
+# neofetch
 
 function _update_ps1() {
     PS1=$(powerline-shell $?)

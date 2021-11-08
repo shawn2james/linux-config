@@ -20,22 +20,28 @@
       scroll-margin 5
       evil-vsplit-window-right t
       evil-split-window-below t
+      evil-insert-state-cursor '(bar "#00FF00")
+      evil-visual-state-cursor '(box "#FF00FF")
+      evil-normal-state-cursor '(box "#E2E8EF")
 )
 
 (global-subword-mode 1)
 
 (defadvice! prompt-for-buffer (&rest _)
   :after '(evil-window-split evil-window-vsplit)
-  (consult-buffer))
+  (project-find-file))
 
 (use-package emojify
   :hook (after-init . global-emojify-mode))
 
 (setq display-line-numbers-type t)
 (map! :leader
-      :desc "Comment or uncomment lines" "TAB TAB" #'comment-line
       (:prefix ("t" . "toggle")
+       :desc "Comment or uncomment lines" "/" #'comment-line
        :desc "Toggle line numbers" "l" #'doom/toggle-line-numbers
        :desc "Toggle line highlight in frame" "h" #'hl-line-mode
        :desc "Toggle line highlight globally" "H" #'global-hl-line-mode
-       :desc "Toggle truncate lines" "t" #'toggle-truncate-lines))
+       :desc "Toggle truncate lines" "t" #'toggle-truncate-lines)
+      (:prefix ("o" . "open")
+       :desc "Open magit" "m" #'magit)
+      )

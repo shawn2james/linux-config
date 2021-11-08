@@ -162,8 +162,7 @@ myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,8), (R,8), (
      delta   = 3/100
 
 myManageHook = composeAll
-        [ className =? "Gimp" --> doFloat
-        , className =? "confirm" --> doFloat
+        [ className =? "confirm" --> doFloat
         , className =? "file_progress" --> doFloat
         , className =? "dialog" --> doFloat
         , className =? "download" --> doFloat
@@ -284,7 +283,7 @@ main = do
                                , ("C-M1-<Delete>", spawn "kitty gotop")
 
                                -- Open emacs
-                               , ("M-S-v", spawn "emacsclient -c -a 'emacs'")
+                               , ("M-S-v", spawn "emacsclient -c")
 
                                -- Toggle pause in dead beef
                                , ("M-S-<Space>", spawn "deadbeef --toggle-pause")
