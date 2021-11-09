@@ -1,19 +1,16 @@
 #!/bin/bash
 
-function openConfig () {
-	case "$1" in 
-		xmonad) emacsclient -c -a "emacs" $HOME/.xmonad/xmonad.hs ;;
-		xmobar) emacsclient -c -a "emacs" $HOME/.config/xmobar/xmobarrc ;;
-		picom) emacsclient -c -a "emacs" $HOME/.config/picom/picom.conf ;;
-		mpv) emacsclient -c -a "emacs" $HOME/.config/mpv/ ;;
-		dunst) emacsclient -c -a "emacs" $HOME/.config/dunst/dunstrc ;;
-		conky) emacsclient -c -a "emacs" $HOME/.config/conky/conky.conf ;;
-		neomutt) emacsclient -c -a "emacs" $HOME/.config/mutt/muttrc ;;
-		doom) emacsclient -c $HOME/.doom.d ;;
-		youtube-viewer) emacsclient -c $HOME/.config/youtube-viewer/youtube-viewer.conf ;;
-	esac
-}
+config=$(echo -e "xmonad\nxmobar\npicom\nmpv\ndunst\nconky\nneomutt\ndoom emacs\nyoutube-viewer\nalacritty" | dmenu -i -l 10 -p "Select config file: ")
 
-export -f openConfig
-
-echo -e "xmonad\nxmobar\npicom\nmpv\ndunst\nconky\nneomutt\ndoom emacs\nyoutube-viewer" | dmenu -i -l 10 -p "Select config file: " | xargs -I {} bash -c "openConfig {}"
+case "$config" in
+	xmonad) emacsclient -c -a "emacs" $HOME/.xmonad/xmonad.hs ;;
+	xmobar) emacsclient -c -a "emacs" $HOME/.config/xmobar/xmobarrc ;;
+	picom) emacsclient -c -a "emacs" $HOME/.config/picom/picom.conf ;;
+	mpv) emacsclient -c -a "emacs" $HOME/.config/mpv/ ;;
+	dunst) emacsclient -c -a "emacs" $HOME/.config/dunst/dunstrc ;;
+	conky) emacsclient -c -a "emacs" $HOME/.config/conky/conky.conf ;;
+	neomutt) emacsclient -c -a "emacs" $HOME/.config/mutt/muttrc ;;
+	doom) emacsclient -c $HOME/.doom.d ;;
+	youtube-viewer) emacsclient -c $HOME/.config/youtube-viewer/youtube-viewer.conf ;;
+	alacritty) emacsclient -c $HOME/.config/alacritty/alacritty.yml ;;
+esac

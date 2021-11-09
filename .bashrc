@@ -101,7 +101,7 @@ if ${use_color} ; then
 		PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
 	fi
 
-	alias ls='ls --color=auto'
+	alias ls='ls --color=auto -N'
 	alias grep='grep --colour=auto'
 	alias egrep='egrep --colour=auto'
 	alias fgrep='fgrep --colour=auto'
@@ -170,7 +170,7 @@ function _update_ps1() {
 }
 
 if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+   PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
 if [ -f /etc/bash_completion ]; then

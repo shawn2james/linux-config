@@ -65,11 +65,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- close focused window
     , ((modm .|. shiftMask, xK_c), kill)
 
-     -- Rotate through the available layout algorithms
-    , ((modm, xK_space ), sendMessage NextLayout)
-
     --  Reset the layouts on the current workspace to default
-    , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
+    -- , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
 
     -- Resize viewed windows to the correct size
     , ((modm, xK_n), refresh)
@@ -283,12 +280,6 @@ main = do
                                -- Open emacs
                                , ("M-S-v", spawn "emacsclient -c")
 
-                               -- Toggle pause in dead beef
-                               , ("M-S-<Space>", spawn "deadbeef --toggle-pause")
-
-                               -- Toggle pause in dead beef
-                               , ("M-S-<Space>", spawn "deadbeef --toggle-pause")
-
                                -- Run dm-websearch
                                , ("M-S-s", spawn "dm-websearch")
 
@@ -303,4 +294,7 @@ main = do
 
                                -- Run dmenu
                                , ("M-<Space>", spawn "dmenu_run -i -h 28 -y 0 -p 'Run: '")
+
+                               -- Cycle through the layouts
+                               , ("M-S-<Space>", sendMessage NextLayout)
                              ]
