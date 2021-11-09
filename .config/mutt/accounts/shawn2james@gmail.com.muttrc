@@ -17,4 +17,4 @@ set record = +Sent
 
 macro index o "<shell-escape>mw -y shawn2james@gmail.com<enter>" "run mbsync to sync shawn2james@gmail.com"
 
-mailboxes "=INBOX" "=Programming" "=[Gmail]/All Mail" "=[Gmail]/Bin" "=[Gmail]/Drafts" "=[Gmail]/Important" "=[Gmail]/Sent Mail" "=[Gmail]/Spam" "=[Gmail]/Starred"
+mailboxes "=INBOX" "=[Gmail]/Drafts" "=[Gmail]/Important" "=[Gmail]/Sent Mail" "=[Gmail]/Spam"

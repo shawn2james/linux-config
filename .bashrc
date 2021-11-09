@@ -8,24 +8,23 @@ shopt -s autocd
 
 # ALIASES
 alias emacs="emacsclient -c"
+alias p="sudo pacman"
 alias gp="gitpush"
-alias la="exa -lha --group-directories-first --icons"
+alias la="exa -ha --group-directories-first --icons"
 alias rm="rm -iv"
 alias cp="rm -iv"
 alias mv="mv -v"
+alias mkdir="mkdir -pv"
 alias gis="git status"
 alias linux-pdf="zathura /home/shawn/Documents/the-linux-commnd-line.pdf"
 alias icat="kitty +kitten icat --align=center"
-alias blued="bluetoothctl devices; bluetoothctl disconnect"
+alias blued="bluetoothctl disconnect"
 alias pacsave="pacman -Q > /home/shawn/linux-config/packages.txt"
 alias mpv="devour mpv"
 alias qview="devour qview"
 alias timeshift="devour timeshift"
 alias zathura="devour zathura"
 alias gparted="devour gparted"
-
-export PATH="$PATH:$HOME/.local/bin:$HOME/.emacs.d/bin:$HOME/linux-config/scripts"
-export EDITOR="emacsclient -c -a 'emacs'"
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -164,7 +163,7 @@ ex ()
   fi
 }
 
-# neofetch
+neofetch
 
 function _update_ps1() {
     PS1=$(powerline-shell $?)

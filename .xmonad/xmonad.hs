@@ -28,7 +28,7 @@ import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
 
 myTerminal :: String
-myTerminal = "kitty"
+myTerminal = "alacritty"
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
@@ -61,8 +61,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ -- terminal
       ((modm, xK_Return), spawn $ XMonad.terminal conf)
 
-    -- dmenu
-    , ((modm, xK_p     ), spawn "dmenu_run -i -h 28 -y 0 -p 'Run: '")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c), kill)
@@ -247,7 +245,7 @@ main = do
                                , ("M-<F7>", spawn "lux -s 10%")
 
                                -- Open XMonad Config file in VS Code
-                               , ("C-M1-<Insert>", spawn "confedit")
+                               , ("M-p e", spawn "confedit")
 
                                -- Open qutebrowser
                                , ("M-f", spawn "qutebrowser")
@@ -256,7 +254,7 @@ main = do
                                , ("M-S-f", spawn "firefox")
 
                                -- Open File Explorer
-                               , ("M-e", spawn "kitty sh -c vifm")
+                               , ("M-e", spawn "alacritty -e sh -c vifm")
 
                                -- Open pcmanfm
                                , ("M-S-e", spawn "pcmanfm")
@@ -274,13 +272,13 @@ main = do
                                , ("M-S-m", withLastMinimized maximizeWindowAndFocus)
 
                                -- Shut down
-                               , ("M-<F1>", spawn "sysexit")
+                               , ("M-p q", spawn "sysexit")
 
                                -- Run 'connect' script
-                               , ("M-b", spawn "connect")
+                               , ("M-p c", spawn "connect")
 
                                -- Open gotop
-                               , ("C-M1-<Delete>", spawn "kitty gotop")
+                               , ("C-M1-<Delete>", spawn "alacritty -e gotop")
 
                                -- Open emacs
                                , ("M-S-v", spawn "emacsclient -c")
@@ -294,15 +292,15 @@ main = do
                                -- Run dm-websearch
                                , ("M-S-s", spawn "dm-websearch")
 
-                               -- connect to bluetooth device
-                               , ("M-S-b", spawn "connect")
-
                                -- download youtube playlist
-                               , ("M-y", spawn "ytwatch")
-
-                               -- show youtube video list
-                               , ("M-S-o", spawn "ytsave")
+                               , ("M-p y", spawn "ytwatch")
 
                                -- open neomutt
-                               , ("M-S-u", spawn "kitty mbsync -a && kitty neomutt")
+                               , ("M-S-n", spawn "alacritty -e neomutt")
+
+                               -- Toggle the gap around windows
+                               , ("M-C-g", sendMessage $ ToggleGaps)
+
+                               -- Run dmenu
+                               , ("M-<Space>", spawn "dmenu_run -i -h 28 -y 0 -p 'Run: '")
                              ]

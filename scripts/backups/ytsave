@@ -3,13 +3,13 @@
 
 cd $HOME/yt
 
-filesBefore=$(ls -Al | wc -l)
+filesBefore=$(ls -Al *.webm | wc -l)
 
 notify-send "Downloading playlist..." &&
 yt-dlp --rm-cache-dir &&
-yt-dlp --write-subs --write-auto-subs --sub-langs "en.*" -o '%(title)s (%(channel)s).%(ext)s' https://youtube.com/playlist?list=PLcXOGPIImO70Uy0MZ8pz0yuzqGccttClJ &&
+yt-dlp --add-metadata -i -c --write-subs --write-auto-subs --sub-langs "en.*" -o '%(title)s (%(channel)s).%(ext)s' https://youtube.com/playlist?list=PLcXOGPIImO70Uy0MZ8pz0yuzqGccttClJ &&
 
-filesAfter=$(ls -Al | wc -l)
+filesAfter=$(ls -Al *.webm | wc -l)
 newFiles=$(( $filesAfter-$filesBefore ))
 notify-send "Downloaded $newFiles videos"
 

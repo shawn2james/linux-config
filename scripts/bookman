@@ -1,3 +1,5 @@
 #!/bin/bash
 
-man -k . | dmenu -l 30 | awk "{print $1}" | xargs -r man -Tpdf | zathura - && exit 1
+selected=$(man -k . | dmenu -l 30)
+[ -z $selected ] && exit 0
+$selected | awk "{print $1}" | xargs -r man -Tpdf | zathura - && exit 1

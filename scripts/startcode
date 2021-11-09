@@ -2,4 +2,4 @@
 
 
 choice=$(echo -e "projects\ntutorials" | dmenu -l 2) &&
-ls $HOME/personal/$choice | dmenu -l 5 | xargs -I {} code $HOME/personal/$choice/{}
+ls $HOME/personal/$choice | dmenu -l 5 | xargs -I {} emacsclient -c $HOME/personal/$choice/{} && exit 0

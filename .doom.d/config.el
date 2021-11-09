@@ -26,6 +26,7 @@
 )
 
 (global-subword-mode 1)
+(menu-bar--wrap-long-lines-window-edge)
 
 (defadvice! prompt-for-buffer (&rest _)
   :after '(evil-window-split evil-window-vsplit)
@@ -45,3 +46,4 @@
       (:prefix ("o" . "open")
        :desc "Open magit" "m" #'magit)
       )
+

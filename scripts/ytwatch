@@ -1,7 +1,6 @@
 #!/bin/bash
 
-cd $HOME/yt
-video=`ls --sort=time *.webm | awk -F ".web" '{print $1}' | dmenu -i -l 20 -p "Select video: "`
-subtitleFile=`ls *.vtt | grep -e "$video"`
+cd $HOME/linux-config/scripts &&
+yt-dlp --flat-playlist --dump-single-json https://youtube.com/playlist?list=PLcXOGPIImO70Uy0MZ8pz0yuzqGccttClJ | fx 'x => x.entries' > videos.json
 
-[ $subtitleFile = "" ] || mpv "$video.webm" --speed=1.25 --volume=50 --sub-auto="fuzzy"
+python ytwatch.py && exit 1

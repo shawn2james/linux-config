@@ -1,14 +1,16 @@
 #!/bin/bash
 
 MOVIE_DIR=$HOME/personal/movies
-selected=`ls $MOVIE_DIR | dmenu -l 10`
-secondSelected=`ls $MOVIE_DIR/$selected | dmenu -l 15`
-echo seo/se
+selected=$(ls $MOVIE_DIR | dmenu -l 10 -p "Select movie: ")
+[ -z $selected ] && exit 0
+
+secondSelected=$(ls $MOVIE_DIR/$selected | dmenu -l 15 - "Select movie: ")
+[ -z $secondSelected ] && exit 0
 
 if [ -d "$MOVIE_DIR/$selected/$secondSelected" ]; then
-	echo "ladfkjsds"
-	ls $MOVIE_DIR/$selected/$secondSelected | dmenu -l 15 | xargs -I {} mpv $MOVIE_DIR/$selected/$secondSelected/{}
+	ls $MOVIE_DIR/$selected/$secondSelected | dmenu -l 15 -p "Select movie: " | xargs -I {} mpv $MOVIE_DIR/$selected/$secondSelected/{} && exit 0
 else 
-	mpv $MOVIE_DIR/$selected/$secondSelected
+	mpv $MOVIE_DIR/$selected/$secondSelected && exit 0
 fi
 
+exit 0

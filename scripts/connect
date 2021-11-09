@@ -9,5 +9,4 @@ deviceName=`echo $devices | awk -F " " '{$1=$2="";print $0}'`
 deviceNumber=`echo $devices| awk -F " " '{print $2}'`
 
 # send notification and connect to selected device
-[ "$deviceName" = " " ] || notify-send "Connecting to $deviceName..." && bluetoothctl connect $deviceNumber && exit 1
-
+[ "$deviceName" = "" ] || bluetoothctl connect $deviceNumber && notify-send "Connecting to $deviceName..." && exit 1
