@@ -1,5 +1,5 @@
-# Commands for Arch Linux Installation =
-## https://wiki.archlinux.org/title/Installation_guide
+# Commands for Arch Linux Installation 
+[Archwiki installation guide](https://wiki.archlinux.org/title/Installation_guide)
 
 ### Network Commands
 https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet
