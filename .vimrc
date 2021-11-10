@@ -142,5 +142,7 @@ let g:lightline = {
 let wiki = {}
 let wiki.path = '~/vimwiki/'
 let wiki.nested_syntaxes = {'python': 'python', 'js': 'js', 'haskell': 'haskell', 'bash': 'bash'}
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_list = [wiki]
 
