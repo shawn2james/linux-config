@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd $HOME/linux-config/scripts &&
+cd "$HOME/linux-config/scripts" &&
 yt-dlp --flat-playlist --dump-single-json https://youtube.com/playlist?list=PLcXOGPIImO70Uy0MZ8pz0yuzqGccttClJ | fx 'x => x.entries' > videos.json
 
 python ytwatch.py && exit 1

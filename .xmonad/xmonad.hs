@@ -10,6 +10,7 @@ import Data.Maybe (fromJust)
 -- Hooks
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.WindowSwallowing
 -- Actions
 import XMonad.Actions.Minimize
 import XMonad.Actions.NoBorders
@@ -143,7 +144,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,8), (R,8), (D,8), (L,8)] $ (tiled ||| Full)))))
+myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,12), (R,12), (D,12), (L,12)] $ (tiled ||| Full)))))
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio

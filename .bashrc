@@ -21,6 +21,9 @@ alias icat="kitty +kitten icat --align=center"
 alias blued="bluetoothctl disconnect"
 alias pacsave="pacman -Q > /home/shawn/linux-config/packages.txt"
 alias mpv="devour mpv"
+alias localc="devour localc"
+alias lowriter="devour lowriter"
+alias lodraw="devour lodraw"
 alias qview="devour qview"
 alias timeshift="devour timeshift"
 alias zathura="devour zathura"
@@ -179,3 +182,5 @@ fi
 
 eval "$(fasd --init auto)"
 
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
