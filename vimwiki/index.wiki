@@ -3,5 +3,5 @@
 == Content Creation ==
 * Video Ideas
 * Video Ideas
-* [[Arch Linux Installation]]
 
+* [[Arch Linux Installation]]

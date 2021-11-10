@@ -53,7 +53,6 @@ nnoremap <silent> <leader>h :wincmd h<CR>
 nnoremap <silent> <leader>j :wincmd j<CR>
 nnoremap <silent> <leader>k :wincmd k<CR>
 nnoremap <silent> <leader>l :wincmd l<CR>
-nnoremap <silent> <leader>pv :wincmd v<bar> :NERDTree <bar> :vertical resize 25<CR>
 nnoremap <silent> <leader>pp :NERDTreeToggle<CR>
 nnoremap <silent> <leader>pn :split<bar> :NERDTree <bar> :vertical resize 25<CR>
 nnoremap <silent> <leader>pt :vertical botright :term<CR>
@@ -74,6 +73,7 @@ nnoremap <silent> <leader>+ :vertical resize 80<CR>
 nnoremap <leader>f :Goyo<CR>
 nnoremap <leader>s :!clear && shellcheck %<CR>
 nnoremap <leader>r :!python %<CR>
+nnoremap <leader>pc <Esc>:!pandoc -f vimwiki -t pdf "%" > "/home/shawn/wikipdf/%:t.pdf"<CR>
 inoremap <leader><TAB> <Esc>/<++><Enter>"_c4l
 map <C-j> ddp
 map <C-k> ddkkp
@@ -113,10 +113,11 @@ autocmd filetype html inoremap ;a <a></a><CR><++><Esc>k0lf<i
 autocmd filetype html inoremap ;b <b></b><CR><++><Esc>k0lf<i
 autocmd filetype html inoremap ;i <i></i><CR><++><Esc>k0lf<i
 autocmd filetype html inoremap ;d <div></div><CR><++><Esc>k0lf<i<CR><CR><UP><TAB>
-autocmd filetype html inoremap ;b <b></b><CR><++><Esc>k0lf<i
 " python
 autocmd filetype python inoremap ;i from  import <++><Esc>0tii
+autocmd filetype python nnoremap <leader>/ <Esc>I# 
 
+autocmd filetype vimwiki inoremap ;b {{{bash}}}<Esc>0f}i<CR><CR><Esc>o<++><Esc>2ki
 " FILE SPECIFIC SETTINGS =======================================================================
 " python
 au BufNewFile,BufRead *.py
@@ -142,7 +143,5 @@ let g:lightline = {
 let wiki = {}
 let wiki.path = '~/vimwiki/'
 let wiki.nested_syntaxes = {'python': 'python', 'js': 'js', 'haskell': 'haskell', 'bash': 'bash'}
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_list = [wiki]
 
