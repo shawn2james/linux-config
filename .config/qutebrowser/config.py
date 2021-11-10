@@ -248,9 +248,9 @@ c.tabs.position = "bottom"
 
 c.fonts.default_size = "17px"
 c.fonts.default_family = "Ubuntu"
-c.fonts.statusbar = "12pt default_family"
-c.fonts.tabs.selected = "12pt default_family"
-c.fonts.tabs.unselected = "12pt default_family"
+c.fonts.statusbar = "10pt default_family"
+c.fonts.tabs.selected = "10pt default_family"
+c.fonts.tabs.unselected = "8pt default_family"
 c.statusbar.padding = {"top": 5, "bottom": 5, "left": 5, "right": 5}
 c.tabs.padding = {"top": 5, "bottom": 5, "left": 5, "right": 5}
 c.colors.tabs.bar.bg = "#001a21"

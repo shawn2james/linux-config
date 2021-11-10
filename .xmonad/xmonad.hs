@@ -10,7 +10,6 @@ import Data.Maybe (fromJust)
 -- Hooks
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.WindowSwallowing
 -- Actions
 import XMonad.Actions.Minimize
 import XMonad.Actions.NoBorders
@@ -192,7 +191,6 @@ myLogHook xmproc = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmob
 
 myStartupHook = do
             spawnOnce "nitrogen --restore &"
-            spawnOnce "conky &"
             spawnOnce "blueman-applet &"
             spawnOnce "xsetroot -cursor_name Left_ptr &"
 

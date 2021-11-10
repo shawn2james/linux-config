@@ -7,7 +7,7 @@
 shopt -s autocd
 
 # ALIASES
-alias emacs="emacsclient -c"
+alias vw="vim ~/vimwiki/index.wiki"
 alias p="sudo pacman"
 alias gp="gitpush"
 alias la="exa -ha --group-directories-first --icons"

@@ -1,7 +1,7 @@
 
-xmonad.hs:13:1: error:
-    Could not find module ‘XMonad.Hooks.WindowSwallowing’
-    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
-   |
-13 | import XMonad.Hooks.WindowSwallowing
-   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+xmonad.hs:174:1: warning: [-Wtabs]
+    Tab character found here, and in 9 further locations.
+    Please use spaces instead.
+    |
+174 |         [ fullscreenEventHook,
+    | ^^^^^^^^
