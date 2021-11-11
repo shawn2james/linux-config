@@ -10,7 +10,7 @@ timedatectl set-ntp true
 timedatectl status
 }}}
 
-== Partition the disks ===
+== Partition the disks ==
 {{{bash
 fdisk -l
 fdisk /dev/sda
@@ -130,7 +130,10 @@ makepkg -si
 
 === Most used programs ===
 {{{bash
-sudo pacman -S xf86-video-fbdev xorg xorg-xinit nitrogen picom alacritty firefox xmonad xmonad-contrib xterm qutebrowser blueman nm-connection-editor modemmanager usb_modeswitch openssh flameshot vifm wget imagemagick xmobar python-pip bash-completion ntfs-3g
+sudo pacman -S xf86-video-fbdev xorg xorg-xinit nitrogen picom alacritty firefox 
+\ xmonad xmonad-contrib xterm qutebrowser blueman nm-connection-editor modemmanager 
+\ usb_modeswitch openssh flameshot vifm wget imagemagick xmobar python-pip 
+\ bash-completion ntfs-3g
 }}}
 
 

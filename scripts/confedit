@@ -1,6 +1,6 @@
 #!/bin/bash
 
-config=$(echo -e "xmonad\nxmobar\npicom\nmpv\ndunst\nconky\nneomutt\ndoom emacs\nyoutube-viewer\nalacritty\nqutebrowser\ndmenu" | dmenu -i -l 10 -p "Select config file: ")
+config=$(echo -e "xmonad\nxmobar\npicom\nmpv\ndunst\nconky\nneomutt\ndoom emacs\nyoutube-viewer\nalacritty\nqutebrowser\ndmenu\nranger" | dmenu -i -l 10 -p "Select config file: ")
 
 case "$config" in
 	xmonad) alacritty -e vim "$HOME/.xmonad/xmonad.hs" ;;
@@ -15,4 +15,5 @@ case "$config" in
 	alacritty) alacritty -e vim "$HOME/.config/alacritty/alacritty.yml" ;;
 	kitty) alacritty -e vim "$HOME/.config/kitty/kitty.conf" ;;
 	dmenu) alacritty -e vim "$HOME/linux-config/dmenu-5.0/config.h" ;;
+	ranger) alacritty -e vim "$HOME/.config/ranger";;
 esac

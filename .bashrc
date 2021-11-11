@@ -11,6 +11,7 @@ alias vw="vim ~/vimwiki/index.wiki"
 alias p="sudo pacman"
 alias gp="gitpush"
 alias la="exa -ha --group-directories-first --icons"
+alias ll="la -l"
 alias rm="rm -iv"
 alias cp="rm -iv"
 alias mv="mv -v"
@@ -166,21 +167,18 @@ ex ()
   fi
 }
 
-neofetch
+# neofetch
 
-function _update_ps1() {
-    PS1=$(powerline-shell $?)
-}
+# function _update_ps1() {
+    # PS1=$(powerline-shell $?)
+# }
 
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-   PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
+# if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+   # PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+# fi
 
 if [ -f /etc/bash_completion ]; then
     /etc/bash_completion
 fi
-
-eval "$(fasd --init auto)"
-
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

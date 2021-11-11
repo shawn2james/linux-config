@@ -52,7 +52,7 @@ myModMask = mod4Mask
 myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 "]
 
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
-myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
+myWorkspaceIndices = M.fromList $ zip myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
 clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
     where i = fromJust $ M.lookup ws myWorkspaceIndices
@@ -108,7 +108,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_period), sendMessage (IncMasterN (-1)))
 
     -- Quit xmonad
-    , ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess))
+    , ((modm .|. shiftMask, xK_q), io exitSuccess)
 
     -- Restart xmonad
     , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
@@ -129,21 +129,21 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
-myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
+myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList 
 
     -- Set the window to floating mode and move by dragging
-    [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
-                                       >> windows W.shiftMaster))
+    [ ((modm, button1), \w -> focus w >> mouseMoveWindow w
+                                       >> windows W.shiftMaster)
 
     -- Raise the window to the top of the stack
-    , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
+    , ((modm, button2), \w -> focus w >> windows W.shiftMaster)
 
     -- Set the window to floating mode and resize by dragging
-    , ((modm, button3), (\w -> focus w >> mouseResizeWindow w
-                                       >> windows W.shiftMaster))
+    , ((modm, button3), \w -> focus w >> mouseResizeWindow w
+                                       >> windows W.shiftMaster)
     ]
 
-myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,12), (R,12), (D,12), (L,12)] $ (tiled ||| Full)))))
+myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,12), (R,12), (D,12), (L,12)] (tiled ||| Mirror tiled ||| Full)))))
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -164,6 +164,7 @@ myManageHook = composeAll
         , className =? "notification" --> doFloat
         , className =? "toolbar" --> doFloat
         , className =? "splash" --> doFloat
+        , appName =? "Steam - News" --> doFloat
         , appName =? "Picture-in-Picture" --> doRectFloat (W.RationalRect 0.05 0.05 0.2 0.2)
         , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  
         , manageDocks
@@ -172,7 +173,7 @@ myManageHook = composeAll
 
 myEventHook = composeAll
 	[ fullscreenEventHook,
-	  docksEventHook
+		docksEventHook
 	]
 
 myLogHook xmproc = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
@@ -250,7 +251,7 @@ main = do
                                , ("M-S-f", spawn "firefox")
 
                                -- Open File Explorer
-                               , ("M-e", spawn "alacritty -e sh -c vifm")
+                               , ("M-e", spawn "alacritty -e ranger")
 
                                -- Open pcmanfm
                                , ("M-S-e", spawn "pcmanfm")
@@ -289,11 +290,14 @@ main = do
                                , ("M-S-n", spawn "alacritty -e neomutt")
 
                                -- Toggle the gap around windows
-                               , ("M-C-g", sendMessage $ ToggleGaps)
+                               , ("M-S-g", sendMessage ToggleGaps)
 
                                -- Run dmenu
                                , ("M-<Space>", spawn "dmenu_run -i -h 28 -y 0 -p 'Run: '")
 
                                -- Cycle through the layouts
                                , ("M-S-<Space>", sendMessage NextLayout)
+
+                               -- open fzf in terminal
+                               , ("M-S-p", spawn "alacritty -e vim $(fzf)")
                              ]
