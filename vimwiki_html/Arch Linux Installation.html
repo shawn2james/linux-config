@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<title>Arch Linux Installation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Commands for Arch Linux Installation"><h1 id="Commands for Arch Linux Installation" class="header"><a href="#Commands for Arch Linux Installation">Commands for Arch Linux Installation</a></h1></div>
+<p>
+<a href="https://wiki.archlinux.org/title/Installation_guide">Arch wiki installation guide</a>
+</p>
+
+<div id="Commands for Arch Linux Installation-Network Commands"><h4 id="Network Commands" class="header"><a href="#Commands for Arch Linux Installation-Network Commands">Network Commands</a></h4></div>
+<p>
+<a href="https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet">Network commmands</a>
+</p>
+
+<div id="Commands for Arch Linux Installation-System Clock"><h4 id="System Clock" class="header"><a href="#Commands for Arch Linux Installation-System Clock">System Clock</a></h4></div>
+<pre bash>
+timedatectl set-ntp true 
+timedatectl status
+</pre>
+
+<div id="Commands for Arch Linux Installation-Partition the disks"><h4 id="Partition the disks" class="header"><a href="#Commands for Arch Linux Installation-Partition the disks">Partition the disks</a></h4></div>
+<pre bash>
+fdisk -l
+fdisk /dev/sda
+&gt; g
+&gt; n
+&gt; &lt;ENTER&gt;
+&gt; &lt;ENTER&gt;
+&gt; +550M
+&gt; n
+&gt; &lt;ENTER&gt;
+&gt; &lt;ENTER&gt;
+&gt; +2G
+&gt; n
+&gt; &lt;ENTER&gt;
+&gt; &lt;ENTER&gt;
+&gt; &lt;ENTER&gt;
+&gt; t
+&gt; 1
+&gt; 1
+&gt; t
+&gt; 2
+&gt; 19
+&gt; w
+</pre>
+
+<div id="Commands for Arch Linux Installation-Format the partitions"><h4 id="Format the partitions" class="header"><a href="#Commands for Arch Linux Installation-Format the partitions">Format the partitions</a></h4></div>
+<pre bash>
+mkfs.fat -F32 /dev/sda1
+mkswap /dev/sda2
+swapon /dev/sda2
+mkfs.ext4 /dev/sda3
+</pre>
+
+<div id="Commands for Arch Linux Installation-Mount the partition"><h4 id="Mount the partition" class="header"><a href="#Commands for Arch Linux Installation-Mount the partition">Mount the partition</a></h4></div>
+<pre bash>
+mount /dev/sda3 /mnt
+</pre>
+
+<div id="Commands for Arch Linux Installation-Install basic packages"><h4 id="Install basic packages" class="header"><a href="#Commands for Arch Linux Installation-Install basic packages">Install basic packages</a></h4></div>
+<pre bash>
+pacstrap /mnt base linux linux-firmware vim
+</pre>
+
+<div id="Commands for Arch Linux Installation-Fstab"><h4 id="Fstab" class="header"><a href="#Commands for Arch Linux Installation-Fstab">Fstab</a></h4></div>
+<pre bash>
+genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+</pre>
+
+<div id="Commands for Arch Linux Installation-Chroot"><h4 id="Chroot" class="header"><a href="#Commands for Arch Linux Installation-Chroot">Chroot</a></h4></div>
+<pre bash>
+arch-chroot /mnt
+</pre>
+
+<div id="Commands for Arch Linux Installation-Time zone"><h4 id="Time zone" class="header"><a href="#Commands for Arch Linux Installation-Time zone">Time zone</a></h4></div>
+<pre bash>
+ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
+hwclock --systohc
+</pre>
+
+<div id="Commands for Arch Linux Installation-Localization"><h4 id="Localization" class="header"><a href="#Commands for Arch Linux Installation-Localization">Localization</a></h4></div>
+<pre bash>
+vim /etc/locale.gen
+# uncomment en_US.UTF-8 UTF-8
+# uncomment en_IN.UTF-8
+locale-gen
+vim /etc/locale.conf
+# add LANG=en_US.UTF-8
+</pre>
+
+<div id="Commands for Arch Linux Installation-Network Configuration"><h4 id="Network Configuration" class="header"><a href="#Commands for Arch Linux Installation-Network Configuration">Network Configuration</a></h4></div>
+<pre bash>
+vim /etc/hostname
+# add linuxarch
+vim /etc/hosts
+# add the following
+127.0.0.1   localhost
+::1         localhost
+127.0.1.1   linuxarch
+</pre>
+
+<div id="Commands for Arch Linux Installation-Users"><h4 id="Users" class="header"><a href="#Commands for Arch Linux Installation-Users">Users</a></h4></div>
+<pre bash>
+passwd
+# set password
+useradd -m shawn
+passwd shawn
+set password for shawn
+usermod -aG wheel,audio,video,optical,storage shawn
+pacman -S sudo
+EDITOR=vim visudo
+# uncomment %wheel ALL=(ALL) ALL
+</pre>
+
+<div id="Commands for Arch Linux Installation-Boot Loader"><h4 id="Boot Loader" class="header"><a href="#Commands for Arch Linux Installation-Boot Loader">Boot Loader</a></h4></div>
+<pre bash>
+pacman -S grub efibootmgr dosfstools os-prober mtools
+mkdir /boot/EFI
+mount /dev/sda1 /boot/EFI
+grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
+grub-mkconfig -o /boot/grub/grub.cfg
+</pre>
+
+<div id="Commands for Arch Linux Installation-Final commands"><h4 id="Final commands" class="header"><a href="#Commands for Arch Linux Installation-Final commands">Final commands</a></h4></div>
+<pre bash>
+pacman -S networkmanager git base-devel
+systemctl enable NetworkManager
+exit
+umount -l /mnt
+reboot
+</pre>
+
+<div id="Commands for Arch Linux Installation-Setting up xorg, xmonad etc..."><h4 id="Setting up xorg, xmonad etc..." class="header"><a href="#Commands for Arch Linux Installation-Setting up xorg, xmonad etc...">Setting up xorg, xmonad etc...</a></h4></div>
+<p>
+======= Paru =======
+</p>
+<pre bash>
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+</pre>
+
+<p>
+======= Most used programs =======
+</p>
+<pre bash>
+sudo pacman -S xf86-video-fbdev xorg xorg-xinit nitrogen picom alacritty firefox 
+\ xmonad xmonad-contrib xterm qutebrowser blueman nm-connection-editor modemmanager 
+\ usb_modeswitch openssh flameshot vifm wget imagemagick xmobar python-pip 
+\ bash-completion ntfs-3g
+</pre>
+
+</body>
+</html>

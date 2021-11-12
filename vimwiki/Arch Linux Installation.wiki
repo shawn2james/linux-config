@@ -1,16 +1,16 @@
 = Commands for Arch Linux Installation =
-== https://wiki.archlinux.org/title/Installation_guide ==
+[[https://wiki.archlinux.org/title/Installation_guide|Arch wiki installation guide]]
 
-== Network Commands ==
-https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet
+==== Network Commands ====
+[[https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet|Network commmands]]
 
-== System Clock ==
+==== System Clock ====
 {{{bash
 timedatectl set-ntp true 
 timedatectl status
 }}}
 
-== Partition the disks ==
+==== Partition the disks ====
 {{{bash
 fdisk -l
 fdisk /dev/sda
@@ -36,7 +36,7 @@ fdisk /dev/sda
 > w
 }}}
 
-== Format the partitions ==
+==== Format the partitions ====
 {{{bash
 mkfs.fat -F32 /dev/sda1
 mkswap /dev/sda2
@@ -44,33 +44,33 @@ swapon /dev/sda2
 mkfs.ext4 /dev/sda3
 }}}
 
-== Mount the partition  ==
+==== Mount the partition  ====
 {{{bash
 mount /dev/sda3 /mnt
 }}}
 
-== Install basic packages ==
+==== Install basic packages ====
 {{{bash
 pacstrap /mnt base linux linux-firmware vim
 }}}
 
-== Fstab ==
+==== Fstab ====
 {{{bash
 genfstab -U /mnt >> /mnt/etc/fstab
 }}}
 
-== Chroot ==
+==== Chroot ====
 {{{bash
 arch-chroot /mnt
 }}}
 
-== Time zone ==
+==== Time zone ====
 {{{bash
 ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
 hwclock --systohc
 }}}
 
-== Localization ==
+==== Localization ====
 {{{bash
 vim /etc/locale.gen
 # uncomment en_US.UTF-8 UTF-8
@@ -80,7 +80,7 @@ vim /etc/locale.conf
 # add LANG=en_US.UTF-8
 }}}
 
-== Network Configuration ==
+==== Network Configuration ====
 {{{bash
 vim /etc/hostname
 # add linuxarch
@@ -91,7 +91,7 @@ vim /etc/hosts
 127.0.1.1   linuxarch
 }}}
 
-== Users ==
+==== Users ====
 {{{bash
 passwd
 # set password
@@ -104,7 +104,7 @@ EDITOR=vim visudo
 # uncomment %wheel ALL=(ALL) ALL
 }}}
 
-== Boot Loader ==
+==== Boot Loader ====
 {{{bash
 pacman -S grub efibootmgr dosfstools os-prober mtools
 mkdir /boot/EFI
@@ -113,22 +113,24 @@ grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 }}}
 
-== Final commands ==
+==== Final commands ====
+{{{bash
 pacman -S networkmanager git base-devel
 systemctl enable NetworkManager
 exit
 umount -l /mnt
 reboot
+}}}
 
-== Setting up xorg, xmonad etc... ==
-=== Paru ===
+==== Setting up xorg, xmonad etc... ====
+======= Paru =======
 {{{bash
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
 }}}
 
-=== Most used programs ===
+======= Most used programs =======
 {{{bash
 sudo pacman -S xf86-video-fbdev xorg xorg-xinit nitrogen picom alacritty firefox 
 \ xmonad xmonad-contrib xterm qutebrowser blueman nm-connection-editor modemmanager 

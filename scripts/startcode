@@ -1,5 +1,5 @@
 #!/bin/bash
 
 
-choice=$(echo -e "projects\ntutorials" | dmenu -l 2) &&
-ls $HOME/personal/$choice | dmenu -l 5 | xargs -I {} alacritty -e vim $HOME/personal/$choice/{} && exit 0
+choice=$(echo -e "projects\ntutorials" | dmenu -i -l 2) &&
+ls $HOME/personal/$choice | dmenu -i -l 5 | xargs -I {} alacritty -e vim $HOME/personal/$choice/{} && exit 0

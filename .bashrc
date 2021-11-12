@@ -8,7 +8,7 @@ shopt -s autocd
 
 # ALIASES
 alias vw="vim ~/vimwiki/index.wiki"
-alias p="sudo pacman"
+alias vh="qutebrowser --override-restore file:///home/shawn/linux-config/vimwiki_html/index.html &"
 alias gp="gitpush"
 alias la="exa -ha --group-directories-first --icons"
 alias ll="la -l"

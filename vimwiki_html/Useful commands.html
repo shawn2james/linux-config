@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<title>Useful commands</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Useful Commands"><h1 id="Useful Commands" class="header"><a href="#Useful Commands">Useful Commands</a></h1></div>
+
+<div id="Useful Commands-Get linux kernel version"><h6 id="Get linux kernel version" class="header"><a href="#Useful Commands-Get linux kernel version">Get linux kernel version</a></h6></div>
+<pre bash>
+uname -r
+</pre>
+
+<div id="Useful Commands-Turn off monitor"><h6 id="Turn off monitor" class="header"><a href="#Useful Commands-Turn off monitor">Turn off monitor</a></h6></div>
+<pre bash>
+xset dpms force off
+</pre>
+
+<div id="Useful Commands-Set cursor to left pointer"><h6 id="Set cursor to left pointer" class="header"><a href="#Useful Commands-Set cursor to left pointer">Set cursor to left pointer</a></h6></div>
+<pre bash>
+xsetroot -cursor_name Left_ptr
+</pre>
+
+<div id="Useful Commands-Get no. of packages installed (official repos and AUR)"><h6 id="Get no. of packages installed (official repos and AUR)" class="header"><a href="#Useful Commands-Get no. of packages installed (official repos and AUR)">Get no. of packages installed (official repos and AUR)</a></h6></div>
+<pre bash>
+pacman -Qeq | wc -l
+</pre>
+
+<div id="Useful Commands-Search official Arch repositories for a package"><h6 id="Search official Arch repositories for a package" class="header"><a href="#Useful Commands-Search official Arch repositories for a package">Search official Arch repositories for a package</a></h6></div>
+<pre bash>
+pacman -Ss emacs
+pacman -Ss *browser*
+</pre>
+
+<div id="Useful Commands-Remove package along with unnecessary dependencies"><h6 id="Remove package along with unnecessary dependencies" class="header"><a href="#Useful Commands-Remove package along with unnecessary dependencies">Remove package along with unnecessary dependencies</a></h6></div>
+<pre bash>
+pacman -Rs emacs
+</pre>
+
+<div id="Useful Commands-Remove package along with unnecessary dependencies and system config files (not dotfiles in home dir)"><h6 id="Remove package along with unnecessary dependencies and system config files (not dotfiles in home dir)" class="header"><a href="#Useful Commands-Remove package along with unnecessary dependencies and system config files (not dotfiles in home dir)">Remove package along with unnecessary dependencies and system config files (not dotfiles in home dir)</a></h6></div>
+<pre bash>
+pacman -Rns emacs
+</pre>
+
+<div id="Useful Commands-List packages that you explicitly installed"><h6 id="List packages that you explicitly installed" class="header"><a href="#Useful Commands-List packages that you explicitly installed">List packages that you explicitly installed</a></h6></div>
+<pre bash>
+pacman -Qe
+</pre>
+
+<div id="Useful Commands-List packages that you installed from official repositories"><h6 id="List packages that you installed from official repositories" class="header"><a href="#Useful Commands-List packages that you installed from official repositories">List packages that you installed from official repositories</a></h6></div>
+<pre bash>
+pacman -Qn
+</pre>
+
+<div id="Useful Commands-List packages that you installed from the AUR"><h6 id="List packages that you installed from the AUR" class="header"><a href="#Useful Commands-List packages that you installed from the AUR">List packages that you installed from the AUR</a></h6></div>
+<pre bash>
+pacman -Qm
+</pre>
+
+<div id="Useful Commands-List orphan programs (dependencies that are not required by any other package)"><h6 id="List orphan programs (dependencies that are not required by any other package)" class="header"><a href="#Useful Commands-List orphan programs (dependencies that are not required by any other package)">List orphan programs (dependencies that are not required by any other package)</a></h6></div>
+<pre bash>
+pacman -Qdt
+</pre>
+
+<div id="Useful Commands-Remove old packages from cache directory"><h6 id="Remove old packages from cache directory" class="header"><a href="#Useful Commands-Remove old packages from cache directory">Remove old packages from cache directory</a></h6></div>
+<pre bash>
+pacman -Sc
+</pre>
+
+</body>
+</html>

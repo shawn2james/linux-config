@@ -1,6 +1,6 @@
 #!/bin/bash
 
-config=$(echo -e "xmonad\nxmobar\npicom\nmpv\ndunst\nconky\nneomutt\ndoom emacs\nyoutube-viewer\nalacritty\nqutebrowser\ndmenu\nranger" | dmenu -i -l 10 -p "Select config file: ")
+config=$(echo -e "xmonad\nxmobar\npicom\nmpv\ndunst\nconky\nneomutt\ndoom emacs\nyoutube-viewer\nalacritty\nqutebrowser\ndmenu\nranger" | dmenu -i -p "Select config file: ")
 
 case "$config" in
 	xmonad) alacritty -e vim "$HOME/.xmonad/xmonad.hs" ;;

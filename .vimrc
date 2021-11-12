@@ -126,6 +126,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions -=r formatoptions-=o
 " restart the respective program when written to config
 autocmd BufWritePost xmonad.hs !xmonad --recompile && xmonad --restart
 autocmd BufWritePost xmobarrc !killall xmobar && xmobar &
+autocmd BufWritePost config.h !sudo make install
 autocmd BufWritePost dunstrc !killall dunst && dunst &
 
 " SNIPPETS 

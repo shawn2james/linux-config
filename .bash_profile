@@ -2,9 +2,11 @@
 # ~/.bash_profile
 #
 
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+export PATH="$PATH:$HOME/.local/bin:$HOME/.emacs.d/bin:$HOME/linux-config/scripts"
+export EDITOR="vim"
 
-if [ "$(tty)" = "/dev/tty1" ]; then
-    startx && exit
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+  exec startx
 fi
 
+[[ -f ~/.bashrc ]] && . ~/.bashrc

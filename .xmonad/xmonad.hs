@@ -49,7 +49,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 -- myWorkspaces = [" α ", " β ", " γ ", " δ ", " ε ", " ζ ", " η "]
-myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " w "]
+myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 "]
 
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 myWorkspaceIndices = M.fromList $ zip myWorkspaces [1..] -- (,) == \x y -> (x,y)
@@ -165,7 +165,6 @@ myManageHook = composeAll
         , className =? "toolbar" --> doFloat
         , className =? "splash" --> doFloat
         , appName =? "Steam - News" --> doFloat
-		, appName =? "WhatsApp - qutebrowser"   --> doShift ( myWorkspaces !! 3)
         , appName =? "Picture-in-Picture" --> doRectFloat (W.RationalRect 0.05 0.05 0.2 0.2)
         , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  
         , manageDocks
@@ -303,4 +302,7 @@ main = do
 
                                -- open fzf in terminal
                                , ("M-S-p", spawn "alacritty -e vim $(fzf)")
+
+                               -- open whatsapp in qutebrowser
+                               , ("M-S-w", spawn "qutebrowser --override-restore web.whatsapp.com")
                              ]

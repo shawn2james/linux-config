@@ -1,7 +1,7 @@
 
-xmonad.hs:168:1: warning: [-Wtabs]
-    Tab character found here, and in 12 further locations.
+xmonad.hs:175:1: warning: [-Wtabs]
+    Tab character found here, and in 10 further locations.
     Please use spaces instead.
     |
-168 |                 , appName =? "WhatsApp - qutebrowser"   --> doShift ( myWorkspaces !! 3)
+175 |         [ fullscreenEventHook,
     | ^^^^^^^^

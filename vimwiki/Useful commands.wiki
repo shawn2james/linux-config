@@ -1,62 +1,62 @@
 = Useful Commands =
 
-== Get linux kernel version ==
+====== Get linux kernel version ======
 {{{bash
 uname -r
 }}}
 
-== Turn off monitor ==
+====== Turn off monitor ======
 {{{bash
 xset dpms force off
 }}}
 
-== Set cursor to left pointer ==
+====== Set cursor to left pointer ======
 {{{bash
 xsetroot -cursor_name Left_ptr
 }}}
 
-== Get no. of packages installed (official repos and AUR) ==
+====== Get no. of packages installed (official repos and AUR) ======
 {{{bash
 pacman -Qeq | wc -l
 }}}
 
-== Search official Arch repositories for a package ==
+====== Search official Arch repositories for a package ======
 {{{bash
 pacman -Ss emacs
 pacman -Ss *browser*
 }}}
 
-== Remove package along with unnecessary dependencies ==
+====== Remove package along with unnecessary dependencies ======
 {{{bash
 pacman -Rs emacs
 }}}
 
-== Remove package along with unnecessary dependencies and system config files (not dotfiles in home dir) ==
+====== Remove package along with unnecessary dependencies and system config files (not dotfiles in home dir) ======
 {{{bash
 pacman -Rns emacs
 }}}
 
-== List packages that you explicitly installed ==
+====== List packages that you explicitly installed ======
 {{{bash
 pacman -Qe
 }}}
 
-== List packages that you installed from official repositories ==
+====== List packages that you installed from official repositories ======
 {{{bash
 pacman -Qn
 }}}
 
-== List packages that you installed from the AUR ==
+====== List packages that you installed from the AUR ======
 {{{bash
 pacman -Qm
 }}}
 
-== List orphan programs (dependencies that are not required by any other package) ==
+====== List orphan programs (dependencies that are not required by any other package) ======
 {{{bash
 pacman -Qdt
 }}}
 
-== Remove old packages from cache directory ==
+====== Remove old packages from cache directory ======
 {{{bash
 pacman -Sc
 }}}

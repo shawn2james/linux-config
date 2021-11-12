@@ -1,14 +1,14 @@
 #!/bin/bash
 
 MOVIE_DIR=$HOME/personal/movies
-selected=$(ls $MOVIE_DIR | dmenu -l 10 -p "Select movie: ")
+selected=$(ls $MOVIE_DIR | dmenu -i -p "Select movie: ")
 [ -z $selected ] && exit 0
 
-secondSelected=$(ls $MOVIE_DIR/$selected | dmenu -l 15 - "Select movie: ")
+secondSelected=$(ls $MOVIE_DIR/$selected | dmenu -i -p "Select movie: ")
 [ -z $secondSelected ] && exit 0
 
 if [ -d "$MOVIE_DIR/$selected/$secondSelected" ]; then
-	ls $MOVIE_DIR/$selected/$secondSelected | dmenu -l 15 -p "Select movie: " | xargs -I {} mpv $MOVIE_DIR/$selected/$secondSelected/{} && exit 0
+	ls $MOVIE_DIR/$selected/$secondSelected | dmenu -i -p "Select movie: " | xargs -I {} mpv $MOVIE_DIR/$selected/$secondSelected/{} && exit 0
 else 
 	mpv $MOVIE_DIR/$selected/$secondSelected && exit 0
 fi
