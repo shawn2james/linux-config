@@ -49,7 +49,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 -- myWorkspaces = [" α ", " β ", " γ ", " δ ", " ε ", " ζ ", " η "]
-myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 "]
+myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " w "]
 
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 myWorkspaceIndices = M.fromList $ zip myWorkspaces [1..] -- (,) == \x y -> (x,y)
@@ -165,6 +165,7 @@ myManageHook = composeAll
         , className =? "toolbar" --> doFloat
         , className =? "splash" --> doFloat
         , appName =? "Steam - News" --> doFloat
+		, appName =? "WhatsApp - qutebrowser"   --> doShift ( myWorkspaces !! 3)
         , appName =? "Picture-in-Picture" --> doRectFloat (W.RationalRect 0.05 0.05 0.2 0.2)
         , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  
         , manageDocks
@@ -193,6 +194,8 @@ myLogHook xmproc = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmob
 myStartupHook = do
             spawnOnce "nitrogen --restore &"
             spawnOnce "blueman-applet &"
+            spawnOnce "qutebrowser --override-restore web.whatsapp.com"
+            spawnOnce "alacritty -e neomutt"
             spawnOnce "xsetroot -cursor_name Left_ptr &"
 
 defaults xmproc = def {

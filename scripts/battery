@@ -1,0 +1,8 @@
+#!/bin/bash
+
+BAT_DIR="/sys/class/power_supply/BAT0"
+capacity=$(cat $BAT_DIR/capacity)
+
+
+printf "\uf240 %s" "$capacity"
+
