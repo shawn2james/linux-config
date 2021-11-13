@@ -228,7 +228,7 @@ main = do
                                -- MY CUSTOM KEYBINDINGS
                                `additionalKeysP`
                                 [ -- control volume with volume keys
-                                ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 5%-")
+								 ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 5%-")
                                , ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 5%+")
 
                                 -- control volume with fn keys
@@ -236,8 +236,8 @@ main = do
                                , ("M-<F6>", spawn "amixer -q sset Master 2%+")
 
                                 --- control brightness with brightness keys
-                               , ("XF86MonBrightnessUp", spawn "lux -a 10%")
-                               , ("XF86MonBrightnessDown", spawn "lux -s 10%")
+                               , ("<XF86MonBrightnessUp>", spawn "lux -a 10%")
+                               , ("<XF86MonBrightnessDown>", spawn "lux -s 10%")
 
                                -- control brightness with fn keys
                                , ("M-<F8>", spawn "lux -a 10%")
@@ -301,8 +301,12 @@ main = do
                                , ("M-S-<Space>", sendMessage NextLayout)
 
                                -- open fzf in terminal
-                               , ("M-S-p", spawn "alacritty -e vim $(fzf)")
+                               , ("M-S-p", spawn "alacritty -e nvim $(fzf)")
 
                                -- open whatsapp in qutebrowser
                                , ("M-S-w", spawn "qutebrowser --override-restore web.whatsapp.com")
+
+                               -- disable touchpad
+                               , ("M-<F10>", spawn "xinput disable 20")
+                               , ("<XF86TouchpadToggle>", spawn "xinput disable 20")
                              ]

@@ -3,17 +3,18 @@
 config=$(echo -e "xmonad\nxmobar\npicom\nmpv\ndunst\nconky\nneomutt\ndoom emacs\nyoutube-viewer\nalacritty\nqutebrowser\ndmenu\nranger" | dmenu -i -p "Select config file: ")
 
 case "$config" in
-	xmonad) alacritty -e vim "$HOME/.xmonad/xmonad.hs" ;;
-	xmobar) alacritty -e vim "$HOME/.config/xmobar/xmobarrc" ;;
-	picom) alacritty -e vim "$HOME/.config/picom/picom.conf" ;;
-	mpv) alacritty -e vim "$HOME/.config/mpv/" ;;
-	dunst) alacritty -e vim "$HOME/.config/dunst/dunstrc" ;;
-	conky) alacritty -e vim "$HOME/.config/conky/conky.conf" ;;
-	neomutt) alacritty -e vim "$HOME/.config/mutt/muttrc" ;;
-	doom) alacritty -e vim "$HOME/.doom.d" ;;
-	youtube-viewer) alacritty -e vim "$HOME/.config/youtube-viewer/youtube-viewer.conf" ;;
-	alacritty) alacritty -e vim "$HOME/.config/alacritty/alacritty.yml" ;;
-	kitty) alacritty -e vim "$HOME/.config/kitty/kitty.conf" ;;
-	dmenu) alacritty -e vim "$HOME/linux-config/dmenu-5.0/config.h" ;;
-	ranger) alacritty -e vim "$HOME/.config/ranger";;
+	xmonad) alacritty -e nvim "$HOME/.xmonad/xmonad.hs" ;;
+	xmobar) alacritty -e nvim "$HOME/.config/xmobar/xmobarrc" ;;
+	picom) alacritty -e nvim "$HOME/.config/picom/picom.conf" ;;
+	mpv) alacritty -e nvim "$HOME/.config/mpv/" ;;
+	dunst) alacritty -e nvim "$HOME/.config/dunst/dunstrc" ;;
+	conky) alacritty -e nvim "$HOME/.config/conky/conky.conf" ;;
+	neomutt) alacritty -e nvim "$HOME/.config/mutt/muttrc" ;;
+	doom) alacritty -e nvim "$HOME/.doom.d" ;;
+	youtube-viewer) alacritty -e nvim "$HOME/.config/youtube-viewer/youtube-viewer.conf" ;;
+	alacritty) alacritty -e nvim "$HOME/.config/alacritty/alacritty.yml" ;;
+	kitty) alacritty -e nvim "$HOME/.config/kitty/kitty.conf" ;;
+	dmenu) alacritty -e nvim "$HOME/linux-config/dmenu-5.0/config.h" ;;
+	ranger) alacritty -e nvim "$HOME/.config/ranger";;
+	qutebrowser) alacritty -e nvim "$HOME/.config/qutebrowser/config.py";;
 esac
