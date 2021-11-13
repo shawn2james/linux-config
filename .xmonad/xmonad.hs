@@ -193,8 +193,8 @@ myLogHook xmproc = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmob
 myStartupHook = do
             spawnOnce "nitrogen --restore &"
             spawnOnce "blueman-applet &"
-            spawnOnce "qutebrowser --override-restore web.whatsapp.com"
             spawnOnce "alacritty -e neomutt"
+            spawnOnce "qutebrowser --override-restore web.whatsapp.com"
             spawnOnce "xsetroot -cursor_name Left_ptr &"
 
 defaults xmproc = def {

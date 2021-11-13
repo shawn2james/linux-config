@@ -61,3 +61,10 @@ pacman -Qdt
 pacman -Sc
 }}}
 
+====== Login without entering username in tty ======
+{{{bash
+sudo vim /etc/systemd/system/getty.target.wants/getty@tty1.service
+# modify ExecStart line as below
+ExecStart=-/sbin/agetty -n -o shawn %I
+}}}
+

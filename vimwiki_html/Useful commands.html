@@ -71,5 +71,12 @@ pacman -Qdt
 pacman -Sc
 </pre>
 
+<div id="Useful Commands-Login without entering username in tty"><h6 id="Login without entering username in tty" class="header"><a href="#Useful Commands-Login without entering username in tty">Login without entering username in tty</a></h6></div>
+<pre bash>
+sudo vim /etc/systemd/system/getty.target.wants/getty@tty1.service
+# modify ExecStart line as below
+ExecStart=-/sbin/agetty -n -o shawn %I
+</pre>
+
 </body>
 </html>

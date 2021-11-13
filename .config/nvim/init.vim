@@ -57,6 +57,7 @@ let mapleader = " "
 " window commands
 " -----------------------------------------------------------------------------------------
 nnoremap <silent> <leader>h :wincmd h<CR>
+cmap W w !sudo tee % >/dev/null<CR>
 nnoremap <silent> <leader>j :wincmd j<CR>
 nnoremap <silent> <leader>k :wincmd k<CR>
 nnoremap <silent> <leader>l :wincmd l<CR>
