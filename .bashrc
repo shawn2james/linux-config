@@ -7,14 +7,14 @@
 shopt -s autocd
 
 # ALIASES
-alias vw="vim ~/vimwiki/index.wiki"
 alias vim="nvim"
+alias vw="vim ~/vimwiki/index.wiki"
 alias vh="qutebrowser --override-restore file:///home/shawn/linux-config/vimwiki_html/index.html &"
 alias gp="gitpush"
 alias la="exa -ha --group-directories-first --icons"
 alias ll="la -l"
 alias rm="rm -iv"
-alias cp="rm -iv"
+alias cp="cp -iv"
 alias mv="mv -v"
 alias mkdir="mkdir -pv"
 alias gis="git status"
@@ -30,6 +30,8 @@ alias qview="devour qview"
 alias timeshift="devour timeshift"
 alias zathura="devour zathura"
 alias gparted="devour gparted"
+
+export HISTCONTROL=ignoreboth:erasedups
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -167,8 +169,6 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-
-# neofetch
 
 # function _update_ps1() {
     # PS1=$(powerline-shell $?)

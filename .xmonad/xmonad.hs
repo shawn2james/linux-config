@@ -143,7 +143,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
                                        >> windows W.shiftMaster)
     ]
 
-myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,12), (R,12), (D,12), (L,12)] (tiled ||| Mirror tiled ||| Full)))))
+myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,9), (R,9), (D,9), (L,9)] (tiled ||| Mirror tiled ||| Full)))))
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -159,6 +159,7 @@ myLayout = avoidStruts(smartBorders(boringWindows(minimize(gaps [(U,12), (R,12),
 myManageHook = composeAll
         [ className =? "confirm" --> doFloat
         , className =? "file_progress" --> doFloat
+        , className =? "mpv" --> doFloat
         , className =? "dialog" --> doFloat
         , className =? "download" --> doFloat
         , className =? "notification" --> doFloat
@@ -194,7 +195,6 @@ myStartupHook = do
             spawnOnce "nitrogen --restore &"
             spawnOnce "blueman-applet &"
             spawnOnce "alacritty -e neomutt"
-            spawnOnce "qutebrowser --override-restore web.whatsapp.com"
             spawnOnce "xsetroot -cursor_name Left_ptr &"
 
 defaults xmproc = def {
@@ -302,9 +302,6 @@ main = do
 
                                -- open fzf in terminal
                                , ("M-S-p", spawn "alacritty -e nvim $(fzf)")
-
-                               -- open whatsapp in qutebrowser
-                               , ("M-S-w", spawn "qutebrowser --override-restore web.whatsapp.com")
 
                                -- disable touchpad
                                , ("M-<F10>", spawn "xinput disable 20")

@@ -9,21 +9,21 @@ Plug 'junegunn/goyo.vim'
 Plug 'wadackel/vim-dogrun'
 Plug 'morhetz/gruvbox'
 Plug 'jremmen/vim-ripgrep'
+Plug 'kvrohit/substrata.nvim'
 Plug 'preservim/nerdcommenter'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'nvie/vim-flake8'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'nvim-telescope/telescope.nvim'
 Plug 'BurntSushi/ripgrep'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim'
 call plug#end()           
 
 " GENERAL 
 " =========================================================================================
 filetype plugin on
-let NERDTreeShowHidden=1
 set matchpairs+=<:>
 set ignorecase smartcase 
 set nohlsearch
@@ -49,7 +49,7 @@ set splitbelow splitright
 
 " APPEARANCE 
 " =========================================================================================
-colorscheme dogrun
+colorscheme substrata
 
 " KEY MAPS 
 " =========================================================================================
@@ -57,7 +57,6 @@ let mapleader = " "
 " window commands
 " -----------------------------------------------------------------------------------------
 nnoremap <silent> <leader>h :wincmd h<CR>
-cmap W w !sudo tee % >/dev/null<CR>
 nnoremap <silent> <leader>j :wincmd j<CR>
 nnoremap <silent> <leader>k :wincmd k<CR>
 nnoremap <silent> <leader>l :wincmd l<CR>
@@ -84,11 +83,7 @@ nnoremap <silent> <leader>8 <Esc>8gt
 " -----------------------------------------------------------------------------------------
 nnoremap <leader>Y :Goyo<CR>
 nnoremap <leader>s :!clear && shellcheck %<CR>
-nnoremap <leader>r :!python %<CR>
-nnoremap <leader>pc :!pandoc --verbose -f vimwiki -t pdf "%" > "/home/shawn/wikipdf/%:t.pdf"<CR>
 nnoremap <leader><TAB> /<++><Enter>"_c4l
-nnoremap Q @
-nnoremap @ Q
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
@@ -140,8 +135,12 @@ autocmd filetype html inoremap ;i <i></i><CR><++><Esc>k0lf<i
 autocmd filetype html inoremap ;d <div></div><CR><++><Esc>k0lf<i<CR><CR><UP><TAB>
 " python
 autocmd filetype python inoremap ;i from  import <++><Esc>0tii
+autocmd filetype python nnoremap <leader>r :!python %<CR>
 " vimwiki
 autocmd filetype vimwiki inoremap ;b {{{bash}}}<Esc>0f}i<CR><CR><Esc>o<++><Esc>2ki
+autocmd filetype vimwiki nnoremap <leader>pc :!pandoc --verbose -f vimwiki -t pdf "%" > "/home/shawn/wikipdf/%:t.pdf"<CR>
+" lua
+autocmd filetype lua nnoremap <leader>r :!lua %<CR>
 
 " FILE SPECIFIC SETTINGS 
 " =========================================================================================

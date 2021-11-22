@@ -1,30 +1,29 @@
 " PLUGINS 
 " =========================================================================================
 call plug#begin('~/.vim/plugged')
-	Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
-	Plug 'junegunn/fzf.vim'
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'preservim/nerdcommenter'
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'vimwiki/vimwiki'
-	Plug 'junegunn/goyo.vim'
-	Plug 'wadackel/vim-dogrun'
-	Plug 'morhetz/gruvbox'
-	Plug 'jremmen/vim-ripgrep'
-	Plug 'preservim/nerdtree'
-	Plug 'vim-scripts/indentpython.vim'
-	Plug 'vim-syntastic/syntastic'
-	Plug 'nvie/vim-flake8'
-	Plug 'itchyny/lightline.vim'
-	Plug 'tpope/vim-fugitive'
-	Plug 'ryanoasis/vim-devicons'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdcommenter'
+Plug 'jiangmiao/auto-pairs'
+Plug 'vimwiki/vimwiki'
+Plug 'junegunn/goyo.vim'
+Plug 'wadackel/vim-dogrun'
+Plug 'morhetz/gruvbox'
+Plug 'jremmen/vim-ripgrep'
+Plug 'preservim/nerdtree'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'nvie/vim-flake8'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()           
 
 " GENERAL 
 " =========================================================================================
 filetype plugin on
 set nocompatible           
-let NERDTreeShowHidden=1
 set matchpairs+=<:>
 set encoding=UTF-8
 set completeopt-=preview
@@ -69,7 +68,7 @@ nnoremap <silent> <leader>k :wincmd k<CR>
 nnoremap <silent> <leader>l :wincmd l<CR>
 " nnoremap <silent> <leader>wv :vs<bar> :NERDTree <bar> :vertical resize 25<CR>
 nnoremap <silent> <leader>wv :vs<CR>
-nnoremap <silent> <leader>wh :split<bar> :NERDTree <bar> :vertical resize 25<CR>
+" nnoremap <silent> <leader>wh :split<bar> :NERDTree <bar> :vertical resize 25<CR>
 nnoremap <silent> <leader>= :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
 nnoremap <leader>+ <C-w>= 
@@ -81,7 +80,7 @@ nnoremap <C-f> :FzfBuffers<CR>
 nnoremap <leader>or :FzfRg<CR>
 " toggle commands
 " -----------------------------------------------------------------------------------------
-nnoremap <silent> <leader>tp :NERDTreeToggle<CR>
+" nnoremap <silent> <leader>tp :NERDTreeToggle<CR>
 " tab commands
 " -----------------------------------------------------------------------------------------
 nnoremap <silent> <leader>nt :tabnew<CR>:NERDTree<CR>
@@ -201,8 +200,8 @@ command! -bang -nargs=* Rg
 " NERDTree
 " -----------------------------------------------------------------------------------------
 " files to ignore in NERDTree
-let NERDTreeIgnore=['\.DS_Store$', '\.git$'] 
+" let NERDTreeIgnore=['\.DS_Store$', '\.git$'] 
 
-let $FZF_DEFAULT_COMMAND = 'ag --hidden -l -g ""'
+" let $FZF_DEFAULT_COMMAND = 'ag --hidden -l -g ""'
 
-nnoremap <leader>/ :%s/\v/gc<Left><Left><Left>
+" nnoremap <leader>/ :%s/\v/gc<Left><Left><Left>
