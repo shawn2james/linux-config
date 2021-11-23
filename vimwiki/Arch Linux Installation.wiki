@@ -135,7 +135,8 @@ makepkg -si
 sudo pacman -S xf86-video-fbdev xorg xorg-xinit nitrogen picom alacritty firefox 
 \ xmonad xmonad-contrib xterm qutebrowser blueman nm-connection-editor modemmanager 
 \ usb_modeswitch openssh flameshot vifm wget imagemagick xmobar python-pip 
-\ bash-completion ntfs-3g
+\ bash-completion ntfs-3g exa haskell-language-server alsa-utils pulseaudio pulseaudio-bluetooth
+\ pulseaudio-alsa pavucontrol
 }}}
 
 
