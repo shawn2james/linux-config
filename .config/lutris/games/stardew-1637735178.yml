@@ -1,0 +1,6 @@
+game:
+  exe: /home/shawn/.wine/drive_c/games/Stardew.Valley.v1.5.5/Stardew.Valley.v1.5.5/Stardew
+    Valley.exe
+system: {}
+wine:
+  version: system

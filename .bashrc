@@ -18,7 +18,6 @@ alias cp="cp -iv"
 alias mv="mv -v"
 alias mkdir="mkdir -pv"
 alias gis="git status"
-alias linux-pdf="zathura /home/shawn/Documents/the-linux-commnd-line.pdf"
 alias icat="kitty +kitten icat --align=center"
 alias blued="bluetoothctl disconnect"
 alias pacsave="pacman -Q > /home/shawn/linux-config/packages.txt"
@@ -169,14 +168,6 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-
-# function _update_ps1() {
-    # PS1=$(powerline-shell $?)
-# }
-
-# if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-   # PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-# fi
 
 if [ -f /etc/bash_completion ]; then
     /etc/bash_completion

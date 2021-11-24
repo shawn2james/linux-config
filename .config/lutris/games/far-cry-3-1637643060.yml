@@ -1,0 +1,5 @@
+game:
+  exe: /home/shawn/.wine/drive_c/games/far-cry-3/Far Cry 3/bin/farcry3_d3d11.exe
+system: {}
+wine:
+  version: system

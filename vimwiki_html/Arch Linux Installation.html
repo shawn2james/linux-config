@@ -146,14 +146,32 @@ cd paru
 makepkg -si
 </pre>
 
-<p>
-======= Most used programs =======
-</p>
+<div id="Commands for Arch Linux Installation-Setting up xorg, xmonad etc...-Setup config files"><h6 id="Setup config files" class="header"><a href="#Commands for Arch Linux Installation-Setting up xorg, xmonad etc...-Setup config files">Setup config files</a></h6></div>
+<pre bash>
+git clone https://github.com/shawn2james/linux-config
+ln -sf ~/linux-config/.bashrc ~/.bashrc
+ln -sf ~/linux-config/.bash_profile ~/.bash_profile
+ln -sf ~/linux-config/.xmonad ~/
+ln -sf ~/linux-config/.config ~/
+ln -sf ~/linux-config/vimwiki ~/
+ln -sf ~/linux-config/vimwiki_html ~/
+ln -s ~/.config/nvim/init.vim ~/init.vim
+ln -s ~/linux-config/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+cd ~/linux-config/dmenu-5.0 &amp;&amp; sudo make install
+</pre>
+
+<div id="Commands for Arch Linux Installation-Setting up xorg, xmonad etc...-Most used programs"><h6 id="Most used programs" class="header"><a href="#Commands for Arch Linux Installation-Setting up xorg, xmonad etc...-Most used programs">Most used programs</a></h6></div>
 <pre bash>
 sudo pacman -S xf86-video-fbdev xorg xorg-xinit nitrogen picom alacritty firefox 
 \ xmonad xmonad-contrib xterm qutebrowser blueman nm-connection-editor modemmanager 
 \ usb_modeswitch openssh flameshot vifm wget imagemagick xmobar python-pip 
-\ bash-completion ntfs-3g
+\ bash-completion ntfs-3g exa haskell-language-server alsa-utils pulseaudio pulseaudio-bluetooth
+\ pulseaudio-alsa pavucontrol libnotify dunst telegram-desktop qbittorrent zathura steam 
+\ lib32-nvidia-utils ttf-liberation lib32-systemd yt-dlp mpv
+
+pip install dmenu
+
+paru -S spotify devour downgrade fx youtube-viewer
 </pre>
 
 </body>

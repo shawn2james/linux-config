@@ -49,7 +49,8 @@ set splitbelow splitright
 
 " APPEARANCE 
 " =========================================================================================
-colorscheme dogrun
+colorscheme gruvbox
+hi Normal ctermbg=NONE guibg=NONE
 
 " KEY MAPS 
 " =========================================================================================
@@ -138,7 +139,8 @@ autocmd filetype python inoremap ;i from  import <++><Esc>0tii
 autocmd filetype python nnoremap <leader>r :!python %<CR>
 " vimwiki
 autocmd filetype vimwiki inoremap ;b {{{bash}}}<Esc>0f}i<CR><CR><Esc>o<++><Esc>2ki
-autocmd filetype vimwiki nnoremap <leader>pc :!pandoc --verbose -f vimwiki -t pdf "%" > "/home/shawn/wikipdf/%:t.pdf"<CR>
+autocmd filetype vimwiki nnoremap <leader>r :Vimwiki2HTML<CR><CR>
+" autocmd filetype vimwiki nnoremap <leader>pc :!pandoc --verbose -f vimwiki -t pdf "%" > "/home/shawn/wikipdf/%:t.pdf"<CR>
 " lua
 autocmd filetype lua nnoremap <leader>r :!lua %<CR>
 

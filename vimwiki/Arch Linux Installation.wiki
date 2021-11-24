@@ -130,13 +130,30 @@ cd paru
 makepkg -si
 }}}
 
-======= Most used programs =======
+====== Setup config files ======
+{{{bash
+git clone https://github.com/shawn2james/linux-config
+ln -sf ~/linux-config/.bashrc ~/.bashrc
+ln -sf ~/linux-config/.bash_profile ~/.bash_profile
+ln -sf ~/linux-config/.xmonad ~/
+ln -sf ~/linux-config/.config ~/
+ln -sf ~/linux-config/vimwiki ~/
+ln -sf ~/linux-config/vimwiki_html ~/
+ln -s ~/.config/nvim/init.vim ~/init.vim
+ln -s ~/linux-config/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+cd ~/linux-config/dmenu-5.0 && sudo make install
+}}}
+
+====== Most used programs ======
 {{{bash
 sudo pacman -S xf86-video-fbdev xorg xorg-xinit nitrogen picom alacritty firefox 
 \ xmonad xmonad-contrib xterm qutebrowser blueman nm-connection-editor modemmanager 
 \ usb_modeswitch openssh flameshot vifm wget imagemagick xmobar python-pip 
 \ bash-completion ntfs-3g exa haskell-language-server alsa-utils pulseaudio pulseaudio-bluetooth
-\ pulseaudio-alsa pavucontrol
+\ pulseaudio-alsa pavucontrol lib32-libpulse libnotify dunst telegram-desktop qbittorrent zathura steam 
+\ lib32-nvidia-utils ttf-liberation lib32-systemd yt-dlp mpv htop conky gimp libreoffice pip install dmenu gparted
+
+paru -S spotify devour downgrade fx youtube-viewer gotop
 }}}
 
 

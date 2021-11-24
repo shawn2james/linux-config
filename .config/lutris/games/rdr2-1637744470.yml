@@ -1,0 +1,6 @@
+game:
+  args: ''
+  exe: /home/shawn/.wine/drive_c/games/rdr2/RDR2.exe
+system: {}
+wine:
+  version: system

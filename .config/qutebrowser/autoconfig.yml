@@ -9,12 +9,14 @@ settings:
   content.geolocation:
     https://www.thecompleteuniversityguide.co.uk: false
   content.notifications.enabled:
+    https://up-load.io: false
+    https://uploadhaven.com: false
     https://web.whatsapp.com: true
     https://www.bestmp3converter.com: false
     https://www.youtube.com: false
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: true
   statusbar.show:
-    global: never
-  tabs.show:
     global: always
+  tabs.show:
+    global: never

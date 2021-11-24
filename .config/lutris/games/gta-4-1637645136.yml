@@ -1,0 +1,5 @@
+game:
+  exe: /home/shawn/.wine/drive_c/games/gta4/GTAIV.exe
+system: {}
+wine:
+  version: system

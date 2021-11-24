@@ -1,0 +1,5 @@
+game:
+  exe: /home/shawn/.wine/drive_c/games/dead-cells/deadcells.exe
+system: {}
+wine:
+  version: system

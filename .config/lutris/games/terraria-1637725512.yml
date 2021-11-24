@@ -1,0 +1,5 @@
+game:
+  exe: /home/shawn/personal/downloads/Terraria.An.Eye.for.an.Eye/Terraria.An.Eye.for.an.Eye/Terraria.exe
+system: {}
+wine:
+  version: system
